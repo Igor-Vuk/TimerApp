@@ -8,17 +8,26 @@
   "scripts": {
     "start-dev": "set \"NODE_ENV=development\" && babel-node ./start-dev.js",
     "start": "babel-node ./start-dev.js",
-    "flow": "./node_modules/.bin/flow check"
+    "flow": "./node_modules/.bin/flow check",
+    "standard": "node_modules/.bin/standard --verbose | node_modules/.bin/snazzy"
   },
   "dependencies": {
     "express": "^4.15.2"
   },
   "devDependencies": {
     "babel-cli": "^6.24.0",
+    "babel-eslint": "^7.2.1",
     "babel-preset-es2015": "^6.24.0",
     "babel-preset-react": "^6.23.0",
     "babel-preset-stage-3": "^6.22.0",
-    "flow-bin": "^0.42.0"
+    "eslint": "^3.18.0",
+    "eslint-config-standard": "^7.1.0",
+    "eslint-plugin-flowtype": "^2.30.4",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-react": "^6.10.3",
+    "flow-bin": "^0.42.0",
+    "snazzy": "^6.0.0",
+    "standard": "^9.0.2"
   },
   "repository": "git@github.com:Igor-Vuk/TimerApp.git"
 }

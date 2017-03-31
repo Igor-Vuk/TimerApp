@@ -10,11 +10,11 @@ const app: Express = new Express()
 // Middleware
 app.use(Express.static(path.join(__dirname, 'views')))
 
-//Routes
-app.get('*', function(req, res) {
+// Routes
+app.get('*', function (req: Object, res: Object) {
   res.send('Express route')
 })
 
-app.listen(APP_PORT, function() {
+app.listen(APP_PORT, function () {
   console.log(`Express server is up on port ${APP_PORT}`)
 })
