@@ -15,6 +15,6 @@ React preset => includes flow preset which includes transform-flow-strip-types(r
   "presets": [
     "es2015",
     "react",
-    "stage-3"
+    "stage-0"
   ]
 }
