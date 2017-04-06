@@ -1,8 +1,6 @@
 'use strict'
 
 import path from 'path'
-// import HtmlWebpackPlugin from 'html-webpack-plugin'
-// const path = require('path')
 const publicPath = path.resolve(__dirname, './src/client')
 
 module.exports = {
@@ -20,17 +18,18 @@ module.exports = {
     publicPath: '/dist/'
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.ejs']
+    extensions: ['.js', '.jsx'],
+    alias: {
+      Container: path.resolve(__dirname, 'src/client/scenes/Container.js'),
+      First: path.resolve(__dirname, 'src/client/scenes/first/First.jsx')
+    }
   },
   module: {
     rules: [
       {
-        test: /\.jsx?$/,
-        exclude: [/node_modules/],
-        use: [{
-          loader: 'babel-loader',
-          options: { presets: ['react', 'es2015', 'stage-0'] }
-        }]
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules|dist/,
+        loader: 'babel-loader'
       }
     ]
   }

@@ -2,17 +2,17 @@
 
 import Express from 'express'
 import path from 'path'
-import conf from '../conf/'
+import conf from './conf'
 
 const APP_PORT: number = conf.APP_PORT
-const PORT = process.env.PORT || APP_PORT
+const PORT: any = process.env.PORT || APP_PORT
 
 const app: Express = new Express()
 
 // Middleware
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
-app.use(Express.static(path.join(__dirname, '../', 'client', 'dist')))
+app.use(Express.static(path.join(__dirname, '../', 'client')))
 
 // Routes
 app.get('*', function (req: Object, res: Object) {
