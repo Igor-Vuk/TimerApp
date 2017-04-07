@@ -14,7 +14,7 @@
     "build-client": "webpack --config webpack.config.babel.js",
     "webpack": "webpack -w --config webpack.config.babel.js",
     "flow": "./node_modules/.bin/flow check",
-    "standard": "node_modules/.bin/standard --plugin flowtype --verbose | node_modules/.bin/snazzy"
+    "standard": "node_modules/.bin/standard --verbose | node_modules/.bin/snazzy"
   },
   "dependencies": {
     "babel-runtime": "^6.23.0",
@@ -41,7 +41,7 @@
     "flow-bin": "^0.43.0",
     "nodemon": "^1.11.0",
     "snazzy": "^6.0.0",
-    "standard": "^10.0.0",
+    "standard": "^10.0.1",
     "webpack": "^2.3.2"
   },
   "repository": "git@github.com:Igor-Vuk/TimerApp.git"

@@ -1,9 +1,9 @@
 /* @flow */
 
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 
 class Container extends Component {
-  render (): ?React$Element<any> {
+  render (): ?React.Element<any> {
     return (
       <div>
         <h1>Container</h1>

@@ -29,4 +29,3 @@
 * `yarn run start` will run in production (build the client and server before runing it)
 * `yarn run webpack` will start webpack in watch mode
 * `yarn run flow` will run flow check
-* `yarn run standard` will check standard.js

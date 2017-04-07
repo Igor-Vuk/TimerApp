@@ -1,7 +1,10 @@
 [ignore]
+.*/node_modules/fbjs/.*
 
 [include]
 
 [libs]
 
 [options]
+module.name_mapper='^First\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/first/First.jsx\1'
+module.name_mapper='^Container\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/Container.js\1'
