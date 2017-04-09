@@ -8,6 +8,7 @@
 ## Inital Setup Features##
 * ES6
 * Babel
+* Bootstrap 4
 * Webpack
 * Express
 * Flow.js

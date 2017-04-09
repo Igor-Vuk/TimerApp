@@ -1,6 +1,7 @@
 'use strict'
 
 import path from 'path'
+import webpack from 'webpack'
 const publicPath = path.resolve(__dirname, './src/client')
 
 module.exports = {
@@ -10,7 +11,12 @@ module.exports = {
   },
   context: publicPath,
   entry: {
-    bundle: './app.js'
+    bundle: [
+      'script-loader!jquery/dist/jquery.min.js',
+      'script-loader!tether/dist/js/tether.min.js',
+      'script-loader!bootstrap/dist/js/bootstrap.min.js',
+      './app.js'
+    ]
   },
   output: {
     path: path.join(publicPath, 'dist'),
@@ -29,8 +35,23 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules|dist/,
-        loader: 'babel-loader'
+        use: 'babel-loader'
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.scss$/,
+        use: ['style-loader', 'css-loader', 'sass-loader']
       }
     ]
-  }
+  },
+  plugins: [
+    new webpack.ProvidePlugin({
+      $: 'jquery',
+      jQuery: 'jquery',
+      jquery: 'jquery'
+    })
+  ]
 }
