@@ -2,6 +2,7 @@
 
 import path from 'path'
 import webpack from 'webpack'
+import autoprefixer from 'autoprefixer'
 const publicPath = path.resolve(__dirname, './src/client')
 
 module.exports = {
@@ -38,12 +39,28 @@ module.exports = {
         use: 'babel-loader'
       },
       {
-        test: /\.css$/,
-        use: ['style-loader', 'css-loader']
+        test: /\.global\.(css|scss)$/,
+        use: [
+          'style-loader',
+          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]',
+          'postcss-loader',
+          'sass-loader',
+          {
+            loader: 'sass-resources-loader',
+            options: {
+              resources: path.resolve(__dirname, './src/client/styles/global/sass-resources.scss')
+            }
+          }
+        ]
       },
       {
-        test: /\.scss$/,
-        use: ['style-loader', 'css-loader', 'sass-loader']
+        test: /^((?!\.global).)+\.(css|scss)$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          'sass-loader'
+        ]
       }
     ]
   },
@@ -52,6 +69,9 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       jquery: 'jquery'
+    }),
+    new webpack.LoaderOptionsPlugin({
+      postcss: [autoprefixer]
     })
   ]
 }

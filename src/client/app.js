@@ -4,8 +4,9 @@ import React from 'react'
 import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
 
-import routes from './routes'
+// import global styles bootstrap before routes and local styles
 import 'bootstrap/scss/bootstrap.scss'
+import routes from './routes'
 
 render(
   <Router history={browserHistory}>
