@@ -8,7 +8,7 @@
 ## Inital Setup Features##
 * ES6
 * Babel
-* Bootstrap 4 && Mixins
+* Bootstrap 4 & Mixins
 * CSS Modules
 * Webpack
 * Express

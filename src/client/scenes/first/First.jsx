@@ -1,17 +1,17 @@
 /* @flow */
 
 import React, { Component } from 'react'
-import styles from './first.global.scss'
+import './first.local.scss'
 
 class First extends Component {
   render (): React.Element<any> {
     return (
       <div>
         {/* For Demonstration */}
-        <h1 className={styles.header}>First Scene</h1>
-        <button type='button' className='btn btn-default'>Default</button>
+        <h1 styleName='header'>First Scene</h1>
+        <button type='button' className='btn btn-default' styleName='custom-btn'>Default</button>
 
-        <button type='button' className={`btn btn-primary ${styles.customBtn}`} data-toggle='modal' data-target='#myModal'>Launch demo modal</button>
+        <button type='button' className='btn btn-primary' data-toggle='modal' data-target='#myModal'>Launch demo modal</button>
 
         <div className='modal fade' id='myModal' tabIndex='-1' role='dialog' aria-labelledby='exampleModalLabel' aria-hidden='true'>
           <div className='modal-dialog' role='document'>
@@ -34,9 +34,9 @@ class First extends Component {
         </div>
 
         <form>
-          <div className={`form-group ${styles.formula}`}>
+          <div className='form-group' styleName='formula'>
             <label htmlFor='exampleInputEmail1'>Email address</label>
-            <input type='email' className={`form-control ${styles.formControl}`} id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Enter email' />
+            <input type='email' className='form-control' styleName='formControl' id='exampleInputEmail1' aria-describedby='emailHelp' placeholder='Enter email' />
             <small id='emailHelp' className='form-text text-muted'>We'll never share your email with anyone else.</small>
           </div>
           <div className='form-group'>

@@ -36,13 +36,26 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules|dist/,
-        use: 'babel-loader'
+        loader: 'babel-loader',
+        options: {
+          plugins: [
+            [
+              'babel-plugin-react-css-modules',
+              {
+                context: publicPath,
+                filetypes: {
+                  '.scss': 'postcss-scss'
+                }
+              }
+            ]
+          ]
+        }
       },
       {
-        test: /\.global\.(css|scss)$/,
+        test: /\.local\.(css|scss)$/,
         use: [
           'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[name]__[local]__[hash:base64:5]',
+          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
           'postcss-loader',
           'sass-loader',
           {
@@ -54,7 +67,7 @@ module.exports = {
         ]
       },
       {
-        test: /^((?!\.global).)+\.(css|scss)$/,
+        test: /^((?!\.local).)+\.(css|scss)$/,
         use: [
           'style-loader',
           'css-loader',
