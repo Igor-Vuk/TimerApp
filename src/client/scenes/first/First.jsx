@@ -8,7 +8,7 @@ class First extends Component {
     return (
       <div>
         {/* For Demonstration */}
-        <h1 styleName='header'>First Scene</h1>
+        <h1 styleName='header'>First Scenes</h1>
         <button type='button' className='btn btn-default' styleName='custom-btn'>Default</button>
 
         <button type='button' className='btn btn-primary' data-toggle='modal' data-target='#myModal'>Launch demo modal</button>

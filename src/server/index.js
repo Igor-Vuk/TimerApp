@@ -12,7 +12,7 @@ const app: Express = new Express()
 // Middleware
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
-app.use(Express.static(path.join(__dirname, '../', 'client')))
+app.use(Express.static(path.join(__dirname, '../', 'dist')))
 
 // Routes
 app.get('*', function (req: Object, res: Object) {

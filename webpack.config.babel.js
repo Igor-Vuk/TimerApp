@@ -4,6 +4,7 @@ import path from 'path'
 import webpack from 'webpack'
 import autoprefixer from 'autoprefixer'
 const publicPath = path.resolve(__dirname, './src/client')
+const buildPath = path.resolve(__dirname, './src')
 
 module.exports = {
   devtool: '#source-maps',
@@ -20,7 +21,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(publicPath, 'dist'),
+    path: path.join(buildPath, 'dist'),
     filename: '[name].js',
     publicPath: '/dist/'
   },

@@ -3,7 +3,11 @@
 import path from 'path'
 import webpack from 'webpack'
 import autoprefixer from 'autoprefixer'
+import ExtractTextPlugin from 'extract-text-webpack-plugin'
+const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheets/stylesLocal.css', disable: false, allChunks: true})
+const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheets/stylesGlobal.css', disable: false, allChunks: true})
 const publicPath = path.resolve(__dirname, './src/client')
+const buildPath = path.resolve(__dirname, './src')
 
 module.exports = {
   devtool: '#source-maps',
@@ -20,7 +24,7 @@ module.exports = {
     ]
   },
   output: {
-    path: path.join(publicPath, 'dist'),
+    path: path.join(buildPath, 'dist'),
     filename: '[name].js',
     publicPath: '/dist/'
   },
@@ -39,6 +43,7 @@ module.exports = {
         loader: 'babel-loader',
         options: {
           plugins: [
+            'transform-runtime',
             [
               'babel-plugin-react-css-modules',
               {
@@ -59,31 +64,37 @@ module.exports = {
       },
       {
         test: /\.local\.(css|scss)$/,
-        use: [
-          'style-loader',
-          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-          'postcss-loader',
-          'sass-loader',
-          {
-            loader: 'sass-resources-loader',
-            options: {
-              resources: path.resolve(__dirname, './src/client/styles/global/sass-resources.scss')
+        use: ExtractLocal.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
+            'postcss-loader',
+            'sass-loader',
+            {
+              loader: 'sass-resources-loader',
+              options: {
+                resources: path.resolve(__dirname, './src/client/styles/global/sass-resources.scss')
+              }
             }
-          }
-        ]
+          ]
+        })
       },
       {
         test: /^((?!\.local).)+\.(css|scss)$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          'postcss-loader',
-          'sass-loader'
-        ]
+        use: ExtractGlobal.extract({
+          fallback: 'style-loader',
+          use: [
+            'css-loader',
+            'postcss-loader',
+            'sass-loader'
+          ]
+        })
       }
     ]
   },
   plugins: [
+    ExtractLocal,
+    ExtractGlobal,
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: 'jquery',

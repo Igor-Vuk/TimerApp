@@ -1,4 +1,4 @@
-src/client/dist/
+src/dist/
 src/build
 node_modules/
 docs
