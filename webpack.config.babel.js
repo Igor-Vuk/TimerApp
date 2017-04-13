@@ -3,6 +3,7 @@
 import path from 'path'
 import webpack from 'webpack'
 import autoprefixer from 'autoprefixer'
+import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
 const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
 
@@ -86,6 +87,12 @@ module.exports = {
     }),
     new webpack.LoaderOptionsPlugin({
       postcss: [autoprefixer]
+    }),
+    new BrowserSyncPlugin({
+      host: 'localhost',
+      port: 3002,
+      files: ['./dist/*.ejs'],
+      proxy: 'http://localhost:3000'
     })
   ]
 }

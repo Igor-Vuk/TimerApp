@@ -11,6 +11,7 @@
 * Bootstrap 4 & Mixins
 * CSS Modules
 * Webpack (development & production mode)
+* Browsersync
 * Express
 * EJS
 * Flow.js
@@ -38,11 +39,11 @@
 **IN PRODUCTION**
 * `yarn run build-server`  will bundle server for production using `babel` and make a `build` folder
 * `yarn run build-client` will bundle client for production using `webpack` and make a `dist` folder
-* `yarn run start` set NODE_ENV = production and start the app (build server and client first)
+* `yarn run start` set NODE_ENV = production and start the app on port **3001** (build server and client first)
 
 **IN DEVELOPMENT**
-* `yarn run start-dev` will set NODE_ENV = development and start `nodemon`
-* `yarn run webpack` will start webpack in `watch mode` and bundle the client in development mode in `dist` folder
+* `yarn run start-dev` will set NODE_ENV = development and start the server using `nodemon` on port **3000**
+* `yarn run webpack` will start the webpack in `watch mode`, make a bundle directory `dist`, start the `browsersync` and automatic reloading and run the app on port **3002**   
 
 **HELPE SCRIPTS**
 * `yarn run flow` will run flow check
