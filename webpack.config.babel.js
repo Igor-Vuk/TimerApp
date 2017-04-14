@@ -92,7 +92,10 @@ module.exports = {
       host: 'localhost',
       port: 3002,
       files: ['./dist/*.ejs'],
-      proxy: 'http://localhost:3000'
+      proxy: 'http://localhost:3000',
+      open: false,
+      tunnel: 'proba',
+      browser: ['chrome', 'firefox']
     })
   ]
 }
