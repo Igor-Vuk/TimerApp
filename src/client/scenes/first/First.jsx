@@ -102,6 +102,10 @@ class First extends Component {
           <button type='submit' className='btn btn-primary'>Submit</button>
         </form>
 
+        <div styleName='panel'>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, eos, tempore. Dolores adipisci aspernatur laboriosam odio nulla quod eum numquam corrupti, iusto voluptates molestiae necessitatibus. Ex inventore vero atque ipsa.</p>
+        </div>
+
       </div>
     )
   }

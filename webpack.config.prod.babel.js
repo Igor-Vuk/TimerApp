@@ -2,7 +2,6 @@
 
 import path from 'path'
 import webpack from 'webpack'
-import autoprefixer from 'autoprefixer'
 import ExtractTextPlugin from 'extract-text-webpack-plugin'
 const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheets/stylesLocal.css', disable: false, allChunks: true})
 const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheets/stylesGlobal.css', disable: false, allChunks: true})
@@ -99,9 +98,6 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       jquery: 'jquery'
-    }),
-    new webpack.LoaderOptionsPlugin({
-      postcss: [autoprefixer]
     })
   ]
 }

@@ -2,10 +2,11 @@
 
 import path from 'path'
 import webpack from 'webpack'
-import autoprefixer from 'autoprefixer'
 import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
 const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
+
+process.noDeprecation = true
 
 module.exports = {
   devtool: '#source-maps',
@@ -84,9 +85,6 @@ module.exports = {
       $: 'jquery',
       jQuery: 'jquery',
       jquery: 'jquery'
-    }),
-    new webpack.LoaderOptionsPlugin({
-      postcss: [autoprefixer]
     }),
     new BrowserSyncPlugin({
       host: 'localhost',

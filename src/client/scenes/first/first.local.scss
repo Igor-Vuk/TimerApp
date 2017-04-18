@@ -1,5 +1,9 @@
+:root {
+  --head: red;
+}
+
 .header {
-  color: green;
+  color: var(--head);
 }
 
 .custom-btn {
@@ -12,4 +16,12 @@
   .formControl {
     // Empty - used for mixin input-size
   }
+}
+
+.panel {
+  display: flex;
+}
+
+.panel p {
+  flex: 1;
 }

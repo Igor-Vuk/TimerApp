@@ -8,6 +8,7 @@
 * Babel
 * Bootstrap 4 & Mixins
 * CSS Modules
+* PostCSS and autoprefixer
 * Webpack (development & production mode)
 * Browsersync
 * Express
