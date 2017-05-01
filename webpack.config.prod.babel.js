@@ -9,7 +9,7 @@ const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
 
 module.exports = {
-  devtool: '#source-maps',
+  devtool: 'source-map',
   performance: {
     hints: false
   },
@@ -31,7 +31,10 @@ module.exports = {
     extensions: ['.js', '.jsx'],
     alias: {
       Container: path.resolve(__dirname, 'src/client/scenes/Container.js'),
-      Navigation: path.resolve(__dirname, 'src/client/scenes/shared/navigation/index.jsx')
+      Navigation: path.resolve(__dirname, 'src/client/scenes/shared/navigation/index.jsx'),
+      Clock: path.resolve(__dirname, 'src/client/scenes/shared/clock/index.jsx'),
+      Countdown: path.resolve(__dirname, 'src/client/scenes/countdown/index.jsx'),
+      Timer: path.resolve(__dirname, 'src/client/scenes/timer/index.jsx')
     }
   },
   module: {

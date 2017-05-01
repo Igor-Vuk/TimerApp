@@ -9,3 +9,5 @@
 module.name_mapper.extension='scss' -> '<PROJECT_ROOT>/flow/stub/cssModules.js'
 module.name_mapper='^Navigation\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/shared/navigation/index.jsx\1'
 module.name_mapper='^Container\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/Container.js\1'
+module.name_mapper='^Countdown\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/countdown/index.jsx\1'
+module.name_mapper='^Timer\(.*\)$' -> '<PROJECT_ROOT>/src/client/scenes/timer/index.jsx\1'
