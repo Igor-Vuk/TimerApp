@@ -18,12 +18,12 @@ class CountdownForm extends Component {
   render (): React.Element<any> {
     return (
       <div styleName="container">
-        <div className="form-group">
-          <form ref="form" onSubmit={this.onSubmit} className="">
+        <form ref="form" onSubmit={this.onSubmit}>
+          <div className="form-group">
             <input type="text" className="form-control" ref="seconds" placeholder="enter time in seconds" />
             <button className="btn btn-primary btn-block">Start</button>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
     )
   }
