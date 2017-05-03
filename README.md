@@ -1,6 +1,6 @@
 # TimerApp - IN DEVELOPMENT #
 
-## React Countdown and Timer App ##
+## React Countdown and Timer App written using ES6/ES7 React ##
 
 ## Inital Setup Features - creating a boilerplate ##
 
@@ -48,3 +48,4 @@
 
 * `yarn run flow` will run flow check
 * `yarn run standard` will run standard.js check
+* `yarn run test` will run all the tests

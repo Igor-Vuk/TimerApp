@@ -2,8 +2,8 @@
 /* eslint "jsx-quotes": ["error", "prefer-double"] */
 
 import React, { Component } from 'react'
-import './index.local.scss'
 import {Link, IndexLink} from 'react-router'
+import './index.local.scss'
 
 class Navigation extends Component {
   render (): React.Element<any> {
@@ -24,7 +24,7 @@ class Navigation extends Component {
               <Link to="/countdown" className="nav-item nav-link">Countdown</Link>
             </div>
             <div className="navbar-nav ml-auto">
-              <span className="navbar-text" styleName="nav-text">Made by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a></span>
+              <span className="navbar-text" styleName="nav-text">Created by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a></span>
             </div>
           </div>
         </nav>

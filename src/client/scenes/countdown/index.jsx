@@ -1,11 +1,31 @@
 /* @flow */
 
 import React, {Component} from 'react'
+import Clock from 'Clock'
+import CountdownForm from './components/CountdownForm.jsx'
+
+type StateType = {
+  count: number
+}
 
 class Countdown extends Component {
-  render (): React.element<any> {
+  state: StateType = {
+    count: 0
+  }
+
+  handleSetCountdown = (seconds: number) => {
+    this.setState({
+      count: seconds
+    })
+  }
+
+  render (): React.Element<any> {
+    const {count} = this.state
     return (
-      <h1>Countdown comp</h1>
+      <div>
+        <Clock totalSeconds={count} />
+        <CountdownForm onSetCountdown={this.handleSetCountdown} />
+      </div>
     )
   }
 }
