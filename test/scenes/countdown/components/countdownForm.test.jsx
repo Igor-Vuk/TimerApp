@@ -6,7 +6,7 @@ import { shallow } from 'enzyme'
 import test from 'tape'
 import CountdownForm from '../../../../src/client/scenes/countdown/components/CountdownForm.jsx'
 
-test('CountdownForm => should exist', (t) => {
+test('CountdownForm => should exist', (t: Object) => {
   t.ok(CountdownForm)
   t.end()
 })

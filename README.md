@@ -49,3 +49,4 @@
 * `yarn run flow` will run flow check
 * `yarn run standard` will run standard.js check
 * `yarn run test` will run all the tests
+* `yarn run coverage` will run test coverage
