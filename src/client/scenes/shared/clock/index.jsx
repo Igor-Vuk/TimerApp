@@ -11,7 +11,7 @@ type DefaultPropsType = {
 
 class Clock extends Component {
   static defaultProps: DefaultPropsType = {
-    totalSeconds: 5
+    totalSeconds: 3
   }
   static propTypes = {
     totalSeconds: PropTypes.number.isRequired

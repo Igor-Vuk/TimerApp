@@ -1,10 +1,13 @@
 /* @flow */
-import 'ignore-styles'
+import register from 'ignore-styles'
 
 import React from 'react'
 import test from 'tape'
 import { shallow } from 'enzyme'
 import Clock from '../../../../src/client/scenes/shared/clock/index.jsx'
+
+// Ignore styles and return fake styleName
+register(undefined, () => ({styleName: 'fake_class_name'}))
 
 test('Clock => should exist', (t: Object) => {
   t.ok(Clock)

@@ -16,7 +16,7 @@
     "flow": "./node_modules/.bin/flow check",
     "standard": "node_modules/.bin/standard --verbose | node_modules/.bin/snazzy",
     "test": "babel-tape-runner \"test/**/*test.jsx\" | node_modules/.bin/tap-summary",
-    "coverage": "babel-node node_modules/babel-istanbul/lib/cli.js cover  node_modules/babel-tape-runner/bin/babel-tape-runner -- \"test/**/*.test.jsx\""
+    "coverage": "babel-node node_modules/babel-istanbul/lib/cli.js cover node_modules/babel-tape-runner/bin/babel-tape-runner -- \"test/**/*.test.jsx\""
   },
   "dependencies": {
     "babel-plugin-react-css-modules": "^2.6.1",
@@ -54,6 +54,8 @@
     "flow-bin": "^0.45.0",
     "ignore-styles": "^5.0.1",
     "jquery": "^3.2.1",
+    "jsdom": "9.12.0",
+    "jsdom-global": "^2.1.1",
     "node-sass": "^4.5.2",
     "nodemon": "^1.11.0",
     "postcss": "^5.2.17",
@@ -63,6 +65,7 @@
     "sass-loader": "^6.0.3",
     "sass-resources-loader": "^1.2.1",
     "script-loader": "^0.7.0",
+    "sinon": "^2.2.0",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2",
     "style-loader": "^0.16.1",

@@ -30,5 +30,3 @@ class CountdownForm extends Component {
 }
 
 export default CountdownForm
-
-// \"test/**/*test.jsx\"
