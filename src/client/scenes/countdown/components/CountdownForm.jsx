@@ -12,6 +12,8 @@ class CountdownForm extends Component {
     if (strSeconds.match(/^[0-9]+$/)) {
       this.refs.seconds.value = ''
       this.props.onSetCountdown(parseInt(strSeconds, 10))
+    } else {
+      window.alert('Not a good value')
     }
   }
 

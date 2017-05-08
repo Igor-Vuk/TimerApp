@@ -16,15 +16,31 @@ test('CountdownForm => should exist', (t: Object) => {
 })
 
 test('CountdownForm => should call onSetCountdown if valid seconds entered', (t: Object) => {
+  t.plan(1)
   /* sinon */
   const spy = sinon.spy()
-  console.log(typeof (spy))
   /* enzyme */
   const wrapper: Object = mount(<CountdownForm onSetCountdown={spy} />)
   wrapper.ref('seconds').node.value = '10'
   wrapper.find('form').simulate('submit')
-  /* Sinon assertion */
-  sinon.assert.calledWith(spy, sinon.match(10))
   /* tape */
-  t.end()
+  t.equal(spy.args[0][0], 10)
+})
+
+test('CountdownForm => it should not call onSetCountdown if invalid seconds entered', (t: Object) => {
+  t.plan(1)
+  const spy = sinon.spy()
+  const wrapper: Object = mount(<CountdownForm onSetCountdown={spy} />)
+  wrapper.ref('seconds').node.value = '10a'
+  wrapper.find('form').simulate('submit')
+  t.equal(spy.called, false)
+})
+
+test('CountdownForm => it should call alert if no seconds entered', (t: Object) => {
+  t.plan(1)
+  const spy = sinon.spy(window, 'alert')
+  const wrapper: Object = mount(<CountdownForm />)
+  wrapper.ref('seconds').node.value = ''
+  wrapper.find('form').simulate('submit')
+  t.equal(spy.args[0][0], 'Not a good value')
 })

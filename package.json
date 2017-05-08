@@ -9,7 +9,7 @@
     "clean-client": "rm -rf ./src/dist",
     "clean-server": "rm -rf ./src/build",
     "build-server": "babel src/server -d src/build -s --copy-files",
-    "build-client": "webpack --config webpack.config.prod.babel.js",
+    "build-client": "webpack -p --config webpack.config.prod.babel.js",
     "start": "set \"NODE_ENV=production\" && node ./src/build/index.js",
     "start-dev": "set \"NODE_ENV=development\" && nodemon ./start-dev.js",
     "webpack": "webpack -w --config webpack.config.babel.js",
