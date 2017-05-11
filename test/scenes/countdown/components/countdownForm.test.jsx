@@ -3,10 +3,10 @@
 import 'jsdom-global/register'
 import register from 'ignore-styles'
 import React from 'react'
-import { shallow, mount } from 'enzyme'
+import { mount } from 'enzyme'
 import test from 'tape'
 import sinon from 'sinon'
-import CountdownForm from '../../../../src/client/scenes/countdown/components/CountdownForm.jsx'
+import CountdownForm from 'CountdownForm'
 
 register(undefined, () => ({styleName: 'fake_class_name'}))
 
@@ -38,7 +38,7 @@ test('CountdownForm => it should not call onSetCountdown if invalid seconds ente
 
 test('CountdownForm => it should call alert if no seconds entered', (t: Object) => {
   t.plan(1)
-  const spy = sinon.spy(window, 'alert')
+  const spy = sinon.spy(console, 'log')
   const wrapper: Object = mount(<CountdownForm />)
   wrapper.ref('seconds').node.value = ''
   wrapper.find('form').simulate('submit')

@@ -13,7 +13,7 @@ class CountdownForm extends Component {
       this.refs.seconds.value = ''
       this.props.onSetCountdown(parseInt(strSeconds, 10))
     } else {
-      window.alert('Not a good value')
+      console.log('Not a good value')
     }
   }
 

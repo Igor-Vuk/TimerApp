@@ -30,11 +30,12 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx'],
     alias: {
-      Container: path.resolve(__dirname, 'src/client/scenes/Container.js'),
-      Navigation: path.resolve(__dirname, 'src/client/scenes/shared/navigation/index.jsx'),
-      Clock: path.resolve(__dirname, 'src/client/scenes/shared/clock/index.jsx'),
+      CountdownForm: path.resolve(__dirname, 'src/client/scenes/countdown/components/CountdownForm.jsx'),
       Countdown: path.resolve(__dirname, 'src/client/scenes/countdown/index.jsx'),
-      Timer: path.resolve(__dirname, 'src/client/scenes/timer/index.jsx')
+      Clock: path.resolve(__dirname, 'src/client/scenes/shared/clock/index.jsx'),
+      Navigation: path.resolve(__dirname, 'src/client/scenes/shared/navigation/index.jsx'),
+      Timer: path.resolve(__dirname, 'src/client/scenes/timer/index.jsx'),
+      Container: path.resolve(__dirname, 'src/client/scenes/Container.js')
     }
   },
   module: {

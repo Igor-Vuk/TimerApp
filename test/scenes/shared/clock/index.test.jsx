@@ -1,10 +1,10 @@
 /* @flow */
-import register from 'ignore-styles'
 
+import register from 'ignore-styles'
 import React from 'react'
 import test from 'tape'
 import { shallow } from 'enzyme'
-import Clock from '../../../../src/client/scenes/shared/clock/index.jsx'
+import Clock from 'Clock'
 
 // Ignore styles and return fake styleName
 register(undefined, () => ({styleName: 'fake_class_name'}))
@@ -35,8 +35,8 @@ test('Clock => should format seconds when min/sec are less than 10 (leading zero
 /* .find(), .text() is enzyme shallow method */
 /* since we ignored styles at the top we can not find it based on styleName so we use className */
 test('Clock => should render clock to output', (t: Object) => {
+  t.plan(1)
   const wrapper: Object = shallow(<Clock totalSeconds={62} />)
   const actual: string = wrapper.find('.clock-text').text()
   t.equal(actual, '01:02')
-  t.end()
 })
