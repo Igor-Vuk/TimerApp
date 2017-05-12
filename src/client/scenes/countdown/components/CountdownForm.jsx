@@ -2,9 +2,14 @@
 /* eslint "jsx-quotes": ["error", "prefer-double"] */
 
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import './countdownForm.local.scss'
 
 class CountdownForm extends Component {
+  static propTypes = {
+    handleSetCountdown: PropTypes.func
+  }
+
   onSubmit = (e: Object) => {
     e.preventDefault()
     const strSeconds: string = this.refs.seconds.value

@@ -33,6 +33,7 @@ module.exports = {
       CountdownForm: path.resolve(__dirname, 'src/client/scenes/countdown/components/CountdownForm.jsx'),
       Countdown: path.resolve(__dirname, 'src/client/scenes/countdown/index.jsx'),
       Clock: path.resolve(__dirname, 'src/client/scenes/shared/clock/index.jsx'),
+      Controls: path.resolve(__dirname, 'src/client/scenes/shared/controls/index.jsx'),
       Navigation: path.resolve(__dirname, 'src/client/scenes/shared/navigation/index.jsx'),
       Timer: path.resolve(__dirname, 'src/client/scenes/timer/index.jsx'),
       Container: path.resolve(__dirname, 'src/client/scenes/Container.js')
