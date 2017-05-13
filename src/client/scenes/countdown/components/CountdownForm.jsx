@@ -4,7 +4,6 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import './countdownForm.local.scss'
-
 class CountdownForm extends Component {
   static propTypes = {
     handleSetCountdown: PropTypes.func
@@ -18,6 +17,7 @@ class CountdownForm extends Component {
       this.refs.seconds.value = ''
       this.props.onSetCountdown(parseInt(strSeconds, 10))
     } else {
+      /*console.log('clock', $('span').length)*/
       console.log('Not a good value')
     }
   }

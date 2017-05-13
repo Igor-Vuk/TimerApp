@@ -25,7 +25,7 @@ class Controls extends Component {
       if (countdownStatus === 'started') {
         /* onClick expects a function. Here we are using the function but we are calling it, meaning that the return value from onStatusChange is gonna get called when person clicks the button - Currying pattern */
         return <button className="btn btn-info" onClick={this.onStatusChange('paused')}>Pause</button>
-      } else if (countdownStatus === 'paused') {
+      } else {
         return <button className="btn btn-success" onClick={this.onStatusChange('started')}>Start</button>
       }
     }

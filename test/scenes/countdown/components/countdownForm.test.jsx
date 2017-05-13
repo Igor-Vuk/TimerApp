@@ -1,6 +1,5 @@
 /* @flow */
 
-import 'jsdom-global/register'
 import register from 'ignore-styles'
 import React from 'react'
 import { mount } from 'enzyme'
