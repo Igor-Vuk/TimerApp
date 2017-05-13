@@ -1,9 +1,11 @@
 /* @flow */
+/* eslint "jsx-quotes": ["error", "prefer-double"] */
 
 import React, {Component} from 'react'
 import Clock from 'Clock'
 import CountdownForm from 'CountdownForm'
 import Controls from 'Controls'
+import './index.local.scss'
 
 type StateType = {
   count: number,
@@ -89,7 +91,8 @@ class Countdown extends Component {
     }
 
     return (
-      <div>
+      <div styleName="container">
+        <h1 styleName="page-title">Countdown App</h1>
         <Clock totalSeconds={count} />
         {renderControlArea()}
       </div>
