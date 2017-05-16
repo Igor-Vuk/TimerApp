@@ -34,7 +34,7 @@ class Clock extends Component {
     return (
       <div styleName="container">
         <div styleName="clock">
-          <span styleName="clock-text" className="clock-text">
+          <span styleName="clock-text">
             {this.formatSeconds(totalSeconds)}
           </span>
         </div>

@@ -11,8 +11,12 @@ $blue: #2C3949;
 $transparent-blue: #B5D0E2;
 $white: #fff;
 
-html {
+body {
   font-size: 16px;
+  background: url('http://i.imgur.com/SbVBV1I.jpg') no-repeat center center fixed;
+  background-size: cover;
+  background-color: rgba(255,255,255,0.31);
+  background-blend-mode: color;
 }
 
 @media (min-width: 576px) {

@@ -1,20 +1,19 @@
 /* @flow */
 
-import register from 'ignore-styles'
 import React from 'react'
 import { shallow } from 'enzyme'
 import test from 'tape'
 import sinon from 'sinon'
+import sinonTest from 'sinon-test'
 import Timer from 'Timer'
-
-register(undefined, () => ({styleName: 'fake_class_name'}))
+sinon.test = sinonTest.configureTest(sinon)
 
 test('Timer => should exist', (t: Object) => {
   t.plan(1)
   t.ok(Timer)
 })
 
-test('Timer => should start timer on started status', (t: Object) => {
+test('Timer => should start timer on started status', sinon.test(function (t: Object) {
   t.plan(2)
   const wrapper: Object = shallow(<Timer />)
   const clock = sinon.useFakeTimers()
@@ -25,9 +24,9 @@ test('Timer => should start timer on started status', (t: Object) => {
     t.equal(wrapper.state().count, 1)
   }, 1001)
   clock.tick(1001)
-})
+}))
 
-test('Timer => should pause timer on paused status', (t: Object) => {
+test('Timer => should pause timer on paused status', sinon.test(function (t: Object) {
   t.plan(2)
   const wrapper: Object = shallow(<Timer />)
   const clock = sinon.useFakeTimers()
@@ -42,9 +41,9 @@ test('Timer => should pause timer on paused status', (t: Object) => {
     t.equal(wrapper.state().count, 10)
   }, 2001)
   clock.tick(2001)
-})
+}))
 
-test('Timer => should clear count on stopped status', (t: Object) => {
+test('Timer => should clear count on stopped status', sinon.test(function (t: Object) {
   t.plan(3)
   const wrapper: Object = shallow(<Timer />)
   const clock = sinon.useFakeTimers()
@@ -60,9 +59,9 @@ test('Timer => should clear count on stopped status', (t: Object) => {
     t.equal(wrapper.state().timerStatus, 'stopped')
   }, 2001)
   clock.tick(2001)
-})
+}))
 
-test('Timer => should set IntervalId to undefined before unmount', (t: Object) => {
+test('Timer => should set IntervalId to undefined before unmount', sinon.test(function (t: Object) {
   t.plan(2)
   const wrapper: Object = shallow(<Timer />)
   const clock = sinon.useFakeTimers()
@@ -75,4 +74,4 @@ test('Timer => should set IntervalId to undefined before unmount', (t: Object) =
     t.equal(instance.timer.intervalId, undefined)
   }, 3001)
   clock.tick(3001)
-})
+}))

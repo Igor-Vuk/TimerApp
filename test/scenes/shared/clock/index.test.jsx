@@ -1,13 +1,9 @@
 /* @flow */
 
-import register from 'ignore-styles'
 import React from 'react'
 import test from 'tape'
 import { shallow } from 'enzyme'
 import Clock from 'Clock'
-
-// Ignore styles and return fake styleName
-register(undefined, () => ({styleName: 'fake_class_name'}))
 
 test('Clock => should exist', (t: Object) => {
   t.ok(Clock)
@@ -37,6 +33,6 @@ test('Clock => should format seconds when min/sec are less than 10 (leading zero
 test('Clock => should render clock to output', (t: Object) => {
   t.plan(1)
   const wrapper: Object = shallow(<Clock totalSeconds={62} />)
-  const actual: string = wrapper.find('.clock-text').text()
+  const actual: string = wrapper.find('span').text()
   t.equal(actual, '01:02')
 })

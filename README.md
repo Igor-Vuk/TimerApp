@@ -1,21 +1,26 @@
-# TimerApp - IN DEVELOPMENT #
+# TimerApp #
 
-## React Countdown and Timer App written using ES6/ES7 React ##
+## React Countdown and Timer App ##
 
-## Inital Setup Features - creating a boilerplate ##
+## This app is example of application written fully in ES6/ES7 with React. App is fully tested using sinon, tape and enzyme ##
 
-* ES6
+## Features ##
+
+* ES6/ES7
 * Babel
-* Bootstrap 4 & Mixins
+* Bootstrap 4
 * CSS Modules
 * PostCSS, CSS Variables and autoprefixer
+* Flow.js
+* SCSS
+* Fully tested
+* Code coverage
+* Tree Shaking
 * webpack.config (development & production mode)
 * Browsersync
 * Express
 * EJS
-* Flow.js
 * ESLint
-* standard.js
 * yarn.lock
 * .editorconfig
 
@@ -47,6 +52,5 @@
 ### HELPE SCRIPTS ###
 
 * `yarn run flow` will run flow check
-* `yarn run standard` will run standard.js check
 * `yarn run test` will run all the tests
 * `yarn run coverage` will run test coverage

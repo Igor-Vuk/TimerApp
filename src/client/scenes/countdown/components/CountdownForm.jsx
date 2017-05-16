@@ -3,7 +3,7 @@
 
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
-import './countdownForm.local.scss'
+
 class CountdownForm extends Component {
   static propTypes = {
     handleSetCountdown: PropTypes.func
@@ -17,14 +17,13 @@ class CountdownForm extends Component {
       this.refs.seconds.value = ''
       this.props.onSetCountdown(parseInt(strSeconds, 10))
     } else {
-      /*console.log('clock', $('span').length)*/
-      console.log('Not a good value')
+      window.alert('Bad value. Please enter seconds!')
     }
   }
 
   render (): React.Element<any> {
     return (
-      <div styleName="container">
+      <div>
         <form ref="form" onSubmit={this.onSubmit}>
           <div className="form-group">
             <input type="text" className="form-control" ref="seconds" placeholder="enter time in seconds" />

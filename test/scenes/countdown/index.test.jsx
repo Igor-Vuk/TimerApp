@@ -1,20 +1,19 @@
 /* @flow */
 
-import register from 'ignore-styles'
 import React from 'react'
 import { shallow } from 'enzyme'
 import test from 'tape'
 import sinon from 'sinon'
+import sinonTest from 'sinon-test'
 import Countdown from 'Countdown'
-
-register(undefined, () => ({styleName: 'fake_class_name'}))
+sinon.test = sinonTest.configureTest(sinon)
 
 test('Countdown => should exist', (t: Object) => {
   t.ok(Countdown)
   t.end()
 })
 
-test('Countdown =>  should set state to started and count down one second', (t: Object) => {
+test('Countdown =>  should set state to started and count down one second', sinon.test(function (t: Object) {
   t.plan(3)
   const wrapper: Object = shallow(<Countdown />)
   /* Causes Sinon to replace the global setTimeout, it freezes the timer */
@@ -30,9 +29,9 @@ test('Countdown =>  should set state to started and count down one second', (t: 
 
   /* Time can be advanced by calling the tick method of your clock object and passing it a value in milliseconds. */
   clock.tick(1001)
-})
+}))
 
-test('Countdown =>  should never set count less than zero', (t: Object) => {
+test('Countdown =>  should never set count less than zero', sinon.test(function (t: Object) {
   t.plan(1)
   const wrapper: Object = shallow(<Countdown />)
   /* Causes Sinon to replace the global setTimeout, it freezes the timer */
@@ -46,9 +45,9 @@ test('Countdown =>  should never set count less than zero', (t: Object) => {
 
   /* Time can be advanced by calling the tick method of your clock object and passing it a value in milliseconds. */
   clock.tick(3001)
-})
+}))
 
-test('Countdown => should pause countdown on 5 seconds when paused status after 3s passes', (t: Object) => {
+test('Countdown => should pause countdown on 5 seconds when paused status after 3s passes', sinon.test(function (t: Object) {
   t.plan(2)
   const wrapper: Object = shallow(<Countdown />)
   const clock = sinon.useFakeTimers()
@@ -60,9 +59,9 @@ test('Countdown => should pause countdown on 5 seconds when paused status after 
     t.equal(wrapper.state().countdownStatus, 'paused')
   }, 3001)
   clock.tick(3001)
-})
+}))
 
-test('Countdown => should set count to zero when stopped status', (t: Object) => {
+test('Countdown => should set count to zero when stopped status', sinon.test(function (t: Object) {
   t.plan(2)
   const wrapper: Object = shallow(<Countdown />)
   const clock = sinon.useFakeTimers()
@@ -74,9 +73,9 @@ test('Countdown => should set count to zero when stopped status', (t: Object) =>
     t.equal(wrapper.state().countdownStatus, 'stopped')
   }, 3001)
   clock.tick(3001)
-})
+}))
 
-test('Countdown => should set IntervalId to undefined before unmount', (t: Object) => {
+test('Countdown => should set IntervalId to undefined before unmount', sinon.test(function (t: Object) {
   t.plan(1)
   const wrapper: Object = shallow(<Countdown />)
   const clock = sinon.useFakeTimers()
@@ -88,4 +87,4 @@ test('Countdown => should set IntervalId to undefined before unmount', (t: Objec
     t.equal(instance.timer.intervalId, undefined)
   }, 3001)
   clock.tick(3001)
-})
+}))

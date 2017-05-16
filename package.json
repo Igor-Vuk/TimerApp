@@ -8,27 +8,26 @@
   "scripts": {
     "clean-client": "rm -rf ./src/dist",
     "clean-server": "rm -rf ./src/build",
-    "build-server": "babel src/server -d src/build -s --copy-files",
-    "build-client": "webpack -p --config webpack.config.prod.babel.js",
+    "build-server": "set \"NODE_ENV=production\" && babel src/server -d src/build -s --copy-files",
+    "build-client": "set \"NODE_ENV=production\" && webpack -p --config webpack.config.prod.babel.js",
     "start": "set \"NODE_ENV=production\" && node ./src/build/index.js",
     "start-dev": "set \"NODE_ENV=development\" && nodemon ./start-dev.js",
     "webpack": "webpack -w --config webpack.config.babel.js",
     "flow": "./node_modules/.bin/flow check",
-    "standard": "node_modules/.bin/standard --verbose | node_modules/.bin/snazzy",
-    "test": "babel-tape-runner \"test/setup.js\" \"test/**/*test.jsx\" | node_modules/.bin/tap-summary",
-    "coverage": "babel-node node_modules/babel-istanbul/lib/cli.js cover node_modules/babel-tape-runner/bin/babel-tape-runner -- \"test/**/*.test.jsx\""
+    "test": "babel-tape-runner -r \"test/setup.js\" \"test/**/*.test.jsx\" | node_modules/.bin/tap-spec",
+    "coverage": "babel-node node_modules/babel-istanbul/lib/cli.js cover node_modules/babel-tape-runner/bin/babel-tape-runner -- \"test/setup.js\" -- \"test/**/*.test.jsx\""
   },
   "dependencies": {
-    "babel-plugin-react-css-modules": "^2.7.0",
+    "babel-plugin-react-css-modules": "2.7.0",
     "babel-runtime": "^6.23.0",
     "ejs": "^2.5.6",
     "express": "^4.15.2",
     "extract-text-webpack-plugin": "^2.1.0",
     "postcss-scss": "^0.4.1",
     "prop-types": "^15.5.8",
-    "react": "^15.5.4",
-    "react-dom": "^15.5.4",
-    "react-router": "v3.0.4"
+    "react": "15.5.4",
+    "react-dom": "15.5.4",
+    "react-router": "3.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -67,10 +66,11 @@
     "sass-resources-loader": "^1.2.1",
     "script-loader": "^0.7.0",
     "sinon": "^2.2.0",
+    "sinon-test": "^1.0.2",
     "snazzy": "^7.0.0",
     "standard": "^10.0.2",
-    "style-loader": "^0.16.1",
-    "tap-summary": "^3.0.2",
+    "style-loader": "^0.17.0",
+    "tap-spec": "^4.1.1",
     "tape": "^4.6.3",
     "tether": "^1.4.0",
     "webpack": "^2.4.1"
