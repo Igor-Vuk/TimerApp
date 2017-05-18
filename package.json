@@ -8,16 +8,9 @@
   "scripts": {
     "clean-client": "rm -rf ./src/dist",
     "clean-server": "rm -rf ./src/build",
-<<<<<<< HEAD
     "build-server": "set \"NODE_ENV=production\" && babel src/server -d src/build -s --copy-files",
     "build-client": "set \"NODE_ENV=production\" && webpack -p --config webpack.config.prod.babel.js",
     "start": "set \"NODE_ENV=production\" && yarn run build-server && yarn run build-client && node ./src/build/index.js",
-=======
-    "build-server": "babel src/server -d src/build -s --copy-files",
-    "build-client": "webpack -p --config webpack.config.prod.babel.js",
-    "start": "set \"NODE_ENV=production\" && npm run build-server && npm run build-client && node ./src/build/index.js",
->>>>>>> feature
-    "start-dev": "set \"NODE_ENV=development\" && nodemon ./start-dev.js",
     "webpack": "webpack -w --config webpack.config.babel.js",
     "flow": "./node_modules/.bin/flow check",
     "test": "set \"NODE_ENV=test\" && babel-tape-runner -r \"test/setup.js\" \"test/**/*.test.jsx\" | node_modules/.bin/tap-spec",
