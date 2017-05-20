@@ -4,7 +4,7 @@
 import React from 'react'
 import Navigation from 'Navigation'
 
-function Container ({children}: {children: Object}): React.Element<any> {
+const Container = ({children}: {children: Object}): React.Element<any> => {
   return (
     <div>
       <Navigation />

@@ -17,6 +17,7 @@ test('CountdownForm => should call onSetCountdown if valid seconds entered', sin
   t.plan(1)
   /* sinon */
   const spy = this.spy()
+  this.stub(window, 'alert')
   /* enzyme */
   const wrapper: Object = mount(<CountdownForm onSetCountdown={spy} />)
   wrapper.ref('seconds').node.value = '10'

@@ -82,7 +82,7 @@ class Countdown extends Component {
 
   render (): React.Element<any> {
     const { count, countdownStatus } = this.state
-    const renderControlArea = (): any => {
+    const renderControlArea = (): React.Element<any> => {
       if (countdownStatus !== 'stopped') {
         return <Controls countdownStatus={countdownStatus} onStatusChange={this.handleStatusChange} />
       } else {

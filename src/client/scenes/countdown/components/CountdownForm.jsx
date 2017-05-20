@@ -13,7 +13,7 @@ class CountdownForm extends Component {
     e.preventDefault()
     const strSeconds: string = this.refs.seconds.value
     /* match a string against a regular expression */
-    if (strSeconds.match(/^[1-9][0-9]+$/)) {
+    if (strSeconds.match(/^[0-9]+$/)) {
       this.refs.seconds.value = ''
       this.props.onSetCountdown(parseInt(strSeconds, 10))
     } else {

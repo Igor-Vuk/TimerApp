@@ -98,6 +98,11 @@ module.exports = {
       proxy: 'http://localhost:3000',
       open: false,
       browser: ['chrome', 'firefox']
+    }),
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: JSON.stringify('development')
+      }
     })
   ]
 }
