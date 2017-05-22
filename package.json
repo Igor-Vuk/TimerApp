@@ -15,7 +15,7 @@
     "webpack": "webpack -w --config webpack.config.babel.js",
     "flow": "./node_modules/.bin/flow check",
     "test": "set \"NODE_ENV=test\" && babel-tape-runner -r \"test/setup.js\" \"test/**/*.test.jsx\" | node_modules/.bin/tap-spec",
-    "coverage": "babel-node node_modules/babel-istanbul/lib/cli.js cover node_modules/babel-tape-runner/bin/babel-tape-runner -- \"test/setup.js\" -- \"test/**/*.test.jsx\""
+    "coverage": "set \"NODE_ENV=test\" && babel-node node_modules/babel-istanbul/lib/cli.js cover node_modules/babel-tape-runner/bin/babel-tape-runner -- \"test/setup.js\" -- \"test/**/*.test.jsx\""
   },
   "dependencies": {
     "babel-plugin-react-css-modules": "2.7.0",
