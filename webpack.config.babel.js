@@ -10,6 +10,12 @@ process.noDeprecation = true
 
 module.exports = {
   devtool: 'source-maps',
+  devServer: {
+    host: 'localhost',
+    port: 3006,
+    historyApiFallback: true,
+    hot: true
+  },
   performance: {
     hints: false
   },
@@ -17,7 +23,8 @@ module.exports = {
   entry: {
     bundle: [
       'react-hot-loader/patch',
-      'webpack-hot-middleware/client?reload=false&noInfo=true',
+      'webpack-dev-server/client?http://localhost:3006',
+      'webpack/hot/only-dev-server',
       'script-loader!jquery/dist/jquery.min.js',
       'script-loader!tether/dist/js/tether.min.js',
       'script-loader!bootstrap/dist/js/bootstrap.min.js',

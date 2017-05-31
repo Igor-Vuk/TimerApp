@@ -17,7 +17,8 @@ We can use the env option to set specific options when in a certain environment.
   ],
   "plugins":[
     "react-hot-loader/babel",
-    "transform-runtime"
+    "transform-runtime",
+    ["babel-plugin-webpack-alias", { "config": "./webpack.config.babel.js"}]
   ],
   "env": {
     "test": {
