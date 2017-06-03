@@ -14,28 +14,28 @@ app.set('view engine', 'ejs')
 
 
 /* In development serve static files from memory */
-// if (process.env.NODE_ENV === 'development') {
-//   const webpack = require('webpack')
-//   const webpackConfig = require('../../webpack.config.js')
-//   const compiler = webpack(webpackConfig)
-//   const webpackDevMiddleware = require('webpack-dev-middleware')
+if (process.env.NODE_ENV === 'development') {
+  const webpack = require('webpack')
+  const webpackConfig = require('../../webpack.config.js')
+  const compiler = webpack(webpackConfig)
+  const webpackDevMiddleware = require('webpack-dev-middleware')
 
-//   app.use(webpackDevMiddleware(compiler, {
-//     publicPath: webpackConfig.output.publicPath,
-//     hot: true,
-//     noInfo: true,
-//     stats: {
-//       colors: true
-//     }
-//   }))
+  app.use(webpackDevMiddleware(compiler, {
+    publicPath: webpackConfig.output.publicPath,
+    hot: true,
+    noInfo: true,
+    stats: {
+      colors: true
+    }
+  }))
 
-//   app.use(require('webpack-hot-middleware')(compiler))
-// } else {
-//   /* In production serve physical static files bundled by webpack */
-//   app.use(Express.static(path.join(__dirname, '../', 'dist')))
-// }
+  app.use(require('webpack-hot-middleware')(compiler))
+} else {
+  /* In production serve physical static files bundled by webpack */
+  app.use(Express.static(path.join(__dirname, '../', 'dist')))
+}
 
-app.use(Express.static(path.join(__dirname, '../', 'dist')))
+/*app.use(Express.static(path.join(__dirname, '../', 'dist')))*/
 
 // Routes
 app.get('/proba', (req: Object, res: Object) => {
@@ -45,16 +45,12 @@ app.get('/proba', (req: Object, res: Object) => {
 })
 
 app.get('/tri', (req: Object, res: Object) => {
-  res.send('asdfasdf22222222awefaws')
+  res.send('11111111111111111fffffffff')
 })
 
 
 app.get('*', (req: Object, res: Object) => {
-  res.render('index', {samo: "asdgsdfasdfa22222223453aasdfsdsdfsdsds"})
+  res.render('index', {samo: '22222222222222dddddddddddd'})
 })
 
 export default app
-
-/*app.listen(PORT, () => {
-  console.log(`Express server is up on port ${PORT}`)
-})*/

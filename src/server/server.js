@@ -9,6 +9,6 @@
    module.hot.accept('./index', () => {
      server.removeListener('request', currentApp)
      server.on('request', app)
-     currentApp = require('./index').default
+     currentApp = app
    })
  }

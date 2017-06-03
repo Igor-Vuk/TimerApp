@@ -42,9 +42,7 @@ module.exports = {
     ]
   },
   plugins: [
-    new WebpackCleanupPlugin({
-      preview: true
-    }),
+    new WebpackCleanupPlugin(),
     new StartServerPlugin('server.js'),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
