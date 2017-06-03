@@ -5,6 +5,7 @@ const webpack = require('webpack')
 /*const BrowserSyncPlugin = require('browser-sync-webpack-plugin')*/
 const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
+/*const WriteFilePlugin = require('write-file-webpack-plugin')*/
 
 process.noDeprecation = true
 
@@ -13,19 +14,11 @@ module.exports = {
   performance: {
     hints: false
   },
-  devServer: {
-    hot: true,
-    port: 3001,
-    host: 'localhost',
-    headers: { 'Access-Control-Allow-Origin': '*' },
-    historyApiFallback: true
-  },
   context: publicPath,
   entry: {
     bundle: [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:3001',
-      'webpack/hot/only-dev-server',
+      'webpack-hot-middleware/client?reload=false&noInfo=true',
       'script-loader!jquery/dist/jquery.min.js',
       'script-loader!tether/dist/js/tether.min.js',
       'script-loader!bootstrap/dist/js/bootstrap.min.js',
@@ -35,7 +28,7 @@ module.exports = {
   output: {
     path: path.join(buildPath, 'dist'),
     filename: '[name].js',
-    publicPath: 'http://localhost:3001/'
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -96,6 +89,7 @@ module.exports = {
     ]
   },
   plugins: [
+    /*new WriteFilePlugin(),*/
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -110,20 +104,18 @@ module.exports = {
       }
     })
     /* For Browser. Browsersync will not send any file-change events to browser and webpack-hot-middleware will hot reload */
-    /*new BrowserSyncPlugin({
-      host: 'localhost',
-      port: 3006,
-      ui: {
-        port: 3005
-      },
-      proxy: {
-        target: 'http://localhost:3001/'
-      },
-      codeSync: false,
-      open: false,
-      reload: false,
-      injectChanges: false
-    })*/
+    // new BrowserSyncPlugin({
+    //   host: 'localhost',
+    //   port: 3002,
+    //   ui: {
+    //     port: 3001
+    //   },
+    //   proxy: 'http://localhost:3000/',
+    //   codeSync: false,
+    //   open: false,
+    //   reload: false,
+    //   injectChanges: false
+    // })
     // /* For Mobile. Browsersync will refresh the page on every change instead of hot reload */
     // new BrowserSyncPlugin({
     //   host: 'localhost',
