@@ -1,8 +1,8 @@
 'use strict'
 
-import path from 'path'
-import webpack from 'webpack'
-import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
+const path = require('path')
+const webpack = require('webpack')
+/*const BrowserSyncPlugin = require('browser-sync-webpack-plugin')*/
 const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
 
@@ -13,19 +13,11 @@ module.exports = {
   performance: {
     hints: false
   },
-  devServer: {
-    hot: true,
-    port: 3001,
-    host: 'localhost',
-    headers: { 'Access-Control-Allow-Origin': '*' },
-    historyApiFallback: true
-  },
   context: publicPath,
   entry: {
     bundle: [
       'react-hot-loader/patch',
-      'webpack-dev-server/client?http://localhost:3001',
-      'webpack/hot/only-dev-server',
+      'webpack-hot-middleware/client?reload=false&noInfo=true',
       'script-loader!jquery/dist/jquery.min.js',
       'script-loader!tether/dist/js/tether.min.js',
       'script-loader!bootstrap/dist/js/bootstrap.min.js',
@@ -35,7 +27,7 @@ module.exports = {
   output: {
     path: path.join(buildPath, 'dist'),
     filename: '[name].js',
-    publicPath: 'http://localhost:3001/'
+    publicPath: '/'
   },
   resolve: {
     extensions: ['.js', '.jsx'],

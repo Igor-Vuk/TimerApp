@@ -16,7 +16,7 @@ app.set('view engine', 'ejs')
 /* In development serve static files from memory */
 // if (process.env.NODE_ENV === 'development') {
 //   const webpack = require('webpack')
-//   const webpackConfig = require('../../webpack.config.babel.js')
+//   const webpackConfig = require('../../webpack.config.js')
 //   const compiler = webpack(webpackConfig)
 //   const webpackDevMiddleware = require('webpack-dev-middleware')
 
@@ -45,12 +45,12 @@ app.get('/proba', (req: Object, res: Object) => {
 })
 
 app.get('/tri', (req: Object, res: Object) => {
-  res.send('22222222222')
+  res.send('asdfasdf22222222awefaws')
 })
 
 
 app.get('*', (req: Object, res: Object) => {
-  res.render('index')
+  res.render('index', {samo: "asdgsdfasdfa22222223453aasdfsdsdfsdsds"})
 })
 
 export default app

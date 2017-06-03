@@ -22,7 +22,7 @@ We can use the env option to set specific options when in a certain environment.
   "env": {
     "test": {
       "plugins": [
-        [ "babel-plugin-webpack-alias", { "config": "./webpack.config.babel.js" } ]
+        [ "babel-plugin-webpack-alias", { "config": "./webpack.config.js" } ]
       ]
     }
   }

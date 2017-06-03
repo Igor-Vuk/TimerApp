@@ -36,8 +36,8 @@
 
 * Make **app.local.json** inside the **conf** folder
 * Copy the settings from **app.json** and change them to your preference
-* If you run the app in **production** mode, settings from **app.json** and **webpack.config.prod.babel.js** will be used
-* If you run the app in **development** mode, settings from **app.local.json** and **webpack.config.babel.js** will be used
+* If you run the app in **production** mode, settings from **app.json** and **webpack.config.prod.js** will be used
+* If you run the app in **development** mode, settings from **app.local.json** and **webpack.config.js** will be used
 
 * Using proxy option on Browsersync we run the app on port **3002**(ui: 3001) for Browser development using react-hot-loader and **3004**(ui: 3003) for mobile(external devices) development using live reload.
 

@@ -1,10 +1,10 @@
-import BrowserSyncPlugin from 'browser-sync-webpack-plugin'
-const webpack = require('webpack')
 const path = require('path')
+const webpack = require('webpack')
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const nodeExternals = require('webpack-node-externals')
 const StartServerPlugin = require('start-server-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-
+const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
 
 module.exports = {
   entry: [
@@ -24,8 +24,16 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        use: 'babel-loader',
-        exclude: /node_modules/
+        loader: 'babel-loader',
+        exclude: /node_modules/,
+        options: {
+          babelrc: false,
+          presets: [
+            'react',
+            ['es2015', { 'modules': false }],
+            'stage-0'
+          ]
+        }
       },
       {
         test: /\.ejs$/,
@@ -34,6 +42,9 @@ module.exports = {
     ]
   },
   plugins: [
+    new WebpackCleanupPlugin({
+      preview: true
+    }),
     new StartServerPlugin('server.js'),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
@@ -47,19 +58,16 @@ module.exports = {
       title: 'React Timer',
       template: 'ejs-loader!./src/server/views/index.ejs'
     }),
-    new HtmlWebpackPlugin({
-      title: 'React Timer2',
-      template: 'ejs-loader!./src/server/views/proba.ejs'
-    }),
     new BrowserSyncPlugin({
       host: 'localhost',
-      port: 3006,
+      port: 3004,
       ui: {
-        port: 3005
+        port: 3003
       },
       proxy: 'http://localhost:3000/',
       codeSync: true,
-      open: false
+      open: false,
+      injectChanges: true
     })
   ],
   output: {

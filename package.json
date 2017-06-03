@@ -8,15 +8,15 @@
   "scripts": {
     "clean": "rm -rf ./src/dist && rm -rf ./src/build",
     "build-server": "cross-env NODE_ENV=production babel ./src/server -d ./src/build -s --copy-files",
-    "build-client": "cross-env NODE_ENV=production webpack -p --config webpack.config.prod.babel.js",
+    "build-client": "cross-env NODE_ENV=production webpack -p --config webpack.config.prod.js",
     "start": "cross-env NODE_ENV=production node ./src/build/index.js",
     "start-run": "yarn-or-npm run clean && yarn-or-npm run build-server && yarn-or-npm run build-client && yarn-or-npm run start",
     "start-dev": "cross-env NODE_ENV=development nodemon ./start-dev.js",
     "flow": "node_modules/.bin/flow check",
     "test": "cross-env NODE_ENV=test babel-tape-runner -r ./test/setup.js ./test/**/*.test.js | node_modules\\.bin\\tap-spec",
     "coverage": "cross-env NODE_ENV=test babel-node node_modules/babel-istanbul/lib/cli.js cover node_modules/babel-tape-runner/bin/babel-tape-runner -- ./test/setup.js -- ./test/**/*.test.js",
-    "webpack": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.babel.js",
-    "webpack-server": "cross-env NODE_ENV=development webpack --config webpack.config.server.babel.js"
+    "webpack": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js",
+    "webpack-server": "cross-env NODE_ENV=development webpack --config webpack.config.server.js"
   },
   "dependencies": {
     "babel-plugin-react-css-modules": "^2.7.1",
@@ -81,6 +81,7 @@
     "tape": "^4.6.3",
     "tether": "^1.4.0",
     "webpack": "^2.6.1",
+    "webpack-cleanup-plugin": "^0.5.1",
     "webpack-dev-middleware": "^1.10.2",
     "webpack-dev-server": "^2.4.5",
     "webpack-hot-middleware": "^2.18.0",
