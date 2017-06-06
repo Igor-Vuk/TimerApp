@@ -2,9 +2,9 @@
 
 const path = require('path')
 const webpack = require('webpack')
-/*const BrowserSyncPlugin = require('browser-sync-webpack-plugin')*/
 const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
+/* const BrowserSyncPlugin = require('browser-sync-webpack-plugin') */
 
 process.noDeprecation = true
 
@@ -53,7 +53,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules|dist/,
+        exclude: /node_modules|dist|build/,
         loader: 'babel-loader',
         options: {
           plugins: [
@@ -110,20 +110,20 @@ module.exports = {
       }
     })
     /* For Browser. Browsersync will not send any file-change events to browser and webpack-hot-middleware will hot reload */
-    /*new BrowserSyncPlugin({
-      host: 'localhost',
-      port: 3006,
-      ui: {
-        port: 3005
-      },
-      proxy: {
-        target: 'http://localhost:3001/'
-      },
-      codeSync: false,
-      open: false,
-      reload: false,
-      injectChanges: false
-    })*/
+    // new BrowserSyncPlugin({
+    //   host: 'localhost',
+    //   port: 3006,
+    //   ui: {
+    //     port: 3005
+    //   },
+    //   proxy: {
+    //     target: 'http://localhost:3001/'
+    //   },
+    //   codeSync: false,
+    //   open: false,
+    //   reload: false,
+    //   injectChanges: false
+    // })
     // /* For Mobile. Browsersync will refresh the page on every change instead of hot reload */
     // new BrowserSyncPlugin({
     //   host: 'localhost',

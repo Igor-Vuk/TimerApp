@@ -2,21 +2,26 @@
 
 import Express from 'express'
 import path from 'path'
-import conf from './conf'
+
+const isProd: boolean = process.env.NODE_ENV === 'production'
+const prodConf: Object = isProd ? require('../../conf/app.json') : {}
+
+const conf: Object = {
+  ...prodConf
+}
 
 const APP_PORT: number = conf.APP_PORT
 const PORT: any = process.env.PORT || APP_PORT
+
 const app: Express = new Express()
 
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-
-
 /* In development serve static files from memory */
 // if (process.env.NODE_ENV === 'development') {
 //   const webpack = require('webpack')
-//   const webpackConfig = require('../../webpack.config.js')
+//   const webpackConfig = require('../../webpack.config.js').default
 //   const compiler = webpack(webpackConfig)
 //   const webpackDevMiddleware = require('webpack-dev-middleware')
 
@@ -37,20 +42,37 @@ app.set('view engine', 'ejs')
 
 app.use(Express.static(path.join(__dirname, '../', 'dist')))
 
+/* In production use server side rendering for first load */
+if (process.env.NODE_ENV === 'production') {
+  const appRenderer = require('./appRenderer').default
+  app.use(appRenderer)
+}
+
 // Routes
-app.get('/proba', (req: Object, res: Object) => {
-  res.render('proba.ejs', {
-    proba: 'Yuhuuuuuukk'
-  })
-})
-
-app.get('/tri', (req: Object, res: Object) => {
-  res.send('11111111111111111fffffffff')
-})
-
-
 app.get('*', (req: Object, res: Object) => {
-  res.render('index', {samo: '22222222222222ddddddddddd'})
+  res.render('index', {app: req.body, proba: 'asdfasdf222324534534533333'})
 })
+
+if (process.env.NODE_ENV === 'production') {
+  app.listen(PORT, () => {
+    console.log(`Express server is up on port ${PORT}`)
+  })
+}
 
 export default app
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

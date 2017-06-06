@@ -1,15 +1,14 @@
 'use strict'
 
-const path = require('path')
-const webpack = require('webpack')
-/*const BrowserSyncPlugin = require('browser-sync-webpack-plugin')*/
+import path from 'path'
+import webpack from 'webpack'
 const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
-/*const WriteFilePlugin = require('write-file-webpack-plugin')*/
+/* const BrowserSyncPlugin = require('browser-sync-webpack-plugin') */
 
 process.noDeprecation = true
 
-module.exports = {
+export default {
   devtool: 'source-maps',
   performance: {
     hints: false
@@ -18,7 +17,7 @@ module.exports = {
   entry: {
     bundle: [
       'react-hot-loader/patch',
-      'webpack-hot-middleware/client?reload=false&noInfo=true',
+      'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr&reload=false&noInfo=true',
       'script-loader!jquery/dist/jquery.min.js',
       'script-loader!tether/dist/js/tether.min.js',
       'script-loader!bootstrap/dist/js/bootstrap.min.js',
@@ -46,7 +45,7 @@ module.exports = {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules|dist/,
+        exclude: /node_modules|dist|build/,
         loader: 'babel-loader',
         options: {
           plugins: [
@@ -89,7 +88,6 @@ module.exports = {
     ]
   },
   plugins: [
-    /*new WriteFilePlugin(),*/
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),

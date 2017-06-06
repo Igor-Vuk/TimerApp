@@ -2,28 +2,25 @@
 
 const path = require('path')
 const webpack = require('webpack')
+const nodeExternals = require('webpack-node-externals')
+const HtmlWebpackPlugin = require('html-webpack-plugin')
 const publicPath = path.resolve(__dirname, './src/client')
-const buildPath = path.resolve(__dirname, './src')
-const ExtractTextPlugin = require('extract-text-webpack-plugin')
-const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheets/stylesLocal.css', disable: false, allChunks: true})
-const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheets/stylesGlobal.css', disable: false, allChunks: true})
 
 module.exports = {
   devtool: 'source-map',
   performance: {
     hints: false
   },
-  context: publicPath,
+  target: 'node',
+  node: {
+    __dirname: true,
+    __filename: true
+  },
   entry: {
-    bundle: [
-      'script-loader!jquery/dist/jquery.min.js',
-      'script-loader!tether/dist/js/tether.min.js',
-      'script-loader!bootstrap/dist/js/bootstrap.min.js',
-      './app.js'
-    ]
+    bundle: './src/server/index.js'
   },
   output: {
-    path: path.join(buildPath, 'dist'),
+    path: path.join(__dirname, 'src', 'build'),
     filename: '[name].js'
   },
   resolve: {
@@ -38,12 +35,13 @@ module.exports = {
       Container: path.resolve(__dirname, 'src/client/scenes/Container.js')
     }
   },
+  externals: [nodeExternals()],
   module: {
     rules: [
       {
         test: /\.(js|jsx)$/,
-        exclude: /node_modules|dist|build/,
         loader: 'babel-loader',
+        exclude: /node_modules|dist|build/,
         options: {
           babelrc: false,
           presets: [
@@ -67,41 +65,20 @@ module.exports = {
       },
       {
         test: /\.local\.(css|scss)$/,
-        use: ExtractLocal.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]',
-            'postcss-loader',
-            'sass-loader',
-            {
-              loader: 'sass-resources-loader',
-              options: {
-                resources: path.resolve(__dirname, './src/client/styles/global/sass-resources.scss')
-              }
-            }
-          ]
-        })
+        use: [
+          'css-loader?modules&importLoaders=1&localIdentName=[path]___[name]__[local]___[hash:base64:5]'
+        ]
       },
       {
-        test: /^((?!\.local).)+\.(css|scss)$/,
-        use: ExtractGlobal.extract({
-          fallback: 'style-loader',
-          use: [
-            'css-loader',
-            'postcss-loader',
-            'sass-loader'
-          ]
-        })
+        test: /\.ejs$/,
+        loader: 'ejs-loader'
       }
     ]
   },
   plugins: [
-    ExtractLocal,
-    ExtractGlobal,
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery',
-      jquery: 'jquery'
+    new HtmlWebpackPlugin({
+      title: 'React Timer',
+      template: 'ejs-loader!./src/server/views/index.ejs'
     }),
     new webpack.DefinePlugin({
       'process.env': {
