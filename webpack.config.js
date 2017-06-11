@@ -5,6 +5,7 @@ const webpack = require('webpack')
 const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
 /* const BrowserSyncPlugin = require('browser-sync-webpack-plugin') */
+/* const Write = require('write-file-webpack-plugin') */
 
 process.noDeprecation = true
 
@@ -13,12 +14,27 @@ module.exports = {
   performance: {
     hints: false
   },
+  /* To use devServer instead of proxy. To use Browsersync from mobile testing, use proxy. */
+  // devServer: {
+  //   hot: true,
+  //   port: 3001,
+  //   host: 'localhost',
+  //   headers: { 'Access-Control-Allow-Origin': '*' },
+  //   historyApiFallback: true
+  // },
   devServer: {
     hot: true,
     port: 3001,
     host: 'localhost',
+    /* Needed only if using Browsersync */
     headers: { 'Access-Control-Allow-Origin': '*' },
-    historyApiFallback: true
+    proxy: {
+      '**': {
+        target: 'http://localhost:3000',
+        secure: false,
+        changeOrigin: true
+      }
+    }
   },
   context: publicPath,
   entry: {
@@ -79,7 +95,12 @@ module.exports = {
           {
             loader: 'sass-resources-loader',
             options: {
-              resources: path.resolve(__dirname, './src/client/styles/global/sass-resources.scss')
+              resources: [
+                /* uncomment for import of Bootstrap variables and mixins */
+                // path.resolve(__dirname, './node_modules/bootstrap/scss/_variables.scss'),
+                // path.resolve(__dirname, './node_modules/bootstrap/scss/_mixins.scss'),
+                path.resolve(__dirname, './src/client/styles/scss/variables.scss')
+              ]
             }
           }
         ]
@@ -92,10 +113,17 @@ module.exports = {
           'postcss-loader',
           'sass-loader'
         ]
+      },
+      {
+        test: /\.(gif|png|jpg)$/,
+        // We can specify custom publicPath if needed
+        loader: 'url-loader'
       }
     ]
   },
   plugins: [
+    /* Uncoment if you wish to write on disc instead of memory */
+    // new Write(),
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
@@ -109,32 +137,27 @@ module.exports = {
         NODE_ENV: JSON.stringify('development')
       }
     })
-    /* For Browser. Browsersync will not send any file-change events to browser and webpack-hot-middleware will hot reload */
+    /* For Mobile and other device testing use port: 3005(external port offered by Browsersync). React-hot-reload is disabled becuase it would not work on other devices. All the changes made on client and server side will live reload on all devices. State will not be preserved. To use, uncoment this, Browsersync require at the top of the page and Access-Control-Allow-Origin inside dev-server proxy */
     // new BrowserSyncPlugin({
     //   host: 'localhost',
-    //   port: 3006,
+    //   port: 3005,
     //   ui: {
-    //     port: 3005
+    //     port: 3004
     //   },
     //   proxy: {
     //     target: 'http://localhost:3001/'
     //   },
-    //   codeSync: false,
-    //   open: false,
-    //   reload: false,
-    //   injectChanges: false
-    // })
-    // /* For Mobile. Browsersync will refresh the page on every change instead of hot reload */
-    // new BrowserSyncPlugin({
-    //   host: 'localhost',
-    //   port: 3004,
-    //   ui: {
-    //     port: 3003
-    //   },
-    //   proxy: 'http://localhost:3000/',
     //   codeSync: true,
     //   open: false,
-    //   injectChanges: false
+    //   injectChanges: false,
+    //   reloadOnRestart: true,
+    //   files: './src/build/bundle.js',
+    //   watchOptions: {
+    //     awaitWriteFinish: {
+    //       /* if browser reloads before webpack updates the bundle file after change on the server, increase the time */
+    //       stabilityThreshold: 1000
+    //     }
+    //   }
     // })
   ]
 }

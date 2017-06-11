@@ -5,6 +5,7 @@ import React, {Component} from 'react'
 import Clock from 'Clock'
 import Controls from 'Controls'
 import './index.local.scss'
+import img from '../../styles/img/Profilna.jpg'
 
 type StateType = {
   count: number,
@@ -69,6 +70,7 @@ class Timer extends Component {
     return (
       <div styleName="container">
         <h1 styleName="page-title">Timer App</h1>
+        <img src={img} />
         <Clock totalSeconds={count} />
         <Controls countdownStatus={timerStatus} onStatusChange={this.handleStatusChange} />
       </div>

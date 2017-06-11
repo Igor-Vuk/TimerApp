@@ -9,7 +9,7 @@ const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheets/stylesLocal.c
 const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheets/stylesGlobal.css', disable: false, allChunks: true})
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: 'source-maps',
   performance: {
     hints: false
   },
@@ -24,7 +24,8 @@ module.exports = {
   },
   output: {
     path: path.join(buildPath, 'dist'),
-    filename: '[name].js'
+    filename: '[name].js',
+    publicPath: 'http://localhost:3001/'
   },
   resolve: {
     extensions: ['.js', '.jsx'],
@@ -76,7 +77,9 @@ module.exports = {
             {
               loader: 'sass-resources-loader',
               options: {
-                resources: path.resolve(__dirname, './src/client/styles/global/sass-resources.scss')
+                resources: [
+                  path.resolve(__dirname, './src/client/styles/scss/variables.scss')
+                ]
               }
             }
           ]
@@ -92,6 +95,10 @@ module.exports = {
             'sass-loader'
           ]
         })
+      },
+      {
+        test: /\.(gif|png|jpg)$/,
+        loader: 'url-loader?limit=25000&name=assets/[name].[ext]'
       }
     ]
   },

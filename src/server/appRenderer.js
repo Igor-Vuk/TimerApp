@@ -5,14 +5,14 @@ import ReactDOM from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import routes from '../client/routes.js'
 
-async function render (component) {
-  const content = ReactDOM.renderToString(component)
+async function render (component: Object): Promise<string> {
+  const content: string = ReactDOM.renderToString(component)
   return content
 }
 
-async function getMatchParams (routes, currentUrl) {
+async function getMatchParams (routes: Object, currentUrl: string): Promise<?Object> {
   return new Promise((resolve: (data: any) => void, reject: (error: any) => void) => {
-    match({routes: routes, location: currentUrl}, (err, redirect, props) => {
+    match({routes: routes, location: currentUrl}, (err: ?Object, redirect: ?Object, props: ?Object): ?Object => {
       if (err) {
         return reject(err)
       }
@@ -21,8 +21,8 @@ async function getMatchParams (routes, currentUrl) {
   })
 }
 
-export default async(req, res, next) => {
-  const renderProps = await getMatchParams(routes, req.url)
+export default async(req: Object, res: Object, next: () => void): Promise<void> => {
+  const renderProps: ?Object = await getMatchParams(routes, req.url)
   if (renderProps) {
     const component = (
       <RouterContext {...renderProps} />

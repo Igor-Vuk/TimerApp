@@ -5,9 +5,9 @@ const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const StartServerPlugin = require('start-server-webpack-plugin')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const publicPath = path.resolve(__dirname, './src/client')
+const postcssPath = path.resolve(__dirname, './src/client')
 const WebpackCleanupPlugin = require('webpack-cleanup-plugin')
-/*const BrowserSyncPlugin = require('browser-sync-webpack-plugin')*/
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 
 process.noDeprecation = true
 
@@ -17,6 +17,7 @@ module.exports = {
     hints: false
   },
   watch: true,
+  // tells webpack to not touch, ignore built-in modules like path, fs, etc.
   target: 'node',
   node: {
     __dirname: true,
@@ -33,17 +34,9 @@ module.exports = {
     filename: '[name].js'
   },
   resolve: {
-    extensions: ['.js', '.jsx'],
-    alias: {
-      CountdownForm: path.resolve(__dirname, 'src/client/scenes/countdown/components/CountdownForm.jsx'),
-      Countdown: path.resolve(__dirname, 'src/client/scenes/countdown/index.jsx'),
-      Clock: path.resolve(__dirname, 'src/client/scenes/shared/clock/index.jsx'),
-      Controls: path.resolve(__dirname, 'src/client/scenes/shared/controls/index.jsx'),
-      Navigation: path.resolve(__dirname, 'src/client/scenes/shared/navigation/index.jsx'),
-      Timer: path.resolve(__dirname, 'src/client/scenes/timer/index.jsx'),
-      Container: path.resolve(__dirname, 'src/client/scenes/Container.js')
-    }
+    extensions: ['.js', '.jsx']
   },
+  // ignore all modules in node_modules folder except webpack/hot/poll
   externals: [nodeExternals({
     whitelist: ['webpack/hot/poll?1000']
   })],
@@ -58,7 +51,7 @@ module.exports = {
             [
               'babel-plugin-react-css-modules',
               {
-                context: publicPath,
+                context: postcssPath,
                 filetypes: {
                   '.scss': 'postcss-scss'
                 }
@@ -76,6 +69,10 @@ module.exports = {
       {
         test: /\.ejs$/,
         loader: 'ejs-loader'
+      },
+      {
+        test: /\.(gif|png|jpg)$/,
+        loader: 'url-loader'
       }
     ]
   },
@@ -93,18 +90,29 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('development')
       }
-    })
-    /*
+    }),
     new BrowserSyncPlugin({
       host: 'localhost',
-      port: 3004,
+      port: 3003,
       ui: {
-        port: 3003
+        port: 3002
       },
       proxy: 'http://localhost:3000/',
       codeSync: true,
       open: false,
-      injectChanges: false
-    })*/
+      injectChanges: false,
+      reloadOnRestart: true,
+      logFileChanges: false,
+      files: './src/build/bundle.js',
+      watchOptions: {
+        awaitWriteFinish: {
+          /* if browser reloads before webpack updates the bundle file after change on the server, increase the time */
+          stabilityThreshold: 1000
+        }
+      }
+    },
+      {
+        reload: false
+      })
   ]
 }

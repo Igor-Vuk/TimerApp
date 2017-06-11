@@ -8,6 +8,7 @@ import { AppContainer } from 'react-hot-loader'  // Automatically disabled in pr
 // import global styles 'bootstrap.scss' before 'routes' and local styles
 
 import 'bootstrap/scss/bootstrap.scss'
+import './styles/scss/app.local.scss'
 import routes from './routes'
 
 render(
@@ -32,5 +33,3 @@ if (module.hot) {
     )
   })
 }
-
-

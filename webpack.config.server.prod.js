@@ -4,7 +4,8 @@ const path = require('path')
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
-const publicPath = path.resolve(__dirname, './src/client')
+const postcssPath = path.resolve(__dirname, './src/client')
+const buildPath = path.resolve(__dirname, './src')
 
 module.exports = {
   devtool: 'source-map',
@@ -20,7 +21,7 @@ module.exports = {
     bundle: './src/server/index.js'
   },
   output: {
-    path: path.join(__dirname, 'src', 'build'),
+    path: path.join(buildPath, 'build'),
     filename: '[name].js'
   },
   resolve: {
@@ -54,7 +55,7 @@ module.exports = {
             [
               'babel-plugin-react-css-modules',
               {
-                context: publicPath,
+                context: postcssPath,
                 filetypes: {
                   '.scss': 'postcss-scss'
                 }
@@ -72,6 +73,10 @@ module.exports = {
       {
         test: /\.ejs$/,
         loader: 'ejs-loader'
+      },
+      {
+        test: /\.(gif|png|jpg)$/,
+        loader: 'url-loader?limit=25000&emitFile=false&name=assets/[name].[ext]'
       }
     ]
   },

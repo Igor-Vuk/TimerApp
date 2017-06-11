@@ -27,8 +27,9 @@ Using modules:false means that es6 import will not be converted to Common.js. Th
         "es2015",
         "stage-0"
       ],
-      "plugins":
+      "plugins":[
         [ "babel-plugin-webpack-alias", { "config": "./webpack.config.js" } ]
+      ]
     }
   }
 }
