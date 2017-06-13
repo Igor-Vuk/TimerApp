@@ -4,6 +4,7 @@
 import React, { Component } from 'react'
 import {Link, IndexLink} from 'react-router'
 import './index.local.scss'
+import img from '../../../styles/img/Profilna.jpg'
 
 class Navigation extends Component {
   render (): React.Element<any> {
@@ -19,12 +20,12 @@ class Navigation extends Component {
           <a className="navbar-brand" href="#">ReactTimer</a>
 
           <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div className="navbar-nav">
+            <div className="navbar-nav" styleName="navLinks">
               <IndexLink to="/" className="nav-item nav-link">Timer</IndexLink>
               <Link to="/countdown" className="nav-item nav-link">Countdown</Link>
             </div>
             <div className="navbar-nav ml-auto">
-              <span className="navbar-text" styleName="nav-text">Created by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a></span>
+              <span className="navbar-text" styleName="nav-text">Created by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a> <img src={img} styleName="profileImg" /></span>
             </div>
           </div>
         </nav>

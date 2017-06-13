@@ -12,9 +12,17 @@ $nav-text: $blue;
     font-weight: 500;
   }
 
+  .navLinks {
+    padding-top: 10px;
+  }
+
   .nav-text {
     text-decoration: none;
     cursor: default;
     padding-top: 0.5em;
+  }
+  .profileImg {
+    border: 1px solid black;
+    margin-left: 10px;
   }
 }

@@ -6,23 +6,25 @@
 
 ## Features ##
 
+* **React-hot-reload on client side and live-reload on server side in combination with Browsersync for synchronous testing on different devices**
+* **Seperate webpack bundle for client and server side with different optimization for production and development environment**
+* **Isomorphic server-side rendering (local styles, gloabl styles and assets are extracted from webpack bundle for faster page load on first visit).**
 * ES6/ES7
-* React-hot-reload and Browsersync combination
 * Babel
-* Bootstrap 4
+* Bootstrap 4 (easy import of Bootstrap variables and mixins to every scss file)
 * CSS Modules
 * PostCSS, CSS Variables and autoprefixer
 * Flow.js
-* SCSS
-* Fully tested
+* SCSS(SASS)
+* Fully tested (run in test environment)
 * Code coverage
 * Tree Shaking
-* webpack.config (development & production mode)
 * Express
-* EJS
+* EJS template
 * ESLint
 * yarn.lock
 * .editorconfig
+* and many more...
 
 ## Requirements ##
 
@@ -32,38 +34,47 @@
 
 ## Run the app ##
 
-* run `yarn` or `yarn install` to install all npm paskages
+* run `yarn` or `yarn install / npm install` to install all npm paskages.
 
-* Make **app.local.json** inside the **conf** folder
-* Copy the settings from **app.json** and change them to your preference
-* If you run the app in **production** mode, settings from **app.json** and **webpack.config.prod.js** will be used
-* If you run the app in **development** mode, settings from **app.local.json** and **webpack.config.js** will be used
+* If you run the app in **production** mode, settings from **app.json** and **webpack.config.prod.js** / **webpack.config.server.prod.js** will be used
+* If you run the app in **development** mode, settings from **app.local.json** and **webpack.config.js** / **webpack.config.server.js** will be used
+* Open **localhost:3003**
 
-* Using proxy option on Browsersync we run the app on port **3002**(ui: 3001) for Browser development using react-hot-loader and **3004**(ui: 3003) for mobile(external devices) development using live reload.
+* **Development environment**
+* Using Browsersync proxy option we run the app on port **3003**(ui: 3002) for Browser development. By doing this we can use Browsersync options on port **3002** and it also enables us to use live reload on server side. To not use visit **localhost:3001**
 
-### BEFORE PRODUCTION ###
+* For synchronous testing on different devices use Browsersync on port **locahost:3005**(ui:3004). Use address that Browsersync gives you in terminal. To use this feature uncomment Browsersync option inside webpack.config.js. Since this is meant for development and testing on external devices only live reload will work on every change.
 
-* `yarn run clean` will delete client bundle `dist` and server babel bundle `build`
+* **Note** during hot-reload in development enviroment we will be getting warning message in console *[react-router] You cannot change Router routes; it will be ignored*. This is expected behaviour caused by React-router-3 but everything works as it should and you can ignore it. The warning will go away after updating to React-router-4.
+
+### CLEANING BUILD FOLDERS ###
+
+* `yarn run clean` will delete client bundle `dist` and server bundle `build` folder.
 
 ### IN PRODUCTION ###
 
-* `yarn run build-server`  will bundle server for production using `babel` and make a `build` folder
+* `yarn run build-server`  will bundle server for production using `webpack` and make a `build` folder
 * `yarn run build-client` will bundle client for production using `webpack` and make a `dist` folder
-* `yarn run start` starts the server index.js from inside build folder.
+* `yarn run start` starts the app in production environment on port **3001**
 
-* `yarn run start-run` will start the app in production environment on port **3001**
+* `yarn run start-run` runs above three scripts and starts the app in production environment on port **3001**
 
 ### IN DEVELOPMENT ###
 
-* `yarn run start-dev` will start the app in development environment on port **3002** (server using `nodemon` on port **3000** but using proxy option of Browsersync on port **3002**)
+* `yarn run webpack-server` will start the server in development environment.
+* `yarn run webpack` will start the client in development environment. (For use with Browsersync visit port **3003**)
 
 ### HELPE SCRIPTS ###
 
 * `yarn run flow` will run flow check
-* `yarn run test` will run all the tests
+* `yarn run test` will run all the tests in `test` enviroment
 * `yarn run coverage` will run test coverage
 
-### Scripts examples for other systems (replace them if needed) ###
+### Import Bootrasp _variables, _mixins or any other file to every scss file ###
+
+* Inside webpack.config.js under `sass-resources-loader` uncomment to use. You can add and remove any file you want. To use it in production add it to webpack.config.prod.js
+
+### Scripts examples for other systems (try them out if needed) ###
 
 * `"clean": "rmdir /s \"src/dist\" && rmdir /s \"src/build\""`
 * `"test": "cross-env NODE_ENV=test babel-tape-runner -r 'test/setup.js' 'test/**/*.test.js' | node_modules/.bin/tap-spec"`

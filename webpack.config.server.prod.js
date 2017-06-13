@@ -82,7 +82,6 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      title: 'React Timer',
       template: 'ejs-loader!./src/server/views/index.ejs'
     }),
     new webpack.DefinePlugin({
