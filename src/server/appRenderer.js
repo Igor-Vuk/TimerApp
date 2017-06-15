@@ -3,9 +3,9 @@
 import React from 'react'
 import ReactDOM from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
-import routes from '../client/routes.js'
+import routes from '../client/routes'
 
-async function render (component: Object): Promise<string> {
+function render (component: Object): Promise<string> {
   const content: string = ReactDOM.renderToString(component)
   return content
 }
@@ -21,7 +21,7 @@ async function getMatchParams (routes: Object, currentUrl: string): Promise<?Obj
   })
 }
 
-export default async(req: Object, res: Object, next: () => void): Promise<void> => {
+export default async (req: Object, res: Object, next: () => void): Promise<void> => {
   const renderProps: ?Object = await getMatchParams(routes, req.url)
   if (renderProps) {
     const component = (

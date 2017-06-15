@@ -4,7 +4,7 @@
 import React, { Component } from 'react'
 import {Link, IndexLink} from 'react-router'
 import './index.local.scss'
-import img from '../../../styles/img/Profilna.jpg'
+import img from '../../../styles/img/profilna.jpg'
 
 class Navigation extends Component {
   render (): React.Element<any> {
@@ -25,7 +25,7 @@ class Navigation extends Component {
               <Link to="/countdown" className="nav-item nav-link">Countdown</Link>
             </div>
             <div className="navbar-nav ml-auto">
-              <span className="navbar-text" styleName="nav-text">Created by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a> <img src={img} styleName="profileImg" /></span>
+              <span className="navbar-text ml-auto" styleName="nav-text">Created by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a> <img src={img} styleName="profileImg" /></span>
             </div>
           </div>
         </nav>

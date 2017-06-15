@@ -3,6 +3,7 @@
 import Express from 'express'
 import path from 'path'
 import conf from './conf'
+import webpackUtils from './webpackUtils.js'
 
 const APP_PORT: number = conf.APP_PORT
 const PORT: any = process.env.PORT || APP_PORT
@@ -22,7 +23,8 @@ if (process.env.NODE_ENV === 'production') {
 
 // Routes
 app.get('*', (req: Object, res: Object) => {
-  res.render('index', {app: req.body})
+  const chunks = webpackUtils.getChunksProps()
+  res.render('index', {app: req.body, webpack: chunks})
 })
 
 if (process.env.NODE_ENV === 'production') {
