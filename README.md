@@ -6,7 +6,7 @@
 
 ## Features ##
 
-* **React-hot-reload on client side and live-reload on server side in combination with Browsersync for synchronous testing on different devices**
+* **React-hot-reload on client side and live-reload on server side in combination with Browsersync for synchronous testing on different external devices.  No more server restarts.**
 * **Seperate webpack bundle for client and server side with different optimization for production and development environment**
 * **Isomorphic server-side rendering (local styles, gloabl styles and assets are extracted from webpack bundle for faster page load on first visit).**
 * **Code splitting and long-term caching of assets without contacting the server until hash/chunkhas(every client file contains it: bundle, vendor, images, css) changes. If there is a change, browser requests only the changed file. This greatly improves the speed of site and flexibility of deployment.**
@@ -39,7 +39,7 @@
 
 * If you run the app in **production** mode, settings from **app.json** and **webpack.config.prod.js** / **webpack.config.server.prod.js** will be used
 * If you run the app in **development** mode, settings from **app.local.json** and **webpack.config.js** / **webpack.config.server.js** will be used
-* Open **localhost:3003**
+* Open **localhost:3001(production)**, **localhost:3003(development)**
 
 * **Development environment**
 * Using Browsersync proxy option we run the app on port **3003**(ui: 3002) for Browser development. By doing this we can use Browsersync options on port **3002** and it also enables us to use live reload on server side. To not use visit **localhost:3001**
@@ -54,7 +54,7 @@
 
 ### IN PRODUCTION ###
 
-* `yarn run build-server`  will bundle server for production using `webpack` and make a `build` folder
+* `yarn run build-server`  will bundle server for production using `webpack` and make a `build` folder => (run it before build-server)
 * `yarn run build-client` will bundle client for production using `webpack` and make a `dist` folder
 * `yarn run start` starts the app in production environment on port **3001**
 

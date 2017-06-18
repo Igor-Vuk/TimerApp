@@ -76,7 +76,7 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpg)$/,
-        loader: 'url-loader?limit=25000&emitFile=false&name=assets/.[hash].[ext]'
+        loader: 'url-loader?limit=25000&emitFile=false&name=assets/[name].[hash].[ext]'
       }
     ]
   },

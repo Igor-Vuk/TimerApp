@@ -10,9 +10,9 @@ function render (component: Object): string {
   return content
 }
 
-async function getMatchParams (routes: Object, currentUrl: string): Promise<?Object> {
+async function getMatchParams (routes: Object, currentUrl: string): Promise<Object> {
   return new Promise((resolve: (data: any) => void, reject: (error: any) => void) => {
-    match({routes: routes, location: currentUrl}, (err: ?Object, redirect: ?Object, props: ?Object): ?Object => {
+    match({routes: routes, location: currentUrl}, (err: Object, redirect: Object, props: Object): ?Object => {
       if (err) {
         return reject(err)
       }
@@ -22,7 +22,7 @@ async function getMatchParams (routes: Object, currentUrl: string): Promise<?Obj
 }
 
 export default async (req: Object, res: Object, next: () => void): Promise<void> => {
-  const renderProps: ?Object = await getMatchParams(routes, req.url)
+  const renderProps: Object = await getMatchParams(routes, req.url)
   if (renderProps) {
     const component = (
       <RouterContext {...renderProps} />
