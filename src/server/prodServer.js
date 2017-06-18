@@ -3,6 +3,8 @@
 import Express from 'express'
 import path from 'path'
 import conf from './conf'
+import appRenderer from './appRenderer'
+import webpackUtils from './webpackUtils'
 
 const APP_PORT: number = conf.APP_PORT
 const PORT: any = process.env.PORT || APP_PORT
@@ -22,11 +24,9 @@ app.use((req: Object, res: Object, next: () => void): void => {
 })
 
 /* Use server side rendering for first load */
-const appRenderer = require('./appRenderer').default
 app.use(appRenderer)
 
 /* Use CommonChunks and long term caching */
-const webpackUtils = require('./webpackUtils').default
 app.use(webpackUtils)
 
 // Routes
