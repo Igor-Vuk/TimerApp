@@ -5,7 +5,7 @@ import ReactDOM from 'react-dom/server'
 import { match, RouterContext } from 'react-router'
 import routes from '../client/routes'
 
-function render (component: Object): Promise<string> {
+function render (component: Object): string {
   const content: string = ReactDOM.renderToString(component)
   return content
 }

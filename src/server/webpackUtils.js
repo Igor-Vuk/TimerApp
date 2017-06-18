@@ -1,18 +1,23 @@
 /* @flow */
 
 import webpackManifest from '../dist/manifest.json'
-/*import webpackChunkManifest from '../dist/chunk-manifest.json'*/
 
-function getChunksProps (): Object {
-  return {
+type ChunksType = {
+  bundle: string,
+  vendor: string,
+  stylesLocal: string,
+  stylesGlobal: string
+}
+
+export default (req: Object, res: Object, next: () => void) => {
+  const chunks: ChunksType = {
     bundle: webpackManifest['bundle.js'],
     vendor: webpackManifest['vendor.js'],
     stylesLocal: webpackManifest['localcss.css'],
     stylesGlobal: webpackManifest['bundle.css']
-    /*webpackChunkManifest: JSON.stringify(webpackChunkManifest)*/
   }
-}
-
-export default {
-  getChunksProps
+  if (chunks) {
+    req.chunk = chunks
+    next()
+  }
 }

@@ -26,7 +26,7 @@ module.exports = {
   entry: {
     bundle: [
       'webpack/hot/poll?1000',
-      './src/server/devServer'
+      './src/server/devServerUtils'
     ]
   },
   output: {

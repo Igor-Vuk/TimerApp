@@ -9,6 +9,8 @@
 * **React-hot-reload on client side and live-reload on server side in combination with Browsersync for synchronous testing on different devices**
 * **Seperate webpack bundle for client and server side with different optimization for production and development environment**
 * **Isomorphic server-side rendering (local styles, gloabl styles and assets are extracted from webpack bundle for faster page load on first visit).**
+* **Code splitting and long-term caching of assets without contacting the server until hash/chunkhas(every client file contains it: bundle, vendor, images, css) changes. If there is a change, browser requests only the changed file. This greatly improves the speed of site and flexibility of deployment.**
+* Tree Shaking
 * ES6/ES7
 * Babel
 * Bootstrap 4 (easy import of Bootstrap variables and mixins to every scss file)
@@ -18,7 +20,6 @@
 * SCSS(SASS)
 * Fully tested (run in test environment)
 * Code coverage
-* Tree Shaking
 * Express
 * EJS template
 * ESLint

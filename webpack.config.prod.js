@@ -7,7 +7,6 @@ const webpack = require('webpack')
 const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
 const WebpackAssetsManifest = require('webpack-assets-manifest')
-/*const ChunkManifestPlugin = require('chunk-manifest-webpack-plugin')*/
 const WebpackMd5Hash = require('webpack-md5-hash')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheet/stylesLocal.[contenthash].local.css', disable: false, allChunks: true})
@@ -144,10 +143,6 @@ module.exports = {
         }
       }
     }),
-    /*new ChunkManifestPlugin({
-      filename: 'chunk-manifest.json',
-      manifestVariable: 'webpackManifest'
-    }),*/
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')

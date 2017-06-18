@@ -18,7 +18,7 @@ module.exports = {
     __filename: true
   },
   entry: {
-    bundle: './src/server/index.js'
+    bundle: './src/server/prodServer.js'
   },
   output: {
     path: path.join(buildPath, 'build'),
@@ -76,7 +76,7 @@ module.exports = {
       },
       {
         test: /\.(gif|png|jpg)$/,
-        loader: 'url-loader?limit=25000&emitFile=false&name=assets/[name].[ext]'
+        loader: 'url-loader?limit=25000&emitFile=false&name=assets/.[hash].[ext]'
       }
     ]
   },

@@ -3,7 +3,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
-import { AppContainer } from 'react-hot-loader'  // Automatically disabled in production
+import { AppContainer } from 'react-hot-loader' // Automatically disabled in production
 
 // import global styles 'bootstrap.scss' before 'routes' and local styles
 
@@ -22,7 +22,7 @@ render(
 
 if (module.hot) {
   module.hot.accept('./routes', () => {
-    const nextApps = require('./routes').default  // In JSX, lower-case tag names are considered to be HTML tags
+    const nextApps = require('./routes').default // In JSX, lower-case tag names are considered to be HTML tags
     render(
       <AppContainer>
         <Router history={browserHistory}>
