@@ -1,5 +1,3 @@
-/* eslint flowtype/require-return-type: 0 */
-/* eslint flowtype/require-parameter-type: 0 */
 'use strict'
 
 const path = require('path')
@@ -124,7 +122,7 @@ module.exports = {
       name: 'vendor',
       minChunks: Infinity
     }),
-    /* For long term caching. Changing the bundle doesn't change vendor hash */
+    /* For long term caching. Thanks to this plugin changing the bundle doesn't change vendor hash */
     new WebpackMd5Hash(),
     /* Inside manifest.json both localStyles and gloablStyles are generated under same key bundle.css/.map so they overwrite each other. We must change the key name of one of them. */
     new WebpackAssetsManifest({

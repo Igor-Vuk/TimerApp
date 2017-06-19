@@ -113,8 +113,8 @@ module.exports = {
         }
       }
     },
-      {
-        reload: false
-      })
+    {
+      reload: false
+    })
   ]
 }

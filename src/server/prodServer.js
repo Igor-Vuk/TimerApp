@@ -14,7 +14,7 @@ const app: Express = new Express()
 app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
-/* set max-age to 1 year for client static assets */
+/* set max-age to '1y' (maximum) or 31536000 for client static assets */
 app.use(Express.static(path.join(__dirname, '../', 'dist'), {maxAge: '1y'}))
 
 /* check with the server before using the cached resource */
