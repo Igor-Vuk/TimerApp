@@ -6,6 +6,7 @@ const nodeExternals = require('webpack-node-externals')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const postcssPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
+const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
@@ -88,6 +89,13 @@ module.exports = {
       'process.env': {
         NODE_ENV: JSON.stringify('production')
       }
+    }),
+    new CompressionPlugin({
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      test: /\.(js|css|html)$/,
+      threshold: 10240,
+      minRatio: 0.8
     })
   ]
 }
