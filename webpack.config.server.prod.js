@@ -6,6 +6,7 @@ const nodeExternals = require('webpack-node-externals')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const postcssPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
+
 const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
@@ -93,7 +94,7 @@ module.exports = {
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
-      test: /\.(js|css|html)$/,
+      test: /\.(js|css|html|ejs)$/,
       threshold: 10240,
       minRatio: 0.8
     })

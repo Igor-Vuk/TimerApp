@@ -9,6 +9,7 @@ const WebpackMd5Hash = require('webpack-md5-hash')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheet/stylesLocal.[contenthash].local.css', disable: false, allChunks: true})
 const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheet/stylesGlobal.[contenthash].css', disable: false, allChunks: true})
+// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const CompressionPlugin = require('compression-webpack-plugin')
 
 module.exports = {
@@ -112,6 +113,7 @@ module.exports = {
     ]
   },
   plugins: [
+    // new BundleAnalyzerPlugin(),
     ExtractGlobal,
     ExtractLocal,
     new webpack.ProvidePlugin({
@@ -128,25 +130,7 @@ module.exports = {
     /* Inside manifest.json both localStyles and gloablStyles are generated under same key bundle.css/.map so they overwrite each other. We must change the key name of one of them. */
     new WebpackAssetsManifest({
       customize: (key, value) => {
-        if (value.toLowerCase().endsWith('.js')) {
-          return {
-            key: key,
-            value: value + '.gz'
-          }
-        }
         if (value.toLowerCase().endsWith('.local.css')) {
-          return {
-            key: 'localcss.css',
-            value: value + '.gz'
-          }
-        }
-        if (value.toLowerCase().endsWith('.css')) {
-          return {
-            key: key,
-            value: value + '.gz'
-          }
-        }
-        /*if (value.toLowerCase().endsWith('.local.css')) {
           return {
             key: 'localcss.css',
             value: value
@@ -157,7 +141,7 @@ module.exports = {
             key: 'localcss.css.map',
             value: value
           }
-        }*/
+        }
       }
     }),
     new webpack.DefinePlugin({
@@ -168,29 +152,31 @@ module.exports = {
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
-      test: /\.(js|css)$/,
+      test: /\.(js|css|html)$/,
       threshold: 10240,
       minRatio: 0.8
     })
   ]
 }
 
-
-// if (value.toLowerCase().endsWith('.js')) {
-//   return {
-//     key: key,
-//     value: value + '.gz'
-//   }
-// }
-// if (value.toLowerCase().endsWith('.local.css')) {
-//   return {
-//     key: 'localcss.css',
-//     value: value + '.gz'
-//   }
-// }
-// if (value.toLowerCase().endsWith('.css')) {
-//   return {
-//     key: key,
-//     value: value + '.gz'
-//   }
-// }
+// nginx
+/*
+if(value.toLowerCase().endsWith('.js')) {
+  return {
+    key: key,
+    value: value + '.gz'
+  }
+}
+if (value.toLowerCase().endsWith('.local.css')) {
+  return {
+    key: 'localcss.css',
+    value: value + '.gz'
+  }
+}
+if (value.toLowerCase().endsWith('.css')) {
+  return {
+    key: key,
+    value: value + '.gz'
+  }
+}
+*/
