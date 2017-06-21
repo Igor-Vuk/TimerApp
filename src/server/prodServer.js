@@ -36,9 +36,6 @@ app.get('*', (req: Object, res: Object) => {
   res.render('index', {app: req.body, webpack: req.chunk})
 })
 
-app.listen(PORT, () => {
-  console.log(`
-  Express server is up on port ${PORT}
-  Production environment
-  `)
+app.listen(PORT, function () {
+  console.log('Express server is up on port')
 })

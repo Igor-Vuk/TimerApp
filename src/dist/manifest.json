@@ -1,11 +1,6 @@
 {
-  "assets/sky.jpg": "assets/sky.d38b95c798702525ecb8215d1256ba06.jpg",
-  "bundle.css": "stylesheet/stylesGlobal.b7ac53d721aca93e4e65099cf74dc90f.css",
-  "bundle.css.map": "stylesheet/stylesGlobal.b7ac53d721aca93e4e65099cf74dc90f.css.map",
-  "bundle.js": "bundle.eefaef91f71795847e74.js",
-  "bundle.js.map": "bundle.eefaef91f71795847e74.js.map",
-  "localcss.css": "stylesheet/stylesLocal.f10502b0281be6194e0aae52c18ccead.local.css",
-  "localcss.css.map": "stylesheet/stylesLocal.f10502b0281be6194e0aae52c18ccead.local.css.map",
+  "bundle.js": "bundle.44325ea6249aa52c81be.js",
+  "bundle.js.map": "bundle.44325ea6249aa52c81be.js.map",
   "vendor.js": "vendor.495e9142a1f8334dcc8c.js",
   "vendor.js.map": "vendor.495e9142a1f8334dcc8c.js.map"
 }
