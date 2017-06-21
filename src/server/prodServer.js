@@ -6,7 +6,6 @@ import conf from './conf'
 import appRenderer from './appRenderer'
 import webpackUtils from './webpackUtils'
 
-
 const APP_PORT: number = conf.APP_PORT
 const PORT: any = process.env.PORT || APP_PORT
 
@@ -16,7 +15,6 @@ app.set('views', path.join(__dirname, 'views'))
 app.set('view engine', 'ejs')
 
 /* set max-age to '1y' (maximum) or 31536000 for client static assets */
-
 app.use(Express.static(path.join(__dirname, '../', 'dist'), {maxAge: '1y'}))
 
 /* check with the server before using the cached resource */
@@ -33,7 +31,6 @@ app.use(webpackUtils)
 
 // Routes
 app.get('*', (req: Object, res: Object) => {
-  // res.set('Content-Encoding', 'gzip')
   res.render('index', {app: req.body, webpack: req.chunk})
 })
 
