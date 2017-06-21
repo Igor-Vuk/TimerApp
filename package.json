@@ -7,9 +7,9 @@
   "license": "MIT",
   "scripts": {
     "clean": "rm -rf ./src/dist && rm -rf ./src/build",
-    "build-client": "cross-env NODE_ENV=production webpack -p --config webpack.config.prod.js",
-    "build-server": "cross-env NODE_ENV=production webpack -p --config webpack.config.server.prod.js",
-    "start": "cross-env NODE_ENV=production node ./src/build/bundle.js",
+    "build-client": "webpack -p --config webpack.config.prod.js",
+    "build-server": "webpack -p --config webpack.config.server.prod.js",
+    "start": "node ./src/build/bundle.js",
     "start-run": "cross-env NODE_ENV=production yarn-or-npm run clean && yarn-or-npm run build-client && yarn-or-npm run build-server && yarn-or-npm run start",
     "webpack-server": "cross-env NODE_ENV=development webpack --config webpack.config.server.js",
     "webpack": "cross-env NODE_ENV=development webpack-dev-server --config webpack.config.js",
