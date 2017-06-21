@@ -26,7 +26,7 @@ app.use((req: Object, res: Object, next: () => void): void => {
 })
 
 /* Use server side rendering for first load */
-app.use(appRenderer)
+// app.use(appRenderer)
 
 /* Use CommonChunks and long term caching */
 app.use(webpackUtils)
