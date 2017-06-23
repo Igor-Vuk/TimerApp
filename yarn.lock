@@ -2026,7 +2026,7 @@ defined@^1.0.0, defined@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/defined/-/defined-1.0.0.tgz#c98d9bcef75674188e110969151199e39b1fa693"
 
-del@^2.0.2:
+del@2.2.2, del@^2.0.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/del/-/del-2.2.2.tgz#c12c981d067846c84bcaf862cff930d907ffd1a8"
   dependencies:
@@ -3197,6 +3197,16 @@ hpack.js@^2.1.6:
 html-comment-regex@^1.1.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/html-comment-regex/-/html-comment-regex-1.1.1.tgz#668b93776eaae55ebde8f3ad464b307a4963625e"
+
+html-compression-webpack-plugin@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.yarnpkg.com/html-compression-webpack-plugin/-/html-compression-webpack-plugin-0.3.0.tgz#8e5eedc33bd5fea7496473011db904ece650e30e"
+  dependencies:
+    async "0.2.x"
+    del "2.2.2"
+    webpack-sources "^0.1.0"
+  optionalDependencies:
+    node-zopfli "^2.0.0"
 
 html-encoding-sniffer@^1.0.1:
   version "1.0.1"
