@@ -35,7 +35,7 @@ module.exports = {
     path: path.join(buildPath, 'dist'),
     filename: '[name].[chunkhash].js',
     chunkFilename: '[name].[chunkhash].js',
-    publicPath: 'http://localhost:3001/'
+    publicPath: 'https://localhost:3001/'
   },
   resolve: {
     extensions: ['.js', '.jsx'],
