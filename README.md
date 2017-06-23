@@ -42,7 +42,7 @@
 * Open **localhost:3001(production)**, **localhost:3003(development)**
 
 * **Development environment**
-* Using Browsersync proxy option we run the app on port **3003**(ui: 3002) for Browser development. By doing this we can use Browsersync options on port **3002** and it also enables us to use live reload on server side. To not use visit **localhost:3001**
+* Using Browsersync proxy option we run the app on port **3003**(ui: 3002) for Browser development. By doing this we can use Browsersync options(ui) on port **3002** and it also enables us to use live reload on server side. To not use visit **localhost:3001**
 
 * For synchronous testing on different devices use Browsersync on port **locahost:3005**(ui:3004). Use address that Browsersync gives you in terminal. To use this feature uncomment Browsersync option inside webpack.config.js. Since this is meant for development and testing on external devices only live reload will work on every change.
 
