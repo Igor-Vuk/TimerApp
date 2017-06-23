@@ -10,6 +10,8 @@
 * **Seperate webpack bundle for client and server side with different optimization for production and development environment**
 * **Isomorphic server-side rendering (local styles, gloabl styles and assets are extracted from webpack bundle for faster page load on first visit).**
 * **Code splitting and long-term caching of assets without contacting the server until hash/chunkhas(every client file contains it: bundle, vendor, images, css) changes. If there is a change, browser requests only the changed file. This greatly improves the speed of site and flexibility of deployment.**
+* **All the assets are gzip-d during webpack bundling(static compression) so there is no more dynamic compression on the fly while user waits for response**
+* **Ready for Heroku deployment**
 * Tree Shaking
 * ES6/ES7
 * Babel

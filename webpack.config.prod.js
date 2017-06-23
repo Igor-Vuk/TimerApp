@@ -11,6 +11,7 @@ const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheet/stylesLocal.[c
 const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheet/stylesGlobal.[contenthash].css', disable: false, allChunks: true})
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const CompressionPlugin = require('compression-webpack-plugin')
+const BrotliPlugin = require('brotli-webpack-plugin')
 
 module.exports = {
   devtool: 'source-maps',
@@ -150,10 +151,16 @@ module.exports = {
       }
     }),*/
     new CompressionPlugin({
-      asset: '[path].gz[query]',
+      asset: '[file].gz[query]',
       algorithm: 'gzip',
-      test: /\.(js|css|html)$/,
-      threshold: 10240,
+      test: /\.(js|css|svg|jsx)$/,
+      threshold: 0,
+      minRatio: 0.8
+    }),
+    new BrotliPlugin({
+      asset: '[path].br[query]',
+      test: /\.(js|css|svg|jsx)$/,
+      threshold: 0,
       minRatio: 0.8
     })
   ]
