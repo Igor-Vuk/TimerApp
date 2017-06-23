@@ -10,7 +10,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheet/stylesLocal.[contenthash].local.css', disable: false, allChunks: true})
 const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheet/stylesGlobal.[contenthash].css', disable: false, allChunks: true})
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const CompressionPlugin = require('compression-webpack-plugin')
+/*const CompressionPlugin = require('compression-webpack-plugin')*/
 
 module.exports = {
   devtool: 'source-maps',
@@ -143,7 +143,7 @@ module.exports = {
           }
         }
       }
-    }),
+    })/*,
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: JSON.stringify('production')
@@ -155,7 +155,7 @@ module.exports = {
       test: /\.(js|css|html)$/,
       threshold: 10240,
       minRatio: 0.8
-    })
+    })*/
   ]
 }
 
