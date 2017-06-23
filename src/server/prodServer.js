@@ -21,7 +21,7 @@ app.set('views', path.join(process.env.PWD + '/src/server/views'))
 /* set max-age to '1y' (maximum) or 31536000 for client static assets */
 /* request for "/" or "<somepath>/" will now serve index.html as compressed version, if we dont want this add indexFromEmptyFile*/
 // app.use(expressStaticGzip(path.join(__dirname, '../', 'dist'), {indexFromEmptyFile: false, maxAge: '1y'}))
-app.use(expressStaticGzip(path.join(process.env.PWD + '/src/dist'), {indexFromEmptyFile: false, maxAge: '1y'}))
+app.use(expressStaticGzip(path.join(process.env.PWD + '/src/dist'), {indexFromEmptyFile: false, enableBrotli: true, maxAge: '1y'}))
 // app.use(Express.static(path.join(__dirname, '../', 'dist'), {maxAge: '1y'}))
 // app.use(Express.static(path.join(process.env.PWD + '/src/dist'), {maxAge: '1y'}))
 
