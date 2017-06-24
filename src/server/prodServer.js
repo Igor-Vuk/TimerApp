@@ -10,6 +10,7 @@ const APP_PORT: number = conf.APP_PORT
 const PORT: any = process.env.PORT || APP_PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()
+var fs = require('fs')
 
 app.set('view engine', 'ejs')
 
@@ -40,9 +41,10 @@ app.get('*', (req: Object, res: Object) => {
   res.render('index', {app: req.body, webpack: req.chunk})
 })
 
-app.listen(PORT, () => {
-  console.log(`
-  Express server is up on port ${PORT}
-  Production environment
-  `)
+app.listen('/tmp/nginx.socket', () => {
+  if (process.env.DYNO) {
+    console.log('This is on Heroku..!!')
+    fs.openSync('/tmp/app-initialized', 'w')
+  }
+  console.log('Node server started on')
 })

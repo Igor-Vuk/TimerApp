@@ -1,1 +1,1 @@
-web: npm start
+web: scripts/build_nginx.sh
