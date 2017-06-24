@@ -9,7 +9,8 @@ import webpackUtils from './webpackUtils'
 // import expressStaticGzip from 'express-static-gzip'
 
 const APP_PORT: number = conf.APP_PORT
-const PORT: any = '/tmp/nginx.socket' || APP_PORT
+
+const PORT: any = process.env.NGINX || APP_PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()
 

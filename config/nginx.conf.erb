@@ -78,17 +78,16 @@ http {
 	server_tokens	off;
 
   # # - Dynamic gzip compression
-  #gzip                      on;
-	#gzip_http_version         1.1;
-	#gzip_disable              "msie6";
-	#gzip_vary                 on;
-	#gzip_min_length           100;
-	#gzip_buffers              4 16k;
-	#gzip_comp_level           3;
-	#gzip_proxied              any;
-
-  # # - Serving already compressed files
   gzip_static                on;
+  gzip                       off;
+	gzip_http_version         1.1;
+	gzip_disable              "msie6";
+	gzip_vary                 on;
+	gzip_min_length           20;
+	gzip_buffers              4 16k;
+	gzip_comp_level           3;
+	gzip_proxied              any;
+
 
 	#Turn on gzip for all content types that should benefit from it.
 
