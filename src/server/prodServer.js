@@ -8,7 +8,6 @@ import webpackUtils from './webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
 const APP_PORT: number = conf.APP_PORT
 const PORT: any = process.env.PORT || APP_PORT
-// var compression = require('compression')
 const app: Express = new Express()
 process.env.PWD = process.cwd()
 
