@@ -10,7 +10,8 @@ import webpackUtils from './webpackUtils'
 
 const APP_PORT: number = conf.APP_PORT
 
-const PORT: any = process.env.NGINX || APP_PORT
+const PORT: any = process.env.PORT || APP_PORT
+const NGINX_PORT = process.env.HEROKU ? '/tmp/nginx.socket' : PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()
 
@@ -43,7 +44,7 @@ app.get('*', (req: Object, res: Object) => {
   res.render('index', {app: req.body, webpack: req.chunk})
 })
 
-app.listen(PORT, () => {
+app.listen(NGINX_PORT, () => {
   if (process.env.DYNO) {
     console.log('This is on Heroku..!!')
     fs.openSync('/tmp/app-initialized', 'w')
