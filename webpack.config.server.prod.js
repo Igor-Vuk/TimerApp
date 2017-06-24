@@ -4,12 +4,10 @@ const path = require('path')
 const webpack = require('webpack')
 const nodeExternals = require('webpack-node-externals')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CompressionPlugin = require('compression-webpack-plugin')
+const BrotliPlugin = require('brotli-webpack-plugin')
 const postcssPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
-
-/*const CompressionPlugin = require('compression-webpack-plugin')*/
-const BrotliPlugin = require('brotli-webpack-plugin')
-const HTMLCompressionPlugin = require('html-compression-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
@@ -93,29 +91,20 @@ module.exports = {
         NODE_ENV: JSON.stringify('production')
       }
     })*/
-   /* new CompressionPlugin({
+    /* Currentyl CompresionPlugin can not work with html-webpack-plugin. When the support comes we can gzip index.html also */
+    new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.(js|css|html|svg|ejs)$/,
       threshold: 0,
       minRatio: 0.8
-    }),*/
+    }),
     /* Currently not supporting html file using html-webpack-plugin. */
     new BrotliPlugin({
       asset: '[path].br[query]',
       test: /\.(js|css|html|svg|ejs)$/,
       threshold: 0,
       minRatio: 0.8
-    }),
-    /* This plugin is Deprecated. We use it becuase it is the only one that compreses html file using html-webpack-plugin. When CompressionPlugin is updated to support this, we should use that one. */
-    new HTMLCompressionPlugin({
-      testHTML: /\.(html|ejs)$/,
-      test: /\.(css|js)$/i,
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      threshold: 0,
-      minRatio: 0.8,
-      deleteOriginalAssets: false
     })
   ]
 }
