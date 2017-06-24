@@ -6,11 +6,12 @@ import conf from './conf'
 import appRenderer from './appRenderer'
 import webpackUtils from './webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
+const fs = require('fs')
 const APP_PORT: number = conf.APP_PORT
 const PORT: any = process.env.PORT || APP_PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()
-var fs = require('fs')
+
 
 app.set('view engine', 'ejs')
 
