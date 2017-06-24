@@ -8,6 +8,7 @@ const CompressionPlugin = require('compression-webpack-plugin')
 const BrotliPlugin = require('brotli-webpack-plugin')
 const postcssPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
+var HTMLCompressionPlugin = require('html-compression-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
@@ -92,13 +93,13 @@ module.exports = {
       }
     })*/
     /* Currentyl CompresionPlugin can not work with html-webpack-plugin. When the support comes we can gzip index.html also */
-    new CompressionPlugin({
+    /*new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
       test: /\.(js|css|html|ejs)$/,
       threshold: 0,
       minRatio: 0.8
-    }),
+    }),*/
     /* Currently not supporting html file using html-webpack-plugin. */
     new BrotliPlugin({
       asset: '[path].br[query]',
@@ -106,6 +107,15 @@ module.exports = {
       threshold: 0,
       minRatio: 0.8,
       quality: 10
+    }),
+    new HTMLCompressionPlugin({
+      testHTML: /\.html$/,
+      test: /.*\.(css|js)$/i,
+      asset: '[path].gz[query]',
+      algorithm: 'gzip',
+      threshold: 0,
+      minRatio: 0.8,
+      deleteOriginalAssets: false
     })
   ]
 }
