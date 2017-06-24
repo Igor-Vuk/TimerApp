@@ -1,7 +1,7 @@
 'use strict'
 
 const path = require('path')
-const webpack = require('webpack')
+/*const webpack = require('webpack')*/
 const nodeExternals = require('webpack-node-externals')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CompressionPlugin = require('compression-webpack-plugin')
@@ -95,16 +95,17 @@ module.exports = {
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
-      test: /\.(js|css|html|svg|ejs)$/,
+      test: /\.(js|css|html|ejs)$/,
       threshold: 0,
       minRatio: 0.8
     }),
     /* Currently not supporting html file using html-webpack-plugin. */
     new BrotliPlugin({
       asset: '[path].br[query]',
-      test: /\.(js|css|html|svg|ejs)$/,
+      test: /\.(js|css|html|ejs)$/,
       threshold: 0,
-      minRatio: 0.8
+      minRatio: 0.8,
+      quality: 10
     })
   ]
 }

@@ -161,29 +161,8 @@ module.exports = {
       asset: '[path].br[query]',
       test: /\.(js|css|svg|jsx)$/,
       threshold: 0,
-      minRatio: 0.8
+      minRatio: 0.8,
+      quality: 10
     })
   ]
 }
-
-// nginx
-/*
-if(value.toLowerCase().endsWith('.js')) {
-  return {
-    key: key,
-    value: value + '.gz'
-  }
-}
-if (value.toLowerCase().endsWith('.local.css')) {
-  return {
-    key: 'localcss.css',
-    value: value + '.gz'
-  }
-}
-if (value.toLowerCase().endsWith('.css')) {
-  return {
-    key: key,
-    value: value + '.gz'
-  }
-}
-*/

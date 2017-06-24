@@ -12,7 +12,7 @@
   },
   "scripts": {
     "clean": "rm -rf ./src/dist && rm -rf ./src/build",
-    "build-client": "cross-env NODE_ENV=production webpack -p --config webpack.config.prod.js",
+    "build-client": "cross-env NODE_ENV=production webpack --config webpack.config.prod.js",
     "build-server": "cross-env NODE_ENV=production webpack -p --config webpack.config.server.prod.js",
     "start": "cross-env NODE_ENV=production node ./src/build/bundle.js",
     "start-run": "cross-env NODE_ENV=production yarn-or-npm run clean && yarn-or-npm run build-client && yarn-or-npm run build-server && yarn-or-npm run start",
@@ -25,15 +25,13 @@
   "dependencies": {
     "babel-plugin-react-css-modules": "v2.8.0",
     "babel-runtime": "^6.23.0",
-    "cross-env": "^5.0.1",
     "ejs": "^2.5.6",
     "express": "^4.15.3",
     "express-static-gzip": "^0.2.3",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
-    "react-router": "3.0.4",
-    "yarn-or-npm": "^2.0.4"
+    "react-router": "3.0.4"
   },
   "devDependencies": {
     "babel-cli": "^6.24.1",
@@ -52,6 +50,7 @@
     "browser-sync": "^2.18.12",
     "browser-sync-webpack-plugin": "^1.1.4",
     "compression-webpack-plugin": "^0.4.0",
+    "cross-env": "^5.0.1",
     "css-loader": "^0.28.4",
     "ejs-loader": "^0.3.0",
     "enzyme": "^2.8.2",
@@ -97,7 +96,8 @@
     "webpack-dev-server": "^2.4.5",
     "webpack-md5-hash": "^0.0.5",
     "webpack-node-externals": "^1.6.0",
-    "write-file-webpack-plugin": "^4.1.0"
+    "write-file-webpack-plugin": "^4.1.0",
+    "yarn-or-npm": "^2.0.4"
   },
   "repository": "git@github.com:Igor-Vuk/TimerApp.git"
 }
