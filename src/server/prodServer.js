@@ -41,10 +41,12 @@ app.get('*', (req: Object, res: Object) => {
   res.render('index', {app: req.body, webpack: req.chunk})
 })
 
-app.listen('/tmp/nginx.socket', () => {
-  if (process.env.DYNO) {
-    console.log('This is on Heroku..!!')
-    fs.openSync('/tmp/app-initialized', 'w')
-  }
-  console.log('Node server started on')
-})
+self.start = () => {
+  app.listen('/tmp/nginx.socket', () => {
+    if (process.env.DYNO) {
+      console.log('This is on Heroku..!!')
+      fs.openSync('/tmp/app-initialized', 'w')
+    }
+    console.log('Node server started on')
+  })
+}
