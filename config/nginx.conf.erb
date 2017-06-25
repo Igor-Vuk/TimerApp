@@ -130,7 +130,8 @@ http {
       proxy_pass http://nodebeats;
 		}
 
-    location /src/dist/ {
+    location /dist/ {
+      root            "/app/src"
 			access_log      off;
 			add_header      Pragma public;
 			add_header      Vary Accept-Encoding;
