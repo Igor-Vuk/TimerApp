@@ -169,8 +169,8 @@ http {
 			add_header      Vary Accept-Encoding;
 		}
 
-    location /assets {
-			alias	"/app/src/dist";
+    location /dist/ {
+			root	"/app/src";
 			# # - 1 month expiration time
       gzip_static on;
 		}
