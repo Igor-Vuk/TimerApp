@@ -128,7 +128,6 @@ http {
       proxy_set_header 	Upgrade	$http_upgrade;
       proxy_set_header	Connection "upgrade";
       proxy_pass http://nodebeats;
-      add_header      Vary Accept-Encoding;
 		}
 
 		location /api {
@@ -138,7 +137,6 @@ http {
       proxy_set_header Connection 'upgrade';
       proxy_set_header Host $host;
       proxy_cache_bypass $http_upgrade;
-      add_header      Vary Accept-Encoding;
     }
 
 		location /dist {
@@ -179,8 +177,6 @@ http {
 			add_header      Pragma public;
 			add_header      Cache-Control public;
 			add_header      Vary Accept-Encoding;
-      add_header      Last-Modified "";
-      add_header      ETag "";
 		}
 
 	}
