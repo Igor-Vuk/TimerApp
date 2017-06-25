@@ -131,7 +131,7 @@ http {
 		}
 
     location /dist/ {
-      root            "/src"
+      alias            "app/src/dist"
 			access_log      off;
 			add_header      Pragma public;
 			add_header      Vary Accept-Encoding;
