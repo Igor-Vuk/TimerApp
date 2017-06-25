@@ -137,6 +137,22 @@ http {
 			add_header      Cache-Control public;
 
       gzip_static           on;
+      gzip                  off;
+      gzip_http_version  1.0;
+	    gzip_disable    "msie6";
+      gzip_vary                 on;
+    	gzip_min_length           20;
+	    gzip_proxied              any;
+		}
+
+    location ~* \.(js|html)$ {
+			root	"/app/src/build";
+			access_log      off;
+			add_header      Pragma public;
+			add_header      Cache-Control public;
+
+      gzip_static           on;
+      gzip                  off;
       gzip_http_version  1.0;
 	    gzip_disable    "msie6";
       gzip_vary                 on;
