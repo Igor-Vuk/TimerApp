@@ -79,14 +79,14 @@ http {
 
   # # - Dynamic gzip compression
   #gzip_static                off;
-  gzip                       on;
+  #gzip                       on;
 	#gzip_http_version         1.0;
-	gzip_disable              "msie6";
-	gzip_vary                 on;
-	gzip_min_length           20;
-	gzip_buffers              4 16k;
-	gzip_comp_level           9;
-	gzip_proxied              any;
+	#gzip_disable              "msie6";
+	#gzip_vary                 on;
+	#gzip_min_length           20;
+	#gzip_buffers              4 16k;
+	#gzip_comp_level           9;
+	#gzip_proxied              any;
 
 
 	#Turn on gzip for all content types that should benefit from it.
@@ -130,49 +130,8 @@ http {
       proxy_pass http://nodebeats;
 		}
 
-		location /api {
-      proxy_pass http://nodebeats;
-      proxy_http_version 1.0;
-      proxy_set_header Upgrade $http_upgrade;
-      proxy_set_header Connection 'upgrade';
-      proxy_set_header Host $host;
-      proxy_cache_bypass $http_upgrade;
-    }
-
-		location /dist {
-			alias	"/app/app-dist";
-			# # - 1 month expiration time
-			expires 1M;
-			access_log      off;
-			add_header      Pragma public;
-			add_header      Cache-Control public;
-			add_header      Vary Accept-Encoding;
-		}
-
-		location /offline {
-			alias	"/app/public/offline";
-			# # - 1 month expiration time
-			expires 1M;
-			access_log      off;
-			add_header      Pragma public;
-			add_header      Cache-Control public;
-			add_header      Vary Accept-Encoding;
-		}
-
-		location /scripts {
-			alias	"/app/node_modules";
-			# # - 1 month expiration time
-			expires 1M;
-			access_log      off;
-			add_header      Pragma public;
-			add_header      Cache-Control public;
-			add_header      Vary Accept-Encoding;
-		}
-
-    location /dist/ {
-			root	"/app/src";
-			# # - 1 month expiration time
-
+    location /src/dist/ {
+			root	"/app/";
 			access_log      off;
 			add_header      Pragma public;
 			add_header      Cache-Control public;
