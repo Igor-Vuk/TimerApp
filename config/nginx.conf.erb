@@ -1,6 +1,6 @@
 daemon off;
 #Heroku dynos have at least 4 cores.
-worker_processes <%= ENV['NGINX_WORKERS'] || 1 %>;
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 
 events {
 	use epoll;
@@ -78,14 +78,14 @@ http {
 	server_tokens	off;
 
   # # - Dynamic gzip compression
-  gzip_static                on;
-  gzip                      off;
+  gzip_static                always;
+  #gzip                      off;
 	gzip_http_version         1.0;
 	gzip_disable              "msie6";
 	gzip_vary                 on;
-	gzip_min_length           20;
-	gzip_buffers              4 16k;
-	gzip_comp_level           9;
+	#gzip_min_length           20;
+	#gzip_buffers              4 16k;
+	#gzip_comp_level           9;
 	gzip_proxied              any;
 
 
