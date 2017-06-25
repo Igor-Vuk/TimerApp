@@ -172,11 +172,15 @@ http {
     location /dist/ {
 			root	"/app/src";
 			# # - 1 month expiration time
-      gzip_static     on;
-      access_log      off;
-			add_header      Pragma public;
-			add_header      Vary Accept-Encoding;
-      proxy_http_version	1.1;
+      add_header  Access-Control-Allow-Headers content-type;
+      add_header  Access-Control-Allow-Origin *;
+      add_header  Cache-Control "public, max-age=31536000";
+      proxy_pass  http://nodebeats;
+      proxy_next_upstream http_500 timeout;
+      gzip_http_version 1.0;
+      gzip_static always;
+      gzip_vary on;
+      etag on;
 		}
 	    }
 
