@@ -6,7 +6,7 @@ import fs from 'fs'
 import conf from './conf'
 import appRenderer from './appRenderer'
 import webpackUtils from './webpackUtils'
-import expressStaticGzip from 'express-static-gzip'
+// import expressStaticGzip from 'express-static-gzip'
 
 const APP_PORT: number = conf.APP_PORT
 
