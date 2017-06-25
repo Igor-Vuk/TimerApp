@@ -79,7 +79,7 @@ http {
 
   # # - Dynamic gzip compression
   #gzip_static                off;
-  #gzip                       on;
+  #zip                       on;
 	#gzip_http_version         1.0;
 	#gzip_disable              "msie6";
 	#gzip_vary                 on;
@@ -128,13 +128,6 @@ http {
       proxy_set_header 	Upgrade	$http_upgrade;
       proxy_set_header	Connection "upgrade";
       proxy_pass http://nodebeats;
-		}
-
-    location /dist/ {
-      alias            "app/src/dist"
-			access_log      off;
-			add_header      Pragma public;
-			add_header      Vary Accept-Encoding;
 		}
 
 	}
