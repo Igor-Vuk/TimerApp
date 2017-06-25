@@ -116,7 +116,7 @@ http {
 	 server {
 		listen       <%= ENV['PORT'] %>;
 		server_name  _;
-    root	"/app/";
+    root        "/app/";
 
 
 		location / {
@@ -132,8 +132,7 @@ http {
     location ~* \.(js|css|jpg)$ {
 			root	             "/app/src/dist";
 			add_header         Pragma public;
-			add_header         Cache-Control public;
-      expires            1y;
+			add_header         Cache-Control public 1y;
       gzip_static        on;
       gzip               off;
       gzip_http_version  1.1;
