@@ -172,7 +172,7 @@ http {
     location /dist/ {
 			root	"/app/src";
 			# # - 1 month expiration time
-      gzip_static     on
+
 			access_log      off;
 			add_header      Pragma public;
 			add_header      Cache-Control public;
