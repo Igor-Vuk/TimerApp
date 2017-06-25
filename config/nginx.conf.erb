@@ -176,7 +176,7 @@ http {
       access_log      off;
 			add_header      Pragma public;
 			add_header      Vary Accept-Encoding;
-      proxy_pass      http://nodebeats;
+      proxy_http_version	1.1;
 		}
 	    }
 
