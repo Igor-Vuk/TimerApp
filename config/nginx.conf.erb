@@ -119,7 +119,7 @@ http {
 		listen       <%= ENV['PORT'] %>;
 		server_name  _;
     root	"/app/";
-    index index.html index.ejs
+
 
 		location / {
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -148,6 +148,7 @@ http {
 
     location ~* \.(html|ejs|js|)$ {
 			root	"/app/src/build";
+      index index.html index.ejs
 
 			access_log      off;
 			add_header      Pragma public;
