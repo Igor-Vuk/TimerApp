@@ -129,7 +129,7 @@ http {
       proxy_set_header	Connection "upgrade";
       proxy_pass http://nodebeats;
       add_header      Vary Accept-Encoding;
-      add_header      Content-Encoding "gzip";
+      add_header Content-Encoding $upstream_http_content_encoding;
 		}
 
 		location /api {
@@ -140,6 +140,7 @@ http {
       proxy_set_header Host $host;
       proxy_cache_bypass $http_upgrade;
       add_header      Vary Accept-Encoding;
+      add_header Content-Encoding $upstream_http_content_encoding;
     }
 
 		location /dist {
