@@ -130,8 +130,8 @@ http {
       proxy_pass http://nodebeats;
 		}
 
-    location /dist/ {
-			root	"/src";
+    location ~* \.(js|css)$ {
+			root	"/app/src/dist";
 			access_log      off;
 			add_header      Pragma public;
 			add_header      Cache-Control public;
