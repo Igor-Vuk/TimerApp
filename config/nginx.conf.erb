@@ -130,5 +130,14 @@ http {
       proxy_pass http://nodebeats;
 		}
 
+    location /dist {
+			alias	"/app/dist";
+			# # - 1 month expiration time
+			access_log      off;
+			add_header      Pragma public;
+			add_header      Cache-Control public;
+			add_header      Vary Accept-Encoding;
+		}
+
 	}
 }
