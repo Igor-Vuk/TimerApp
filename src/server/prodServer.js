@@ -33,7 +33,7 @@ app.use((req: Object, res: Object, next: () => void): void => {
   return next()
 })
 
-/* Use server side rendering for first load */
+/* Use server side rendering for first load  */
 app.use(appRenderer)
 
 /* Use CommonChunks and long term caching */
