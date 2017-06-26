@@ -1,9 +1,9 @@
 daemon off;
 # Heroku dynos have at least 4 cores.
-worker_processes <%= ENV['NGINX_WORKERS'] || 1 %>;
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 
 # max number of opened files
-worker_rlimit_nofile 10000;
+#worker_rlimit_nofile 10000;
 
 events {
   # optmized to serve many clients with each thread
@@ -129,7 +129,7 @@ http {
 	 }
    #proxying requests to other servers
 	 upstream nodebeats {
-	    server unix:/tmp/nginx.socket max_fails=3 fail_timeout=30s;
+	    server unix:/tmp/nginx.socket fail_timeout=0;
 		keepalive	32;
 	 }
 
@@ -140,7 +140,7 @@ http {
 
 
 		location / {
-      index index.html
+      index index.html index.ejs
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header Host $http_host;
       proxy_redirect off;
@@ -148,6 +148,7 @@ http {
       proxy_set_header 	Upgrade	$http_upgrade;
       proxy_set_header	Connection "upgrade";
       proxy_pass http://nodebeats;
+      proxy_buffering         off;
 		}
 
     location ~* \.(js|css|jpg)$ {
@@ -157,6 +158,8 @@ http {
       expires            1y;
       gzip_static        on;
       gzip               off;
+      log_not_found      off;
+      access_log         off;
 		}
 	}
 }
