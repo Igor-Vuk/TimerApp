@@ -1,1 +1,1 @@
-web: bin/start-nginx node ./src/build/bundle.js
+web: scripts/build_nginx.sh
