@@ -147,7 +147,7 @@ http {
       proxy_set_header 	Upgrade	$http_upgrade;
       proxy_set_header	Connection "Upgrade";
       proxy_pass http://nodebeats;
-      proxy_read_timeout 5s;
+      proxy_read_timeout 80s;
 		}
 
     location ~* \.(js|css|jpg)$ {
