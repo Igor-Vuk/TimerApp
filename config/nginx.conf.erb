@@ -2,44 +2,59 @@ daemon off;
 #Heroku dynos have at least 4 cores.
 worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 
+# max number of opened files
+worker_rlimit_nofile 10000;
+
 events {
+  # optmized to serve many clients with each thread
 	use epoll;
+
+  # if accept_mutex is enabled, worker processes will accept new connections by turn. Otherwise, all worker processes will be notified about new connections, and if volume of new connections is low, some of the worker processes may just waste system resources.
 	accept_mutex on;
+
+  # accept as many connections as possible, may flood worker connections if set too low -- for testing environment
 	multi_accept	on;
+
+  # determines how much clients will be served per worker
 	worker_connections 1024;
 }
 
+# error logs
+error_log  	app/config/error.log;
+error_log  	app/config/error_extreme.log emerg;
+error_log  	app/config/error_debug.log debug;
+error_log  	app/config/error_critical.log crit;
 
-error_log  	logs/nginx/error.log;
-error_log  	logs/nginx/error_extreme.log emerg;
-error_log  	logs/nginx/error_debug.log debug;
-error_log  	logs/nginx/error_critical.log crit;
 
 http {
 
 	charset	utf-8;
-    include mime.types;
+  include mime.types;
 
-	# # - Add extra mime types
-	types{
-		application/x-httpd-php	.html;
-	}
-    default_type  application/octet-stream;
+  default_type  application/octet-stream;
 
 
 	log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
 
 	access_log logs/nginx/access.log l2met;
 
+
 	# # - Basic Settings
 
+  # copies data between one FD and other from within the kernel
+  # faster then read() + write()
 	sendfile        on;
+
+  # send headers in one peace, its better then sending them one by one
 	tcp_nopush     	on;
-	tcp_nodelay 	on;
+
+  # don't buffer data sent, good for small data bursts in real time
+	tcp_nodelay 	  on;
+
 	types_hash_max_size	      2048;
 
 
-    	# # - Enable open file cache
+  # # - Enable open file cache
 
 	open_file_cache	max=1000 inactive=20s;
 	open_file_cache_valid	30s;
@@ -49,15 +64,20 @@ http {
 
 	# # - Configure buffer sizes
 
+  # this is used to handle POST data, meaning form submissions, file uploads etc. Make sure that the buffer is large enough if you handle a lot of large POST data submissions
 	client_body_buffer_size	16k;
+
+  # Sets buffer size for reading client request header. For most requests, a buffer of 1K bytes is enough.
 	client_header_buffer_size	1k;
 
 
 	# # - Responds with 413 http status ie. request entity too large error if this value exceeds
 
-
+  # directive assigns the maximum accepted body size of client request, indicated by the line Content-Length in the header of request.
 	client_max_body_size	8m;
+
 	large_client_header_buffers 2 1k;
+
 
 	# # - Configure Timeouts
 
@@ -108,8 +128,9 @@ http {
 		default upgrade;
 		'' close;
 	 }
+   #proxying requests to other servers
 	 upstream nodebeats {
-	    server unix:/tmp/nginx.socket fail_timeout=0;
+	    server unix:/tmp/nginx.socket max_fails=3 fail_timeout=30s;
 		keepalive	32;
 	 }
 
@@ -132,7 +153,8 @@ http {
     location ~* \.(js|css|jpg)$ {
 			root	             "/app/src/dist";
 			add_header         Pragma public;
-			add_header         Cache-Control public, '1y';
+			add_header         Cache-Control public;
+      expires            1y;
       gzip_static        on;
       gzip               off;
       gzip_http_version  1.1;
