@@ -10,7 +10,7 @@ events {
 	use epoll;
 
   # if accept_mutex is enabled, worker processes will accept new connections by turn. Otherwise, all worker processes will be notified about new connections, and if volume of new connections is low, some of the worker processes may just waste system resources.
-	accept_mutex off;
+	accept_mutex on;
 
   # accept as many connections as possible, may flood worker connections if set too low -- for testing environment
 	multi_accept	on;
@@ -86,7 +86,7 @@ http {
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
-	keepalive_timeout	10;
+	#keepalive_timeout	300;
 
 	# # - if the request is not completed within 10 seconds, then abort the connection and send the timeout errror
 
@@ -130,7 +130,7 @@ http {
    #proxying requests to other servers
 	 upstream nodebeats {
 	    server unix:/tmp/nginx.socket fail_timeout=0;
-		keepalive	32;
+		keepalive_timeout 5;
 	 }
 
 	 server {
