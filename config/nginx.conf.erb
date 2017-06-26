@@ -130,7 +130,7 @@ http {
    #proxying requests to other servers
 	 upstream nodebeats {
 	    server unix:/tmp/nginx.socket fail_timeout=0;
-		keepalive_timeout 5;
+		keepalive 5;
 	 }
 
 	 server {
