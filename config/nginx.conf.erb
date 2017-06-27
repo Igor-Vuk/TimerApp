@@ -86,7 +86,7 @@ http {
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
-	keepalive_timeout	5;
+	#keepalive_timeout	300;
 
 	# # - if the request is not completed within 10 seconds, then abort the connection and send the timeout errror
 
@@ -145,7 +145,7 @@ http {
       proxy_redirect off;
       proxy_http_version	1.1;
       proxy_set_header 	Upgrade	$http_upgrade;
-      proxy_set_header	Connection $connection_upgrade;
+      proxy_set_header	Connection "Upgrade";
       proxy_pass http://nodebeats;
       proxy_read_timeout 80s;
 		}
