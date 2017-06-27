@@ -9,6 +9,7 @@ const BrotliPlugin = require('brotli-webpack-plugin')
 const postcssPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
 var HTMLCompressionPlugin = require('html-compression-webpack-plugin')
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   devtool: 'source-map',
@@ -84,6 +85,10 @@ module.exports = {
     ]
   },
   plugins: [
+    new FaviconsWebpackPlugin({
+      logo: path.resolve(__dirname, './src/client/styles/img/clock.png'),
+      inject: true
+    }),
     new HtmlWebpackPlugin({
       template: 'ejs-loader!./src/server/views/index.ejs'
     }),

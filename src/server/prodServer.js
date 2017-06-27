@@ -6,7 +6,7 @@ import fs from 'fs'
 import conf from './conf'
 import appRenderer from './appRenderer'
 import webpackUtils from './webpackUtils'
-// import expressStaticGzip from 'express-static-gzip'
+import expressStaticGzip from 'express-static-gzip'
 
 const APP_PORT: number = conf.APP_PORT
 
@@ -26,6 +26,10 @@ app.set('views', path.join(process.env.PWD + '/src/server/views'))
 // app.use(expressStaticGzip(path.join(process.env.PWD + '/src/dist'), {indexFromEmptyFile: false, enableBrotli: true, maxAge: '1y'}))
 // app.use(Express.static(path.join(__dirname, '../', 'dist'), {maxAge: '1y'}))
 // app.use(Express.static(path.join(process.env.PWD + '/src/dist'), {maxAge: '1y'}))
+
+if (!process.env.HEROKU) {
+  app.use(expressStaticGzip(path.join(__dirname, '../', 'dist'), {indexFromEmptyFile: false, maxAge: '1y'}))
+}
 
 /* check with the server before using the cached resource */
 app.use((req: Object, res: Object, next: () => void): void => {

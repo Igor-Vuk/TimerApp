@@ -12,6 +12,7 @@ const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheet/stylesGlobal.
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const CompressionPlugin = require('compression-webpack-plugin')
 const BrotliPlugin = require('brotli-webpack-plugin')
+// const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   devtool: 'source-maps',
@@ -114,6 +115,10 @@ module.exports = {
     ]
   },
   plugins: [
+    // new FaviconsWebpackPlugin({
+    //   logo: path.resolve(__dirname, './src/client/styles/img/clock.png'),
+    //   inject: true
+    // }),
     // new BundleAnalyzerPlugin(),
     ExtractGlobal,
     ExtractLocal,
