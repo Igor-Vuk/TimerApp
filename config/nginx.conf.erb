@@ -56,10 +56,10 @@ http {
 
   # # - Enable open file cache
 
-	#open_file_cache	max=1000 inactive=20s;
-	#open_file_cache_valid	30s;
-	#open_file_cache_min_uses	2;
-	#open_file_cache_errors	on;
+	open_file_cache	max=1000 inactive=20s;
+	open_file_cache_valid	30s;
+	open_file_cache_min_uses	2;
+	open_file_cache_errors	on;
 
 
 	# # - Configure buffer sizes
@@ -86,7 +86,7 @@ http {
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
-	#keepalive_timeout	300;
+	keepalive_timeout	10;
 
 	# # - if the request is not completed within 10 seconds, then abort the connection and send the timeout errror
 
@@ -123,10 +123,7 @@ http {
 	gzip_types	text/plain;
 	gzip_types	text/xml;
 
-	map $http_upgrade $connection_upgrade {
-		default upgrade;
-		'' close;
-	 }
+
    #proxying requests to other servers
 	 upstream nodebeats {
 	    server unix:/tmp/nginx.socket fail_timeout=0;
@@ -139,15 +136,12 @@ http {
 
 
 		location / {
-      index index.html index.ejs
       proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header Host $http_host;
+      proxy_set_header Connection "";
       proxy_redirect off;
       proxy_http_version	1.1;
-      proxy_set_header 	Upgrade	$http_upgrade;
-      proxy_set_header	Connection "Upgrade";
       proxy_pass http://nodebeats;
-      proxy_read_timeout 80s;
 		}
 
     location ~* \.(js|css|jpg)$ {
@@ -159,6 +153,8 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
+      add_header         Last-Modified "";
+      add_header         ETag "";
 		}
 	}
 }
