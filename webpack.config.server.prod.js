@@ -1,7 +1,6 @@
 'use strict'
 
 const path = require('path')
-// const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 const buildPath = path.resolve(__dirname, './src')
 const postcssPath = path.resolve(__dirname, './src/client')
 const nodeExternals = require('webpack-node-externals')
@@ -84,9 +83,6 @@ module.exports = {
     new CopyWebpackPlugin([
       {from: 'src/server/views', to: 'views/index.ejs'}
     ]),
-    // new FaviconsWebpackPlugin({
-    //   logo: path.resolve(__dirname, './src/client/styles/img/clock.png')
-    // }),
     new CompressionPlugin({
       asset: '[path].gz[query]',
       algorithm: 'gzip',
