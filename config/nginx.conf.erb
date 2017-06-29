@@ -142,7 +142,7 @@ http {
       proxy_redirect off;
       proxy_http_version	1.1;
       proxy_pass http://nodebeats;
-      proxy_read_timeout 60s;
+      proxy_read_timeout 2s;
 		}
 
     location ~* \.(js|css|jpg|png|ico)$ {
