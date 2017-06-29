@@ -85,13 +85,9 @@ module.exports = {
     new webpack.NamedModulesPlugin(),
     new webpack.HotModuleReplacementPlugin(),
     new webpack.NoEmitOnErrorsPlugin(),
+    /* We only use it for development to enable live reload */
     new HtmlWebpackPlugin({
       template: 'ejs-loader!./src/server/views/index.ejs'
-    }),
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('development')
-      }
     }),
     new BrowserSyncPlugin({
       host: 'localhost',

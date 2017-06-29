@@ -9,10 +9,11 @@ const WebpackMd5Hash = require('webpack-md5-hash')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
 const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheet/stylesLocal.[contenthash].local.css', disable: false, allChunks: true})
 const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheet/stylesGlobal.[contenthash].css', disable: false, allChunks: true})
-// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 const CompressionPlugin = require('compression-webpack-plugin')
 const BrotliPlugin = require('brotli-webpack-plugin')
-// const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+// var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 
 module.exports = {
   devtool: 'source-maps',
@@ -115,10 +116,13 @@ module.exports = {
     ]
   },
   plugins: [
-    // new FaviconsWebpackPlugin({
-    //   logo: path.resolve(__dirname, './src/client/styles/img/clock.png'),
-    //   inject: true
-    // }),
+    new FaviconsWebpackPlugin({
+      prefix: 'faviconIcons.[hash]/',
+      logo: path.resolve(__dirname, './src/client/styles/img/clock.png'),
+      persistentCache: true,
+      emitStats: true,
+      statsFilename: 'faviconsList.json'
+    }),
     // new BundleAnalyzerPlugin(),
     ExtractGlobal,
     ExtractLocal,
@@ -149,12 +153,7 @@ module.exports = {
           }
         }
       }
-    }), /*
-    new webpack.DefinePlugin({
-      'process.env': {
-        NODE_ENV: JSON.stringify('production')
-      }
-    }),*/
+    }),
     new CompressionPlugin({
       asset: '[file].gz[query]',
       algorithm: 'gzip',

@@ -7,6 +7,7 @@ import conf from './conf'
 import appRenderer from './appRenderer'
 import webpackUtils from './webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
+import favicons from '../dist/faviconsList.json'
 
 const APP_PORT: number = conf.APP_PORT
 
@@ -15,10 +16,9 @@ const NGINX_PORT = process.env.HEROKU ? '/tmp/nginx.socket' : PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()
 
+// app.set('views', path.join(__dirname, '../', 'build', 'views'))
+app.set('views', path.join(process.env.PWD + '/src/build/views'))
 app.set('view engine', 'ejs')
-
-// app.set('views', path.join(__dirname, 'views'))
-app.set('views', path.join(process.env.PWD + '/src/server/views'))
 
 /* set max-age to '1y' (maximum) or 31536000 for client static assets */
 /* request for "/" or "<somepath>/" will now serve index.html as compressed version. If we dont want this add indexFromEmptyFile false  */
@@ -28,7 +28,7 @@ app.set('views', path.join(process.env.PWD + '/src/server/views'))
 // app.use(Express.static(path.join(process.env.PWD + '/src/dist'), {maxAge: '1y'}))
 
 if (!process.env.HEROKU) {
-  app.use(expressStaticGzip(path.join(__dirname, '../', 'dist'), {indexFromEmptyFile: false, maxAge: '1y'}))
+  app.use(expressStaticGzip(path.join(process.env.PWD + '/src/dist'), {indexFromEmptyFile: false, enableBrotli: true, maxAge: '1y'}))
 }
 
 /* check with the server before using the cached resource */
@@ -45,13 +45,13 @@ app.use(webpackUtils)
 
 // Routes
 app.get('*', (req: Object, res: Object) => {
-  res.render('index', {app: req.body, webpack: req.chunk})
+  res.render('index', {app: req.body, webpack: req.chunk, favicons: favicons})
 })
 
 app.listen(NGINX_PORT, () => {
   if (process.env.DYNO) {
-    console.log('This is on Heroku..!!')
+    console.log('Running on Heroku..!!')
     fs.openSync('/tmp/app-initialized', 'w')
   }
-  console.log('Node server started on')
+  console.log(`Node server is listening on port ${NGINX_PORT}`)
 })
