@@ -118,7 +118,7 @@ module.exports = {
   plugins: [
     /* just add .png file to favicon folder and change the title. After bundle is generated cut favicon.ico from faviconIcon folder and paste it into root folder of your project. Also enter faviconList.json file and delte the link to favicon.ico */
     new FaviconsWebpackPlugin({
-      prefix: 'faviconIcons.[hash]',
+      // prefix: 'faviconIcons.[hash]',
       logo: path.resolve(__dirname, './src/client/styles/favicon/clock.png'),
       persistentCache: true,
       emitStats: true,

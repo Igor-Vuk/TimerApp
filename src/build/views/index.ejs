@@ -6,9 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>React Timer</title>
 
-    <% favicons.html.map(el => { %>
-      <%- el %>
-    <% }) %>
 
     <% if (process.env.NODE_ENV === 'production') { %>
       <link rel='stylesheet' type='text/css' href="<%- webpack.stylesGlobal %>">
