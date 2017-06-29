@@ -116,12 +116,26 @@ module.exports = {
     ]
   },
   plugins: [
+    /* just add .png file to favicon folder and change the title */
     new FaviconsWebpackPlugin({
       prefix: 'faviconIcons.[hash]/',
-      logo: path.resolve(__dirname, './src/client/styles/img/clock.png'),
+      logo: path.resolve(__dirname, './src/client/styles/favicon/clock.png'),
       persistentCache: true,
       emitStats: true,
-      statsFilename: 'faviconsList.json'
+      statsFilename: 'faviconsList.json',
+      title: 'React Timer',
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: true,
+        yandex: false,
+        windows: true
+      }
     }),
     // new BundleAnalyzerPlugin(),
     ExtractGlobal,
