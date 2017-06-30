@@ -116,6 +116,7 @@ module.exports = {
   },
   plugins: [
     // new BundleAnalyzerPlugin(),
+    /* copy all favicon icons from client/styles/favicon folder to the root of dist folder */
     new CopyWebpackPlugin([
       {from: 'styles/favicon'}
     ]),

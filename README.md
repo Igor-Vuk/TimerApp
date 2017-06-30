@@ -77,6 +77,22 @@
 
 * Inside webpack.config.js under `sass-resources-loader` uncomment to use. You can add and remove any file you want. To use it in production add it to webpack.config.prod.js
 
+### Favicon icons ###
+
+* The best way to get implement favicons is to visit **<https://realfavicongenerator.net/>**.
+* Choose the favicons that you want, download the file, unzip it and put **all the content** to the root of **src/client/styles/favicon directory**
+* Copy the generated html code to the head of **src/server/views/index.ejs** file
+* Done.
+* **Note**:
+* If the favicon doesn't show clear the browser cache and history.
+* If you wanna change icon at the latter date pay attention at Version/Refresh option.
+* Use compression for smaller size.
+
+### Images ###
+
+* Add all your images to **src/client/styles/img** directory.
+* Before adding them you can use a toll like <https://tinypng.com/> and Photoshop Save for Web to optimize and compress your images.
+
 ### Scripts examples for other systems (try them out if needed) ###
 
 * `"clean": "rmdir /s \"src/dist\" && rmdir /s \"src/build\""`
