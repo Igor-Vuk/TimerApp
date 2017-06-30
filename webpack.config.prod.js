@@ -116,26 +116,26 @@ module.exports = {
   },
   plugins: [
     /* just add .png file to favicon folder and change the title. After bundle is generated cut favicon.ico from faviconIcon folder and paste it into root folder of your project. Also enter faviconList.json file and delte the link to favicon.ico */
-    // new FaviconsWebpackPlugin({
-    //   // prefix: 'faviconIcons.[hash]',
-    //   logo: path.resolve(__dirname, './src/client/styles/favicon/clock.png'),
-    //   persistentCache: true,
-    //   emitStats: true,
-    //   statsFilename: 'faviconsList.json',
-    //   title: 'React Timer',
-    //   icons: {
-    //     android: true,
-    //     appleIcon: true,
-    //     appleStartup: true,
-    //     coast: false,
-    //     favicons: true,
-    //     firefox: true,
-    //     opengraph: false,
-    //     twitter: true,
-    //     yandex: false,
-    //     windows: true
-    //   }
-    // }),
+    new FaviconsWebpackPlugin({
+      // prefix: %20,
+      logo: path.resolve(__dirname, './src/client/styles/favicon/clock.png'),
+      persistentCache: true,
+      emitStats: true,
+      statsFilename: 'faviconsList.json',
+      title: 'React Timer',
+      icons: {
+        android: true,
+        appleIcon: true,
+        appleStartup: true,
+        coast: false,
+        favicons: true,
+        firefox: true,
+        opengraph: false,
+        twitter: true,
+        yandex: false,
+        windows: true
+      }
+    }),
     // new BundleAnalyzerPlugin(),
     ExtractGlobal,
     ExtractLocal,
@@ -152,7 +152,7 @@ module.exports = {
     new WebpackMd5Hash(),
     /* Inside manifest.json both localStyles and gloablStyles are generated under same key bundle.css/.map so they overwrite each other. We must change the key name of one of them. */
     new WebpackAssetsManifest({
-      output: 'manifests.json',
+      output: 'manifestList.json',
       customize: (key, value) => {
         if (value.toLowerCase().endsWith('.local.css')) {
           return {
