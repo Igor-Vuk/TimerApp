@@ -80,7 +80,7 @@
 ### Favicon icons ###
 
 * The best way to get implement favicons is to visit **<https://realfavicongenerator.net/>**.
-* Choose the favicons that you want, download the file, unzip it and put **all the content** to the root of **src/client/styles/favicon directory**
+* Choose the favicons that you want, choose the root destination, download the file, unzip it and put **all the content** to the root of **src/client/styles/favicon directory**
 * Copy the generated html code to the head of **src/server/views/index.ejs** file
 * Done.
 * **Note**:

@@ -145,7 +145,7 @@ http {
       proxy_read_timeout 60s;
 		}
 
-    location ~* \.(js|css|jpg|png|ico)$ {
+    location ~* \.(js|css|jpg|png|ico|json)$ {
 			root	             "/app/src/dist";
 			add_header         Pragma public;
 			add_header         Cache-Control public;
