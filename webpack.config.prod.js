@@ -7,12 +7,12 @@ const buildPath = path.resolve(__dirname, './src')
 const WebpackAssetsManifest = require('webpack-assets-manifest')
 const WebpackMd5Hash = require('webpack-md5-hash')
 const ExtractTextPlugin = require('extract-text-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheet/stylesLocal.[contenthash].local.css', disable: false, allChunks: true})
 const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheet/stylesGlobal.[contenthash].css', disable: false, allChunks: true})
 const CompressionPlugin = require('compression-webpack-plugin')
 const BrotliPlugin = require('brotli-webpack-plugin')
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
-const FaviconsWebpackPlugin = require('favicons-webpack-plugin')
 
 module.exports = {
   devtool: 'source-maps',
@@ -115,28 +115,10 @@ module.exports = {
     ]
   },
   plugins: [
-    /* just add .png file to favicon folder and change the title. After bundle is generated cut favicon.ico from faviconIcon folder and paste it into root folder of your project. Also enter faviconList.json file and delte the link to favicon.ico */
-    new FaviconsWebpackPlugin({
-      // prefix: %20,
-      logo: path.resolve(__dirname, './src/client/styles/favicon/clock.png'),
-      persistentCache: true,
-      emitStats: true,
-      statsFilename: 'faviconsList.json',
-      title: 'React Timer',
-      icons: {
-        android: true,
-        appleIcon: true,
-        appleStartup: true,
-        coast: false,
-        favicons: true,
-        firefox: true,
-        opengraph: false,
-        twitter: true,
-        yandex: false,
-        windows: true
-      }
-    }),
     // new BundleAnalyzerPlugin(),
+    new CopyWebpackPlugin([
+      {from: 'styles/favicon'}
+    ]),
     ExtractGlobal,
     ExtractLocal,
     new webpack.ProvidePlugin({

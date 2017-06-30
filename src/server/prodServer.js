@@ -7,7 +7,6 @@ import conf from './conf'
 import appRenderer from './appRenderer'
 import webpackUtils from './webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
-import favicons from '../dist/faviconsList.json'
 
 const APP_PORT: number = conf.APP_PORT
 
@@ -45,7 +44,7 @@ app.use(webpackUtils)
 
 // Routes
 app.get('*', (req: Object, res: Object) => {
-  res.render('index', {app: req.body, webpack: req.chunk, favicons: favicons})
+  res.render('index', {app: req.body, webpack: req.chunk})
 })
 
 app.listen(NGINX_PORT, () => {
