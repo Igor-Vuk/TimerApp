@@ -73,6 +73,10 @@
 * `yarn run test` will run all the tests in `test` enviroment
 * `yarn run coverage` will run test coverage
 
+### Heroku(Nginx) ###
+
+* Be sure to add env variable `NGINX=true` to Heroku(open the app / go to settings / open config variables) so ports for nginx would work.
+
 ### Import Bootrasp _variables, _mixins or any other file to every scss file ###
 
 * Inside webpack.config.js under `sass-resources-loader` uncomment to use. You can add and remove any file you want. To use it in production add it to webpack.config.prod.js

@@ -144,7 +144,6 @@ http {
       proxy_set_header Connection "";
       proxy_redirect off;
       proxy_http_version	1.1;
-      proxy_pass http://nodebeats;
       proxy_read_timeout 60s;
 		}
 
@@ -157,8 +156,6 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
-      add_header         Last-Modified "";
-      add_header         ETag "";
 		}
 	}
 }
