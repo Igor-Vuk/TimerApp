@@ -68,7 +68,7 @@ class Timer extends Component {
     const { timerStatus, count } = this.state
     return (
       <div styleName="container">
-        <h1 styleName="page-title">Timer App</h1>
+        <h1 styleName="page-title">Timer App2</h1>
         <Clock totalSeconds={count} />
         <Controls countdownStatus={timerStatus} onStatusChange={this.handleStatusChange} />
       </div>
