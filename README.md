@@ -79,14 +79,14 @@
 
 ### Favicon icons ###
 
-* The best way to get implement favicons is to visit **<https://realfavicongenerator.net/>**.
+* The best way to implement favicons is to visit **<https://realfavicongenerator.net/>**.
 * Choose the favicons that you want, choose the root destination, download the file, unzip it and put **all the content** to the root of **src/client/styles/favicon directory**
 * Copy the generated html code to the head of **src/server/views/index.ejs** file
 * Done.
 * **Note**:
 * If the favicon doesn't show clear the browser cache and history.
-* If you wanna change icon at the latter date pay attention at Version/Refresh option.
-* Use compression for smaller size.
+* If you wanna change icon at the latter date pay attention at Version/Refresh option in realfavicongenerator.
+* Use compression option for smaller size.
 
 ### Images ###
 

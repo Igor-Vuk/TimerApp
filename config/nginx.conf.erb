@@ -21,14 +21,12 @@ events {
 
 # error logs
 error_log  	logs/nginx/error.log;
-error_log  	logs/nginx/error_extreme.log emerg;
-error_log  	logs/nginx/error_debug.log debug;
-error_log  	logs/nginx/error_critical.log crit;
-
 
 http {
 
 	charset	utf-8;
+
+  # Include default mime.types that were generated automatically
   include mime.types;
 
   default_type  application/octet-stream;
@@ -81,20 +79,24 @@ http {
 
 	# # - Configure Timeouts
 
+  # Defines a timeout for reading client request body. The timeout is set only for a period between two successive read operations, not for the transmission of the whole request body.
 	client_body_timeout	12;
+
+  #Defines a timeout for reading client request header. If a client does not transmit the entire header within this time, the 408 (Request Time-out) error is returned to the client.
 	client_header_timeout	12;
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
 	keepalive_timeout	10;
 
-	# # - if the request is not completed within 10 seconds, then abort the connection and send the timeout errror
+	# # - established not on the entire transfer of answer, but only between two operations of reading; if after this time client will take nothing, then Nginx is shutting down the connection.
 
 	send_timeout	10;
 
 
 	# # - Hide nginx version information
 
+  # isables emitting nginx version on error pages and in the “Server” response header field (for security)
 	server_tokens	off;
 
   # # - Dynamic gzip compression
@@ -122,6 +124,7 @@ http {
 	gzip_types	text/javascript;
 	gzip_types	text/plain;
 	gzip_types	text/xml;
+	gzip_types	text/json;
 
 
    #proxying requests to other servers
@@ -154,8 +157,6 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
-      add_header         Last-Modified "";
-      add_header         ETag "";
 		}
 	}
 }
