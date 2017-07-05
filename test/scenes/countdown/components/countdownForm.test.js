@@ -4,16 +4,16 @@ import React from 'react'
 import { mount } from 'enzyme'
 import test from 'tape'
 import sinon from 'sinon'
-import sinonTest from 'sinon-test'
+import sinonTestFactory from 'sinon-test'
 import CountdownForm from 'CountdownForm'
-sinon.test = sinonTest.configureTest(sinon)
+const sinonTest = sinonTestFactory(sinon)
 
 test('CountdownForm => should exist', (t: Object) => {
   t.ok(CountdownForm)
   t.end()
 })
 
-test('CountdownForm => should call onSetCountdown if valid seconds entered', sinon.test(function (t: Object) {
+test('CountdownForm => should call onSetCountdown if valid seconds entered', sinonTest(function (t: Object) {
   t.plan(1)
   /* sinon */
   const spy = this.spy()
@@ -27,7 +27,7 @@ test('CountdownForm => should call onSetCountdown if valid seconds entered', sin
   wrapper.unmount()
 }))
 
-test('CountdownForm => it should not call onSetCountdown if invalid seconds entered', sinon.test(function (t: Object) {
+test('CountdownForm => it should not call onSetCountdown if invalid seconds entered', sinonTest(function (t: Object) {
   t.plan(1)
   const spy = this.spy()
   this.stub(window, 'alert')
@@ -39,7 +39,7 @@ test('CountdownForm => it should not call onSetCountdown if invalid seconds ente
   wrapper.unmount()
 }))
 
-test('CountdownForm => it should call alert if no seconds entered', sinon.test(function (t: Object) {
+test('CountdownForm => it should call alert if no seconds entered', sinonTest(function (t: Object) {
   t.plan(1)
   const spy = this.spy()
   const stub = this.stub(window, 'alert')

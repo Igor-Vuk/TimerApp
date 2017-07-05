@@ -5,8 +5,8 @@ import { shallow } from 'enzyme'
 import test from 'tape'
 import Controls from 'Controls'
 import sinon from 'sinon'
-import sinonTest from 'sinon-test'
-sinon.test = sinonTest.configureTest(sinon)
+import sinonTestFactory from 'sinon-test'
+const sinonTest = sinonTestFactory(sinon)
 
 test('Controls => should exist', (t: Object) => {
   t.plan(1)
@@ -30,7 +30,7 @@ test('Controls => should render start button when countdownStatus equals paused'
   t.equal(startButton, 1)
 })
 
-test('Controls => should trigger onStatusChange prop when start button pressed', sinon.test(function (t: Object) {
+test('Controls => should trigger onStatusChange prop when start button pressed', sinonTest(function (t: Object) {
   t.plan(1)
   const spy = this.spy()
   const wrapper: Object = shallow(<Controls countdownStatus={'paused'} onStatusChange={spy} />)
@@ -39,7 +39,7 @@ test('Controls => should trigger onStatusChange prop when start button pressed',
   t.equal(spy.called, true)
 }))
 
-test('Controls => should trigger onStatusChange prop when  pause button pressed', sinon.test(function (t: Object) {
+test('Controls => should trigger onStatusChange prop when  pause button pressed', sinonTest(function (t: Object) {
   t.plan(1)
   const spy = this.spy()
   const wrapper: Object = shallow(<Controls countdownStatus={'started'} onStatusChange={spy} />)

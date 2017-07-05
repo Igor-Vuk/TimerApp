@@ -77,7 +77,8 @@ module.exports = {
     ]
   },
   plugins: [
-    new WebpackCleanupPlugin({ // this will clean build folder since using HMR creates new file on every change. Comment out to disable it.
+    /* this will clean build folder since using HMR creates new file on every change. Comment out to disable it. */
+    new WebpackCleanupPlugin({
       exclude: ['bundle.js', 'bundle.js.map', 'index.html'],
       quiet: true
     }),
