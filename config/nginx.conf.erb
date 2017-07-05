@@ -157,6 +157,8 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
+      add_header         Last-Modified "";
+      add_header         ETag "";
 		}
 	}
 }
