@@ -51,9 +51,17 @@ http {
 
 	types_hash_max_size	      2048;
 
+  # # - Security
+
+  # limit the number of connections per single IP
+  limit_conn_zone $binary_remote_addr zone=conn_limit_per_ip:10m;
+
+  # limit the number of requests for a given session
+  limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=1r/s;
 
   # # - Enable open file cache
 
+  # nginx can cache static files for a short period of time. Adding this within your configuration block tells nginx to cache 1000 files for 30 seconds, excluding any files that haven’t been accessed in 20 seconds, and only files that have been accessed at least 2 times in that timeframe. However, it also means that the server won't react immediately to changes on disk, which may be undesirable
 	open_file_cache	max=1000 inactive=20s;
 	open_file_cache_valid	30s;
 	open_file_cache_min_uses	2;
@@ -79,6 +87,9 @@ http {
 
 	# # - Configure Timeouts
 
+  # allow the server to close connection on non responding client, this will free up memory
+  # # # # # # reset_timedout_connection on;
+
   # Defines a timeout for reading client request body. The timeout is set only for a period between two successive read operations, not for the transmission of the whole request body.
 	client_body_timeout	12;
 
@@ -87,7 +98,7 @@ http {
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
-	keepalive_timeout	10;
+	keepalive_timeout	15;
 
 	# # - established not on the entire transfer of answer, but only between two operations of reading; if after this time client will take nothing, then Nginx is shutting down the connection.
 
@@ -136,6 +147,9 @@ http {
 		listen       <%= ENV['PORT'] %>;
 		server_name  _;
     root        "/app/";
+
+    limit_conn conn_limit_per_ip 5;
+    limit_req zone=req_limit_per_ip burst=3 nodelay;
 
 
 		location / {
