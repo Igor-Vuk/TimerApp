@@ -3,7 +3,7 @@ daemon off;
 worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 
 # max number of opened files
-#worker_rlimit_nofile 10000;
+worker_rlimit_nofile 10000;
 
 events {
   # optmized to serve many clients with each thread
@@ -31,6 +31,7 @@ http {
 
   default_type  application/octet-stream;
 
+  access_log     off;
 
 	log_format l2met 'measure#nginx.service=$request_time request_id=$http_x_request_id';
 
@@ -119,7 +120,7 @@ http {
 	gzip_vary                 on;
 	gzip_min_length           20;
 	gzip_buffers              4 16k;
-	gzip_comp_level           3;
+	gzip_comp_level           4;
 	gzip_proxied              any;
 
 
@@ -169,7 +170,7 @@ http {
 			add_header         Pragma public;
 			add_header         Cache-Control public;
       expires            1y;
-      gzip_static        on;
+      gzip_static        off;
       gzip               off;
       log_not_found      off;
       access_log         off;
