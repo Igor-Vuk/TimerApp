@@ -54,10 +54,11 @@ http {
   # # - Security
 
   # limit the number of connections per single IP
-  limit_conn_zone $binary_remote_addr zone=conn_limit_per_ip:10m;
+  # limit_conn_zone $binary_remote_addr zone=conn_limit_per_ip:10m;
 
-  # limit the number of requests for a given session
-  limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=1r/s;
+  # limit the number of requests for a given session. This creates a shared memory zone called "login" to store a log of IP addresses that access the rate limited URL(s). 10 MB (10m) will give us enough space to store a history of 160k requests. It will only allow 1 request per second (1r/s).
+
+  # limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=1r/s;
 
   # # - Enable open file cache
 
@@ -148,8 +149,8 @@ http {
 		server_name  _;
     root        "/app/";
 
-    limit_conn conn_limit_per_ip 5;
-    limit_req zone=req_limit_per_ip burst=3 nodelay;
+    # limit_conn conn_limit_per_ip 5;
+    # limit_req zone=req_limit_per_ip burst=3 nodelay;
 
 
 		location / {
