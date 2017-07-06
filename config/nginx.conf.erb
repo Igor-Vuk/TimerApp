@@ -51,7 +51,15 @@ http {
 
 	types_hash_max_size	      2048;
 
-  # # - Security
+  # # - Enable open file cache
+
+  # nginx can cache static files for a short period of time. Adding this within your configuration block tells nginx to cache 1000 files for 30 seconds, excluding any files that haven’t been accessed in 20 seconds, and only files that have been accessed at least 2 times in that timeframe. However, it also means that the server won't react immediately to changes on disk, which may be undesirable
+	open_file_cache	max=1000 inactive=20s;
+	open_file_cache_valid	30s;
+	open_file_cache_min_uses	2;
+	open_file_cache_errors	on;
+
+   # # - Security
 
   # limit the number of connections per single IP
 
@@ -60,14 +68,6 @@ http {
   # limit the number of requests for a given session. This creates a shared memory zone called "login" to store a log of IP addresses that access the rate limited URL(s). 10 MB (10m) will give us enough space to store a history of 160k requests. It will only allow 1 request per second (1r/s).
 
   limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=1r/s;
-
-  # # - Enable open file cache
-
-  # nginx can cache static files for a short period of time. Adding this within your configuration block tells nginx to cache 1000 files for 30 seconds, excluding any files that haven’t been accessed in 20 seconds, and only files that have been accessed at least 2 times in that timeframe. However, it also means that the server won't react immediately to changes on disk, which may be undesirable
-	open_file_cache	max=1000 inactive=20s;
-	open_file_cache_valid	30s;
-	open_file_cache_min_uses	2;
-	open_file_cache_errors	on;
 
 
 	# # - Configure buffer sizes
@@ -151,7 +151,7 @@ http {
     root        "/app/";
 
     limit_conn conn_limit_per_ip 5;
-    limit_req zone=req_limit_per_ip burst=5 nodelay;
+    limit_req zone=req_limit_per_ip;
 
 
 		location / {
