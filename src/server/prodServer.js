@@ -11,7 +11,7 @@ import expressStaticGzip from 'express-static-gzip'
 const APP_PORT: number = conf.APP_PORT
 
 const PORT: any = process.env.PORT || APP_PORT
-const NGINX_PORT = process.env.NGINX ? '/tmp/nginx.socket' : PORT
+const NGINX_PORT = process.env.HEROKU ? '/tmp/nginx.socket' : PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()
 
