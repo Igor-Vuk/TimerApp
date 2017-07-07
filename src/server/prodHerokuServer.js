@@ -6,6 +6,7 @@ import fs from 'fs'
 import appRenderer from './appRenderer'
 import webpackUtils from './webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
+var compression = require('compression')
 
 /* If we set env variable on Heroku, NGINX_HEROKU=true then use NGINX. Deploy app according to this instructions <https://www.nodebeats.com/documentation/configuring-nginx-on-heroku> Drag Procfile file from herokuProcfile folder to root of the app. */
 const PORT = process.env.NGINX_PORT ? '/tmp/nginx.socket' : process.env.PORT
@@ -27,6 +28,7 @@ if (!process.env.NGINX_PORT) {
   /* If we enable brotli we must also enable it in webpackUtils.config.prod.js */
   app.use(expressStaticGzip(path.join(process.env.PWD + '/src/dist'), {indexFromEmptyFile: false, enableBrotli: false, maxAge: '1y'}))
 
+  app.use(compression())
   /* check with the server before using the cached resource */
   app.use((req: Object, res: Object, next: () => void): void => {
     res.set('Cache-Control', 'no-cache')
