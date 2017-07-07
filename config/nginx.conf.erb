@@ -103,6 +103,10 @@ http {
 
 	keepalive_timeout	15;
 
+  # # - maximum number of requests that can be served through one keep-alive connection. After the maximum number of requests are made, the connection is closed.
+
+  keepalive_requests 100;
+
 	# # - established not on the entire transfer of answer, but only between two operations of reading; if after this time client will take nothing, then Nginx is shutting down the connection.
 
 	send_timeout	10;
