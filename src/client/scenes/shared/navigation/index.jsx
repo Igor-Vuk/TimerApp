@@ -12,7 +12,7 @@ class Navigation extends Component {
       <div styleName="container">
 
         <nav className="navbar navbar-toggleable-sm navbar-light bg-faded" styleName="nav-bar">
-          {/* hamburger menu on small screen size */}
+          {/* hamburger menu on small screen size  */}
           <button className="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span className="navbar-toggler-icon" />
           </button>
