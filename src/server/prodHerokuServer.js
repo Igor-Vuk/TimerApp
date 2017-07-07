@@ -7,7 +7,7 @@ import appRenderer from './appRenderer'
 import webpackUtils from './webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
 
-/* If we set env variable on Heroku, NGINX_HEROKU=true then use NGINX. Deploy app according to this instructions <https://www.nodebeats.com/documentation/configuring-nginx-on-heroku> */
+/* If we set env variable on Heroku, NGINX_HEROKU=true then use NGINX. Deploy app according to this instructions <https://www.nodebeats.com/documentation/configuring-nginx-on-heroku> Drag Procfile file from herokuProcfile folder to root of the app. */
 const PORT = process.env.NGINX_PORT ? '/tmp/nginx.socket' : process.env.PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()

@@ -56,8 +56,8 @@
 
 ### IN PRODUCTION ###
 
-* `yarn run build-server`  will bundle server for production using `webpack` and make a `build` folder => (run it before build-server)
 * `yarn run build-client` will bundle client for production using `webpack` and make a `dist` folder
+* `yarn run build-server`  will bundle server for production using `webpack` and make a `build` folder => (run it before build-server)
 * `yarn run start` starts the app in production environment on port **3001**
 
 * `yarn run start-run` runs above three scripts and starts the app in production environment on port **3001**
@@ -67,15 +67,24 @@
 * `yarn run webpack-server` will start the server in development environment.
 * `yarn run webpack` will start the client in development environment. (For use with Browsersync visit port **3003**)
 
+### FOR HEROKU ###
+
+* `yarn run build-server-heroku` will bundle server for Heroku using **webpack.config.server.prod.js**
+* `yarn run start-heroku` will run `build-client` and `build-server-heroku` script for Heroku deployment
+
 ### HELPE SCRIPTS ###
 
 * `yarn run flow` will run flow check
 * `yarn run test` will run all the tests in `test` enviroment
 * `yarn run coverage` will run test coverage
 
-### Heroku(Nginx) ###
+### Heroku => Nginx ###
 
-* Be sure to add env variable `NGINX=true` to Heroku(open the app / go to settings / open config variables) so ports for nginx would work.
+* To deploy app to Heroku together with Nginx be sure to add env variable `NGINX_PORT=true` to Heroku `heroku config:set NGINX_PORT=true`
+* Drag the `Procfile` file from `herokuProcfile` folder to the root directory.
+* Follow this instructions for deployment <https://www.nodebeats.com/documentation/configuring-nginx-on-heroku>
+* Instead of using suggested nginx buildpack in the instruction file use this one <https://github.com/kuwabarahiroshi/heroku-buildpack-nginx>
+* `yarn run start-heroku` to build for Heroku
 
 ### Import Bootrasp _variables, _mixins or any other file to every scss file ###
 
