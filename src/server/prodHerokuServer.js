@@ -8,7 +8,7 @@ import webpackUtils from './webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
 
 /* If we set env variable on Heroku, NGINX_HEROKU=true then use NGINX. Deploy app according to this instructions <https://www.nodebeats.com/documentation/configuring-nginx-on-heroku> */
-const PORT = process.env.NGINX_HEROKU ? '/tmp/nginx.socket' : process.env.PORT
+const PORT = process.env.NGINX_PORT ? '/tmp/nginx.socket' : process.env.PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()
 
@@ -46,7 +46,7 @@ app.get('*', (req: Object, res: Object) => {
 })
 
 app.listen(PORT, () => {
-  if (process.env.NGINX_HEROKU) {
+  if (process.env.NGINX_PORT) {
     console.log('Running with Nginx on Heroku..!!')
     fs.openSync('/tmp/app-initialized', 'w')
   }
