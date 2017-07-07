@@ -6,9 +6,6 @@ const postcssPath = path.resolve(__dirname, './src/client')
 const nodeExternals = require('webpack-node-externals')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
 
-const CompressionPlugin = require('compression-webpack-plugin')
-const BrotliPlugin = require('brotli-webpack-plugin')
-
 module.exports = {
   devtool: 'source-map',
   performance: {
@@ -82,20 +79,6 @@ module.exports = {
     /* copy ejs template to build/views folder */
     new CopyWebpackPlugin([
       {from: 'src/server/views', to: 'views/index.ejs'}
-    ]),
-    new CompressionPlugin({
-      asset: '[path].gz[query]',
-      algorithm: 'gzip',
-      test: /\.(js|css)$/,
-      threshold: 0,
-      minRatio: 0.8
-    }),
-    new BrotliPlugin({
-      asset: '[path].br[query]',
-      test: /\.(js|css)$/,
-      threshold: 0,
-      minRatio: 0.8,
-      quality: 10
-    })
+    ])
   ]
 }

@@ -11,7 +11,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin')
 const ExtractLocal = new ExtractTextPlugin({filename: 'stylesheet/stylesLocal.[contenthash].local.css', disable: false, allChunks: true})
 const ExtractGlobal = new ExtractTextPlugin({filename: 'stylesheet/stylesGlobal.[contenthash].css', disable: false, allChunks: true})
 const CompressionPlugin = require('compression-webpack-plugin')
-const BrotliPlugin = require('brotli-webpack-plugin')
+// const BrotliPlugin = require('brotli-webpack-plugin')
 // var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
@@ -157,13 +157,14 @@ module.exports = {
       test: /\.(js|css|svg|jsx)$/,
       threshold: 0,
       minRatio: 0.8
-    }),
-    new BrotliPlugin({
-      asset: '[path].br[query]',
-      test: /\.(js|css|svg|jsx)$/,
-      threshold: 0,
-      minRatio: 0.8,
-      quality: 10
     })
+    /* For Brotli compression */
+    // new BrotliPlugin({
+    //   asset: '[path].br[query]',
+    //   test: /\.(js|css|svg|jsx)$/,
+    //   threshold: 0,
+    //   minRatio: 0.8,
+    //   quality: 10
+    // })
   ]
 }
