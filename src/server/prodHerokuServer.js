@@ -46,7 +46,7 @@ app.get('*', (req: Object, res: Object) => {
 })
 
 app.listen(PORT, () => {
-  if (process.env.NGINX_PORT) {
+  if (process.env.NGINX_PORT === 'true') {
     console.log('Running with Nginx on Heroku..!!')
     fs.openSync('/tmp/app-initialized', 'w')
   }
