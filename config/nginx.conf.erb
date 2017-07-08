@@ -94,14 +94,14 @@ http {
   reset_timedout_connection on;
 
   # Defines a timeout for reading client request body. The timeout is set only for a period between two successive read operations, not for the transmission of the whole request body.
-	client_body_timeout	12;
+	client_body_timeout	2;
 
   #Defines a timeout for reading client request header. If a client does not transmit the entire header within this time, the 408 (Request Time-out) error is returned to the client.
-	client_header_timeout	12;
+	client_header_timeout	2;
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
-	keepalive_timeout	15;
+	keepalive_timeout	2;
 
   # # - maximum number of requests that can be served through one keep-alive connection. After the maximum number of requests are made, the connection is closed.
 
@@ -109,7 +109,7 @@ http {
 
 	# # - established not on the entire transfer of answer, but only between two operations of reading; if after this time client will take nothing, then Nginx is shutting down the connection.
 
-	send_timeout	10;
+	send_timeout	2;
 
 
 	# # - Hide nginx version information
@@ -148,6 +148,7 @@ http {
    #proxying requests to other servers
 	 upstream nodebeats {
 	    server unix:/tmp/nginx.socket fail_timeout=0;
+      keepalive 6;
 	 }
 
 	 server {
@@ -167,7 +168,7 @@ http {
       proxy_http_version 1.1;
       proxy_pass         http://nodebeats;
       add_header         Cache-Control no-cache;
-      proxy_read_timeout 300s;
+      proxy_read_timeout 60s;
 		}
 
     location ~* \.(js|css|jpg|png|ico|json|xml|svg)$ {
