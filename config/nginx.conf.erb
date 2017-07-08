@@ -172,6 +172,7 @@ http {
 		listen       <%= ENV['PORT'] %>;
 		server_name  _;
     root        "/app/";
+    keepalive   32;
 
     limit_conn conn_limit_per_ip 5;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
@@ -197,7 +198,5 @@ http {
       add_header         Cache-Control no-cache;
       proxy_read_timeout 60s;
 		}
-
-
 	}
 }
