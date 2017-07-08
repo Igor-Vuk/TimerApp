@@ -176,7 +176,7 @@ http {
     limit_conn conn_limit_per_ip 5;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
 
-    location /dist/ {
+    location /dist/~*\.(js|css|jpg|png|ico|json|xml|svg)$ {
 			alias	             "/app/src/dist/";
 			add_header         Pragma public;
 			add_header         Cache-Control public;
