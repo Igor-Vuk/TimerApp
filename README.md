@@ -11,7 +11,7 @@
 * **Isomorphic server-side rendering (local styles, gloabl styles and assets are extracted from webpack bundle for faster page load on first visit).**
 * **Code splitting and long-term caching of assets without contacting the server until hash/chunkhas(every client file contains it: bundle, vendor, images, css) changes. If there is a change, browser requests only the changed file. This greatly improves the speed of site and flexibility of deployment.**
 * **Support for gzip and brotli. Running webpack we get 3 files (ex. bundle.js, bundle.js.gz and bundle.js.br). We are using static compression here so there is no more dynamic compression on the fly while user waits for response. If browser supports brotli it will be used, if not, then gzip. If neither is supported original file will be used.**
-* **Ready for Heroku deployment**
+* **Ready for Heroku deployment using Nginx as a web server**
 * Tree Shaking
 * ES6/ES7
 * Babel
