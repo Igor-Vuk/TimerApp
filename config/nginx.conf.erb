@@ -171,11 +171,21 @@ http {
 	server {
 		listen       <%= ENV['PORT'] %>;
 		server_name  _;
-    root        "/app/";
+
 
     limit_conn conn_limit_per_ip 5;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
 
+    location /dist/ {
+			alias	             "/app/src/dist/";
+			add_header         Pragma public;
+			add_header         Cache-Control public;
+      expires            1y;
+      gzip_static        on;
+      gzip               off;
+      log_not_found      off;
+      access_log         off;
+		}
 
 		location / {
       proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -188,15 +198,6 @@ http {
       proxy_read_timeout 60s;
 		}
 
-    location /dist {
-			alias	             "/app/src/dist";
-			add_header         Pragma public;
-			add_header         Cache-Control public;
-      expires            1y;
-      gzip_static        on;
-      gzip               off;
-      log_not_found      off;
-      access_log         off;
-		}
+
 	}
 }
