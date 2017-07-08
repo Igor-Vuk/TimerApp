@@ -21,12 +21,12 @@ app.set('view engine', 'ejs')
 // app.use(Express.static(path.join(__dirname, '../', 'dist'), {maxAge: '1y'}))
 // app.use(Express.static(path.join(process.env.PWD + '/src/dist'), {maxAge: '1y'}))
 
-
+if (!process.env.NGINX_PORT) {
   /* set max-age to '1y' (maximum) or 31536000 for client static assets  */
   /* request for "/" or "<somepath>/" will now serve index.html as compressed version. If we dont want this add indexFromEmptyFile false  */
   /* If we enable brotli we must also enable it in webpackUtils.config.prod.js */
   app.use(expressStaticGzip(path.join(process.env.PWD + '/src/dist'), {indexFromEmptyFile: false, enableBrotli: false, maxAge: '1y'}))
-
+}
   /* check with the server before using the cached resource */
   app.use((req: Object, res: Object, next: () => void): void => {
     res.set('Cache-Control', 'no-cache')
