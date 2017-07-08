@@ -166,13 +166,13 @@ http {
 
 	upstream nodebeats {
 	  server unix:/tmp/nginx.socket fail_timeout=0;
-	}
+     keepalive   32;
+  }
 
 	server {
 		listen       <%= ENV['PORT'] %>;
 		server_name  _;
     root        "/app/";
-    keepalive   32;
 
     limit_conn conn_limit_per_ip 5;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
