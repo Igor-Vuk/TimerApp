@@ -3,23 +3,29 @@ daemon off;
 worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 
 # max number of opened files
+
 worker_rlimit_nofile 10000;
 
 events {
   # optmized to serve many clients with each thread
+
 	use epoll;
 
   # if accept_mutex is enabled, worker processes will accept new connections by turn. Otherwise, all worker processes will be notified about new connections, and if volume of new connections is low, some of the worker processes may just waste system resources.
+
 	accept_mutex on;
 
   # accept as many connections as possible, may flood worker connections if set too low -- for testing environment
+
 	multi_accept	on;
 
   # determines how much clients will be served per worker
+
 	worker_connections 1024;
 }
 
 # error logs
+
 error_log  	logs/nginx/error.log;
 
 http {
@@ -27,6 +33,7 @@ http {
 	charset	utf-8;
 
   # Include default mime.types that were generated automatically
+
   include mime.types;
 
   default_type  application/octet-stream;
@@ -42,12 +49,15 @@ http {
 
   # copies data between one FD and other from within the kernel
   # faster then read() + write()
+
 	sendfile        on;
 
   # send headers in one peace, its better then sending them one by one
+
 	tcp_nopush     	on;
 
   # don't buffer data sent, good for small data bursts in real time
+
 	tcp_nodelay 	  on;
 
 	types_hash_max_size	      2048;
@@ -55,12 +65,14 @@ http {
   # # - Enable open file cache
 
   # nginx can cache static files for a short period of time. Adding this within your configuration block tells nginx to cache 1000 files for 30 seconds, excluding any files that haven’t been accessed in 20 seconds, and only files that have been accessed at least 2 times in that timeframe. However, it also means that the server won't react immediately to changes on disk, which may be undesirable
+
 	open_file_cache	max=1000 inactive=20s;
 	open_file_cache_valid	30s;
 	open_file_cache_min_uses	2;
 	open_file_cache_errors	on;
 
-   # # - Security
+
+  # # - Security
 
   # limit the number of connections per single IP
 
@@ -74,9 +86,11 @@ http {
 	# # - Configure buffer sizes
 
   # this is used to handle POST data, meaning form submissions, file uploads etc. Make sure that the buffer is large enough if you handle a lot of large POST data submissions
+
 	client_body_buffer_size	16k;
 
   # Sets buffer size for reading client request header. For most requests, a buffer of 1K bytes is enough.
+
 	client_header_buffer_size	1k;
 
 
@@ -91,17 +105,20 @@ http {
 	# # - Configure Timeouts
 
   # allow the server to close connection on non responding client, this will free up memory
+
   reset_timedout_connection on;
 
   # Defines a timeout for reading client request body. The timeout is set only for a period between two successive read operations, not for the transmission of the whole request body.
-	client_body_timeout	2;
 
-  #Defines a timeout for reading client request header. If a client does not transmit the entire header within this time, the 408 (Request Time-out) error is returned to the client.
-	client_header_timeout	2;
+	client_body_timeout	12;
+
+  # Defines a timeout for reading client request header. If a client does not transmit the entire header within this time, the 408 (Request Time-out) error is returned to the client.
+
+	client_header_timeout	12;
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
-	keepalive_timeout	2;
+	keepalive_timeout	15;
 
   # # - maximum number of requests that can be served through one keep-alive connection. After the maximum number of requests are made, the connection is closed.
 
@@ -109,7 +126,7 @@ http {
 
 	# # - established not on the entire transfer of answer, but only between two operations of reading; if after this time client will take nothing, then Nginx is shutting down the connection.
 
-	send_timeout	2;
+	send_timeout	10;
 
 
 	# # - Hide nginx version information
@@ -128,7 +145,7 @@ http {
 	gzip_proxied              any;
 
 
-	#Turn on gzip for all content types that should benefit from it.
+	# Turn on gzip for all content types that should benefit from it.
 
 	gzip_types	application/ecmascript;
 	gzip_types	application/javascript;
@@ -145,13 +162,13 @@ http {
 	gzip_types	text/json;
 
 
-   #proxying requests to other servers
-	 upstream nodebeats {
-	    server unix:/tmp/nginx.socket fail_timeout=0;
-      keepalive 6;
-	 }
+  # proxying requests to other servers
 
-	 server {
+	upstream nodebeats {
+	  server unix:/tmp/nginx.socket fail_timeout=0;
+	}
+
+	server {
 		listen       <%= ENV['PORT'] %>;
 		server_name  _;
     root        "/app/";
