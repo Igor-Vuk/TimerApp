@@ -50,15 +50,15 @@ http {
   # copies data between one FD and other from within the kernel
   # faster then read() + write()
 
-	sendfile        on;
+	sendfile        off;
 
   # send headers in one peace, its better then sending them one by one
 
-	tcp_nopush     	on;
+	tcp_nopush     	off;
 
   # don't buffer data sent, good for small data bursts in real time
 
-	tcp_nodelay 	  on;
+	tcp_nodelay 	  off;
 
 	types_hash_max_size	      2048;
 
