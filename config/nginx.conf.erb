@@ -174,7 +174,7 @@ http {
     limit_conn conn_limit_per_ip 5;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
 
-    location ~* \.(js)$ {
+    location ~\.(js)$ {
 			root	             "/app/src/dist/";
 			add_header         Pragma public;
 			add_header         Cache-Control public;
@@ -185,7 +185,7 @@ http {
       access_log         off;
 		}
 
-    location ~* \.(png|ico|json|xml)$ {
+    location ~\.(png|ico|json|xml)$ {
 			root	             "/app/src/dist/";
 			add_header         Pragma public;
 			add_header         Cache-Control public;
@@ -196,7 +196,7 @@ http {
       access_log         off;
 		}
 
-    location ~* \.(jpg|png)$ {
+    location ~\.(jpg|png)$ {
 			root	             "/app/src/dist/assets/";
 			add_header         Pragma public;
 			add_header         Cache-Control public;
@@ -207,7 +207,7 @@ http {
       access_log         off;
 		}
 
-    location ~* \.(css)$ {
+    location ~\.(css)$ {
 			root	             "/app/src/dist/stylesheet/";
 			add_header         Pragma public;
 			add_header         Cache-Control public;
@@ -216,6 +216,7 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
+      add_header         Content-Type    text/css;
 		}
 
 		location / {
@@ -226,7 +227,6 @@ http {
       proxy_http_version 1.1;
       proxy_pass         http://nodebeats;
       add_header         Cache-Control no-cache;
-      include mime.types;
 		}
 	}
 }
