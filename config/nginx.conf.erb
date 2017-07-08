@@ -209,7 +209,7 @@ http {
       access_log         off;
 		}
 
-    location ~* \.(css)$ {
+    location ~* \.(css|local.css)$ {
 			root	             "/app/src/dist/stylesheet/";
 			add_header         Pragma public;
 			add_header         Cache-Control public;
