@@ -1,6 +1,6 @@
 daemon off;
 # Heroku dynos have at least 4 cores.
-worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
+worker_processes <%= ENV['NGINX_WORKERS'] || 1 %>;
 
 # max number of opened files
 
@@ -127,7 +127,6 @@ http {
 	# # - established not on the entire transfer of answer, but only between two operations of reading; if after this time client will take nothing, then Nginx is shutting down the connection.
 
 	send_timeout	10;
-
 
 	# # - Hide nginx version information
 
