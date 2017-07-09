@@ -175,6 +175,7 @@ http {
 
     limit_conn conn_limit_per_ip 5;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
+    proxy_read_timeout 20s;
 
     location ~* \.(js|css|jpg|png|ico|json|xml|svg)$ {
 			root	             "/app/src/dist/";
@@ -185,7 +186,6 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
-       proxy_read_timeout 20s;
 		}
 
 		location / {
