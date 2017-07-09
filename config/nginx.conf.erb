@@ -67,7 +67,7 @@ http {
   # nginx can cache static files for a short period of time. Adding this within your configuration block tells nginx to cache 1000 files for 30 seconds, excluding any files that haven’t been accessed in 20 seconds, and only files that have been accessed at least 2 times in that timeframe. However, it also means that the server won't react immediately to changes on disk, which may be undesirable
 
 	open_file_cache	max=1000 inactive=20s;
-	open_file_cache_valid	50s;
+	open_file_cache_valid	30s;
 	open_file_cache_min_uses	2;
 	open_file_cache_errors	on;
 
