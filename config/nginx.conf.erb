@@ -126,7 +126,7 @@ http {
 
 	# # - established not on the entire transfer of answer, but only between two operations of reading; if after this time client will take nothing, then Nginx is shutting down the connection.
 
-	send_timeout	2;
+	send_timeout	10;
 
 
 	# # - Hide nginx version information
@@ -165,7 +165,7 @@ http {
   # proxying requests to other servers
 
 	upstream nodebeats {
-	  server unix:/tmp/nginx.socket fail_timeout=0;
+	  server unix:/tmp/nginx.socket;
   }
 
 	server {
