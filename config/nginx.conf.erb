@@ -118,7 +118,7 @@ http {
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
-
+  keepalive_timeout	15;
 
   # # - maximum number of requests that can be served through one keep-alive connection. After the maximum number of requests are made, the connection is closed.
 
@@ -160,7 +160,7 @@ http {
 	gzip_types	text/xml;
 	gzip_types	text/json;
 
-
+#proxy_read_timeout 90s;
   # proxying requests to other servers
 
 	upstream nodebeats {
@@ -171,11 +171,10 @@ http {
 		listen       <%= ENV['PORT'] %>;
 		server_name  _;
     root        "/app/";
-    keepalive_timeout	15;
 
     limit_conn conn_limit_per_ip 5;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
-    proxy_read_timeout 90s;
+
 
     location ~* \.(js|css|jpg|png|ico|json|xml|svg)$ {
 			root	             "/app/src/dist/";
@@ -191,7 +190,7 @@ http {
 		location / {
       proxy_set_header   X-Forwarded-For $proxy_add_x_forwarded_for;
       proxy_set_header   Host $http_host;
-      proxy_set_header   Connection "";
+      proxy_set_header   Connection "Keep-Alive";
       proxy_redirect     off;
       proxy_http_version 1.1;
       proxy_pass         http://nodebeats;
