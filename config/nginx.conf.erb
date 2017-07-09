@@ -184,6 +184,7 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
+      keepalive_timeout	 5;
 		}
 
 		location / {
@@ -194,6 +195,7 @@ http {
       proxy_http_version 1.1;
       proxy_pass         http://nodebeats;
       add_header         Cache-Control no-cache;
+      keepalive_timeout	5;
 		}
 	}
 }
