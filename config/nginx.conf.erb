@@ -1,6 +1,6 @@
 daemon off;
 # Heroku dynos have at least 4 cores.
-worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
+worker_processes <%= ENV['NGINX_WORKERS'] || 1 %>;
 
 # max number of opened files
 
@@ -184,7 +184,7 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
-      keepalive_timeout	 5;
+      lingering_close    off;
 		}
 
 		location / {
@@ -195,7 +195,7 @@ http {
       proxy_http_version 1.1;
       proxy_pass         http://nodebeats;
       add_header         Cache-Control no-cache;
-      keepalive_timeout	5;
+      lingering_close    off;
 		}
 	}
 }
