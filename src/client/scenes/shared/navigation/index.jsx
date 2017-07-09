@@ -7,6 +7,7 @@ import './index.local.scss'
 import img from '../../../styles/img/profilna.jpg'
 import img2 from '../../../styles/img/time.png'
 import img3 from '../../../styles/img/treca.png'
+import img4 from '../../../styles/img/cetvrta.png'
 
 class Navigation extends Component {
   render (): React.Element<any> {
@@ -31,6 +32,7 @@ class Navigation extends Component {
 
               <img src={img2} styleName="profileImg" />
               <img src={img3} styleName="profileImg" />
+              <img src={img4} styleName="profileImg" />
             </div>
           </div>
         </nav>
