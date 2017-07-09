@@ -6,7 +6,7 @@ import {Link, IndexLink} from 'react-router'
 import './index.local.scss'
 import img from '../../../styles/img/profilna.jpg'
 import img2 from '../../../styles/img/time.png'
-import img3 from '../../../styles/img/treca.png'
+import img3 from '../../../styles/img/treca.jpg'
 import img4 from '../../../styles/img/cetvrta.png'
 
 class Navigation extends Component {
