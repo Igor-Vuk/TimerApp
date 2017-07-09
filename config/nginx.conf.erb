@@ -1,6 +1,6 @@
 daemon off;
 # Heroku dynos have at least 4 cores.
-worker_processes <%= ENV['NGINX_WORKERS'] || 1 %>;
+worker_processes <%= ENV['NGINX_WORKERS'] || 4 %>;
 
 # max number of opened files
 
@@ -13,11 +13,11 @@ events {
 
   # if accept_mutex is enabled, worker processes will accept new connections by turn. Otherwise, all worker processes will be notified about new connections, and if volume of new connections is low, some of the worker processes may just waste system resources.
 
-	accept_mutex on;
+	accept_mutex off;
 
   # accept as many connections as possible, may flood worker connections if set too low -- for testing environment
 
-	multi_accept	on;
+	multi_accept	off;
 
   # determines how much clients will be served per worker
 
