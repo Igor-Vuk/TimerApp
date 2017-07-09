@@ -126,7 +126,7 @@ http {
 
 	# # - established not on the entire transfer of answer, but only between two operations of reading; if after this time client will take nothing, then Nginx is shutting down the connection.
 
-	send_timeout	10;
+	send_timeout	5;
 
 	# # - Hide nginx version information
 
@@ -173,7 +173,7 @@ http {
 
     limit_conn conn_limit_per_ip 5;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
-    proxy_read_timeout 1s;
+    proxy_read_timeout 30s;
 
     location ~* \.(js|css|jpg|png|ico|json|xml|svg)$ {
 			root	             "/app/src/dist/";
