@@ -66,8 +66,8 @@ http {
 
   # nginx can cache static files for a short period of time. Adding this within your configuration block tells nginx to cache 1000 files for 30 seconds, excluding any files that haven’t been accessed in 20 seconds, and only files that have been accessed at least 2 times in that timeframe. However, it also means that the server won't react immediately to changes on disk, which may be undesirable
 
-	open_file_cache	max=1000 inactive=2s;
-	open_file_cache_valid	5s;
+	open_file_cache	max=1000 inactive=20s;
+	open_file_cache_valid	30s;
 	open_file_cache_min_uses	2;
 	open_file_cache_errors	on;
 
@@ -80,7 +80,7 @@ http {
 
   # limit the number of requests for a given session. This creates a shared memory zone called "login" to store a log of IP addresses that access the rate limited URL(s). 10 MB (10m) will give us enough space to store a history of 160k requests. It will only allow 1 request per second (1r/s).
 
-  limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=1r/s;
+  limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=6r/s;
 
 
 	# # - Configure buffer sizes
@@ -110,11 +110,11 @@ http {
 
   # Defines a timeout for reading client request body. The timeout is set only for a period between two successive read operations, not for the transmission of the whole request body.
 
-	client_body_timeout	12;
+	client_body_timeout	10;
 
   # Defines a timeout for reading client request header. If a client does not transmit the entire header within this time, the 408 (Request Time-out) error is returned to the client.
 
-	client_header_timeout	12;
+	client_header_timeout	10;
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
@@ -126,11 +126,12 @@ http {
 
 	# # - established not on the entire transfer of answer, but only between two operations of reading; if after this time client will take nothing, then Nginx is shutting down the connection.
 
-	send_timeout	5;
+	send_timeout	10;
 
 	# # - Hide nginx version information
 
   # isables emitting nginx version on error pages and in the “Server” response header field (for security)
+
 	server_tokens	off;
 
   # # - Dynamic gzip compression
@@ -171,9 +172,8 @@ http {
 		server_name  _;
     root        "/app/";
 
-    limit_conn conn_limit_per_ip 2;
+    limit_conn conn_limit_per_ip 5;
     limit_req zone=req_limit_per_ip burst=10 nodelay;
-    proxy_read_timeout 30s;
 
     location ~* \.(js|css|jpg|png|ico|json|xml|svg)$ {
 			root	             "/app/src/dist/";
@@ -194,6 +194,7 @@ http {
       proxy_http_version 1.1;
       proxy_pass         http://nodebeats;
       add_header         Cache-Control no-cache;
+      proxy_read_timeout 20s;
 		}
 	}
 }
