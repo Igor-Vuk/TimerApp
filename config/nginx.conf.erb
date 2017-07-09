@@ -80,7 +80,7 @@ http {
 
   # limit the number of requests for a given session. This creates a shared memory zone called "login" to store a log of IP addresses that access the rate limited URL(s). 10 MB (10m) will give us enough space to store a history of 160k requests. It will only allow 1 request per second (1r/s).
 
-  limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=10r/s;
+  limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=5r/s;
 
 
 	# # - Configure buffer sizes
@@ -110,11 +110,11 @@ http {
 
   # Defines a timeout for reading client request body. The timeout is set only for a period between two successive read operations, not for the transmission of the whole request body.
 
-	client_body_timeout	2;
+	client_body_timeout	12;
 
   # Defines a timeout for reading client request header. If a client does not transmit the entire header within this time, the 408 (Request Time-out) error is returned to the client.
 
-	client_header_timeout	2;
+	client_header_timeout	12;
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
