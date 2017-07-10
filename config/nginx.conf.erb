@@ -86,7 +86,7 @@ http {
 
   # limit the number of requests for a given session. This creates a shared memory zone called "login" to store a log of IP addresses that access the rate limited URL(s). 10 MB (10m) will give us enough space to store a history of 160k requests. It will only allow 1 request per second (1r/s).
 
-  limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=6r/s;
+  limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=5r/s;
 
 
 	# # - Configure buffer sizes
@@ -124,7 +124,7 @@ http {
 
 	# # - Use a higher keepalive timeout to reduce the need for repeated handshake
 
-  keepalive_timeout	15;
+  keepalive_timeout	100;
 
   # # - maximum number of requests that can be served through one keep-alive connection. After the maximum number of requests are made, the connection is closed.
 
@@ -196,7 +196,6 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
-      proxy_pass         http://nodebeats;
 		}
 
 		location / {
