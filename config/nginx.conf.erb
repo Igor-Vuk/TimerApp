@@ -196,6 +196,7 @@ http {
       gzip               off;
       log_not_found      off;
       access_log         off;
+      proxy_pass         http://nodebeats;
 		}
 
 		location / {
