@@ -11,7 +11,8 @@ const PORT: number = conf.APP_PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()
 
-app.set('views', path.join(__dirname, '../', 'build', 'views'))
+app.set('views', path.join(__dirname, 'src', 'build', 'views'))
+console.log("DIRNAME", __dirname)
 // app.set('views', path.join(process.env.PWD + '/src/build/views'))
 app.set('view engine', 'ejs')
 
