@@ -16,7 +16,7 @@ module.exports = {
   target: 'node',
   node: {
     __dirname: false,
-    __filename: true
+    __filename: false
   },
   context: publicPath,
   entry: {
