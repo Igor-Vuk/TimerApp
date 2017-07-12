@@ -1,3 +1,5 @@
+src/dist/
+src/build/
 node_modules/
 coverage/
 README_private.md
