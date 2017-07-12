@@ -11,7 +11,7 @@
 * **Isomorphic server-side rendering (local styles, gloabl styles and assets are extracted from webpack bundle for faster page load on first visit).**
 * **Code splitting and long-term caching of assets without contacting the server until hash/chunkhas(every client file contains it: bundle, vendor, images, css) changes. If there is a change, browser requests only the changed file. This greatly improves the speed of site and flexibility of deployment.**
 * **Support for gzip and brotli. Running webpack we get 3 files (ex. bundle.js, bundle.js.gz and bundle.js.br). We are using static compression here so there is no more dynamic compression on the fly while user waits for response. If browser supports brotli it will be used, if not, then gzip. If neither is supported original file will be used.**
-* **Ready for Heroku deployment using Nginx as a web server**
+* **Ready for Heroku deployment with option to use or not to use Nginx as a web server**
 * Tree Shaking
 * ES6/ES7
 * Babel
@@ -44,7 +44,7 @@
 * Open **localhost:3001(production)**, **localhost:3003(development)**
 
 * **Development environment**
-* Using Browsersync proxy option we run the app on port **3003**(ui: 3002) for Browser development. By doing this we can use Browsersync options(ui) on port **3002** and it also enables us to use live reload on server side. To not use visit **localhost:3001**
+* Using Browsersync proxy option we run the app on port **3003**(ui: 3002) for Browser development. By doing this we can use Browsersync options(ui) on port **3002** and it also enables us to use live reload on server side. To not use and bypass Browsersync visit **localhost:3001**.
 
 * For synchronous testing on different devices use Browsersync on port **locahost:3005**(ui:3004). Use address that Browsersync gives you in terminal. To use this feature uncomment Browsersync option inside webpack.config.js. Since this is meant for development and testing on external devices only live reload will work on every change.
 
@@ -56,8 +56,8 @@
 
 ### IN PRODUCTION ###
 
-* `yarn run build-client` will bundle client for production using `webpack` and make a `dist` folder
-* `yarn run build-server`  will bundle server for production using `webpack` and make a `build` folder => (run it before build-server)
+* `yarn run build-client` will bundle client for production using `webpack` and make a `dist` folder => (run it before build-server)
+* `yarn run build-server`  will bundle server for production using `webpack` and make a `build` folder
 * `yarn run start` starts the app in production environment on port **3001**
 
 * `yarn run start-run` runs above three scripts and starts the app in production environment on port **3001**

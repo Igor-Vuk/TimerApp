@@ -3,7 +3,7 @@
 import React from 'react'
 import { render } from 'react-dom'
 import { Router, browserHistory } from 'react-router'
-import { AppContainer } from 'react-hot-loader' // Automatically disabled in production
+import { AppContainer } from 'react-hot-loader' // AppContainer is automatically disabled in production
 
 /* import global styles 'bootstrap.scss' before 'routes' and local styles */
 import 'bootstrap/scss/bootstrap.scss'
