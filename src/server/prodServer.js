@@ -9,22 +9,15 @@ import expressStaticGzip from 'express-static-gzip'
 
 const PORT: number = conf.APP_PORT
 const app: Express = new Express()
-process.env.PWD = process.cwd()
 
+/* In webpack.config if we do target: node, and we set __dirname: true, webpack will set __dirname to what it was in our source file (in our case the root) */
 app.set('views', path.join(__dirname, 'src', 'build', 'views'))
-console.log("DIRNAME", __dirname)
-// app.set('views', path.join(process.env.PWD + '/src/build/views'))
+
 app.set('view engine', 'ejs')
 
-// app.use(expressStaticGzip(path.join(__dirname, '../', 'dist'), {indexFromEmptyFile: false, maxAge: '1y'}))
-// app.use(expressStaticGzip(path.join(process.env.PWD + '/src/dist'), {indexFromEmptyFile: false, enableBrotli: true, maxAge: '1y'}))
-// app.use(Express.static(path.join(__dirname, '../', 'dist'), {maxAge: '1y'}))
-// app.use(Express.static(path.join(process.env.PWD + '/src/dist'), {maxAge: '1y'}))
-
 /* set max-age to '1y' (maximum) or 31536000 for client static assets */
-/* request for "/" or "<somepath>/" will now serve index.html as compressed version. If we dont want this add indexFromEmptyFile false  */
 /* If we enable brotli we must also enable it in webpackUtils.config.prod.js */
-app.use(expressStaticGzip(path.join(process.env.PWD + '/src/dist'), {indexFromEmptyFile: false, enableBrotli: false, maxAge: '1y'}))
+app.use(expressStaticGzip(path.join(__dirname, 'src', 'dist'), {indexFromEmptyFile: false, enableBrotli: false, maxAge: '1y'}))
 
 /* check with the server before using the cached resource */
 app.use((req: Object, res: Object, next: () => void): void => {
