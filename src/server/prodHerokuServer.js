@@ -12,7 +12,7 @@ const PORT = process.env.NGINX_PORT ? '/tmp/nginx.socket' : process.env.PORT
 const app: Express = new Express()
 process.env.PWD = process.cwd()
 
-app.set('views', path.join(__dirname, '../', 'build', 'views'))
+app.set('views', path.join($dirname, '../', 'build', 'views'))
 // app.set('views', path.join(process.env.PWD + '/src/build/views'))
 app.set('view engine', 'ejs')
 

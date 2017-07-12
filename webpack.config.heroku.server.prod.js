@@ -6,6 +6,7 @@ const buildPath = path.resolve(__dirname, './src')
 const postcssPath = path.resolve(__dirname, './src/client')
 const nodeExternals = require('webpack-node-externals')
 const CopyWebpackPlugin = require('copy-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
   devtool: 'source-map',
@@ -14,7 +15,7 @@ module.exports = {
   },
   target: 'node',
   node: {
-    __dirname: false,
+    __dirname: true,
     __filename: true
   },
   context: publicPath,
@@ -81,6 +82,9 @@ module.exports = {
     /* copy ejs template to build/views folder */
     new CopyWebpackPlugin([
       {from: 'views', to: 'views/index.ejs'}
-    ])
+    ]),
+    new webpack.DefinePlugin({
+      $dirname: '__dirname'
+    })
   ]
 }
