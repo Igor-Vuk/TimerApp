@@ -80,7 +80,7 @@ module.exports = {
   plugins: [
     /* copy ejs template to build/views folder */
     new CopyWebpackPlugin([
-      {from: './src/server/views', to: 'views/index.ejs'}
+      {from: 'src/server/views', to: 'views/index.ejs'}
     ])
   ]
 }
