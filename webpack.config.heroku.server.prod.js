@@ -1,7 +1,7 @@
 'use strict'
 
 const path = require('path')
-const publicPath = path.resolve(__dirname, './src/server')
+// const publicPath = path.resolve(__dirname, './src/server')
 const buildPath = path.resolve(__dirname, './src')
 const postcssPath = path.resolve(__dirname, './src/client')
 const nodeExternals = require('webpack-node-externals')
@@ -17,9 +17,9 @@ module.exports = {
     __dirname: true,
     __filename: true
   },
-  context: publicPath,
+  // context: publicPath,
   entry: {
-    bundle: './prodHerokuServer.js'
+    bundle: './src/server/prodHerokuServer.js'
   },
   output: {
     path: path.join(buildPath, 'build'),
@@ -80,7 +80,7 @@ module.exports = {
   plugins: [
     /* copy ejs template to build/views folder */
     new CopyWebpackPlugin([
-      {from: 'views', to: 'views/index.ejs'}
+      {from: 'src/server/views', to: 'views/index.ejs'}
     ])
   ]
 }

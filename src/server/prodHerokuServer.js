@@ -3,24 +3,26 @@
 import Express from 'express'
 import path from 'path'
 import fs from 'fs'
-import appRenderer from './helper/appRenderer'
-import webpackUtils from './helper/webpackUtils'
+import appRenderer from './appRenderer'
+import webpackUtils from './webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
 
 /* If we set env variable on Heroku, NGINX_HEROKU=true then we use NGINX. Follow instructions in README for deployment  */
 const PORT = process.env.NGINX_PORT ? '/tmp/nginx.socket' : process.env.PORT
 const app: Express = new Express()
+process.env.PWD = process.cwd()
 
 /* In webpack.config if we do target: node, and we set __dirname: true, webpack will set __dirname to what it was in our source file (in our case the root) */
-app.set('views', path.join(__dirname, 'src', 'build', 'views'))
-// app.set('views', path.join(process.env.PWD + '/src/build/views'))
+// app.set('views', path.join(__dirname, 'src', 'build', 'views'))
+app.set('views', path.join(process.env.PWD + '/src/build/views'))
 app.set('view engine', 'ejs')
 
 /* Use if we deploy without Nginx */
 if (process.env.NGINX_PORT !== 'true') {
   /* set max-age to '1y' (maximum) or 31536000 for client static assets */
   /* If we enable brotli we must also enable it in webpackUtils.config.prod.js */
-  app.use(expressStaticGzip(path.join(__dirname, 'src', 'dist'), {indexFromEmptyFile: false, enableBrotli: false, maxAge: '1y'}))
+  // app.use(expressStaticGzip(path.join(__dirname, 'src', 'dist'), {indexFromEmptyFile: false, enableBrotli: false, maxAge: '1y'}))
+  app.use(expressStaticGzip(path.join(process.env.PWD + '/src/dist'), {indexFromEmptyFile: false, enableBrotli: false, maxAge: '1y'}))
 
   /* check with the server before using the cached resource  */
   app.use((req: Object, res: Object, next: () => void): void => {
