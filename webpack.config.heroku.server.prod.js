@@ -17,9 +17,9 @@ module.exports = {
     __dirname: true,
     __filename: true
   },
-  // context: publicPath,
+  context: publicPath,
   entry: {
-    bundle: './src/server/prodHerokuServer.js'
+    bundle: './prodHerokuServer.js'
   },
   output: {
     path: path.join(buildPath, 'build'),
@@ -80,7 +80,7 @@ module.exports = {
   plugins: [
     /* copy ejs template to build/views folder */
     new CopyWebpackPlugin([
-      {from: 'src/server/views', to: 'views/index.ejs'}
+      {from: 'views', to: 'views/index.ejs'}
     ])
   ]
 }
