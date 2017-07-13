@@ -58,9 +58,7 @@ module.exports = {
               {
                 context: postcssPath,
                 filetypes: {
-                  '.scss': {
-                    'syntax': 'postcss-scss'
-                  }
+                  '.scss': 'postcss-scss'
                 }
               }
             ]
