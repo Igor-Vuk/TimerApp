@@ -5,9 +5,9 @@ import React, { Component } from 'react'
 import {Link, IndexLink} from 'react-router'
 import './index.local.scss'
 import img from '../../../styles/img/profilna.jpg'
-import img2 from '../../../styles/img/time.png'
-import img3 from '../../../styles/img/treca.jpg'
-import img4 from '../../../styles/img/cetvrta.png'
+// import img2 from '../../../styles/img/time.png'
+// import img3 from '../../../styles/img/treca.jpg'
+// import img4 from '../../../styles/img/cetvrta.png'
 
 class Navigation extends Component {
   render (): React.Element<any> {
@@ -30,9 +30,9 @@ class Navigation extends Component {
             <div className="navbar-nav ml-auto">
               <span className="navbar-text ml-auto" styleName="nav-text">Created by <a href="https://github.com/Igor-Vuk" target="_blank">Igor Vukelic</a> <img src={img} styleName="profileImg" /></span>
 
-              <img src={img2} styleName="profileImg" />
+              {/* <img src={img2} styleName="profileImg" />
               <img src={img3} styleName="profileImg" />
-              <img src={img4} styleName="profileImg" />
+              <img src={img4} styleName="profileImg" /> */}
             </div>
           </div>
         </nav>

@@ -1,14 +1,7 @@
 {
-  "assets/cetvrta.png": "assets/cetvrta.19c46409d9e1c3e216a222c41e3c525a.png",
   "assets/sky.jpg": "assets/sky.d38b95c798702525ecb8215d1256ba06.jpg",
-  "assets/time.png": "assets/time.1f987bafffa2a66132320eda1384e602.png",
-  "assets/treca.jpg": "assets/treca.faeb74592b3f6733d9385497d5ae1a9c.jpg",
-  "bundle.css": "stylesheet/stylesGlobal.b7ac53d721aca93e4e65099cf74dc90f.css",
-  "bundle.css.map": "stylesheet/stylesGlobal.b7ac53d721aca93e4e65099cf74dc90f.css.map",
-  "bundle.js": "bundle.ebfd7c02d5bf35bdc6c2.js",
-  "bundle.js.map": "bundle.ebfd7c02d5bf35bdc6c2.js.map",
-  "localcss.css": "stylesheet/stylesLocal.bc5b7548c97362b683f5582818914909.local.css",
-  "localcss.css.map": "stylesheet/stylesLocal.bc5b7548c97362b683f5582818914909.local.css.map",
+  "bundle.js": "bundle.0e2599d761e537b4770d.js",
+  "bundle.js.map": "bundle.0e2599d761e537b4770d.js.map",
   "vendor.js": "vendor.495e9142a1f8334dcc8c.js",
   "vendor.js.map": "vendor.495e9142a1f8334dcc8c.js.map"
 }
