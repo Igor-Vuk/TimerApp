@@ -22,7 +22,7 @@ if (process.env.NGINX_PORT !== 'true') {
   /* If we enable brotli we must also enable it in webpackUtils.config.prod.js */
   app.use(expressStaticGzip(path.join(__dirname, 'src', 'dist'), {indexFromEmptyFile: false, enableBrotli: false, maxAge: '1y'}))
 
-  /* check with the server before using the cached resource */
+  /* check with the server before using the cached resource  */
   app.use((req: Object, res: Object, next: () => void): void => {
     res.set('Cache-Control', 'no-cache')
     return next()
