@@ -3,8 +3,8 @@
 import Express from 'express'
 import path from 'path'
 import fs from 'fs'
-import appRenderer from './appRenderer'
-import webpackUtils from './webpackUtils'
+import appRenderer from './helper/appRenderer'
+import webpackUtils from './helper/webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
 
 /* If we set env variable on Heroku, NGINX_HEROKU=true then we use NGINX. Follow instructions in README for deployment  */

@@ -3,8 +3,8 @@
 import Express from 'express'
 import path from 'path'
 import conf from './conf'
-import appRenderer from './appRenderer'
-import webpackUtils from './webpackUtils'
+import appRenderer from './helper/appRenderer'
+import webpackUtils from './helper/webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
 
 const PORT: number = conf.APP_PORT
