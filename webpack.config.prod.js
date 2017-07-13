@@ -159,8 +159,7 @@ module.exports = {
       test: /\.(js|css|svg|jsx)$/,
       threshold: 0,
       minRatio: 0.8
-    }),
-    new webpack.optimize.ModuleConcatenationPlugin()
+    })
     /* For Brotli compression */
     // new BrotliPlugin({
     //   asset: '[path].br[query]',
