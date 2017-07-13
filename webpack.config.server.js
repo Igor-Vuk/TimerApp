@@ -19,7 +19,7 @@ module.exports = {
     hints: false
   },
   watch: true,
-  // tells webpack to ignore built-in modules like path, fs, etc.
+  /* tells webpack to ignore built-in modules like path, fs, etc. */
   target: 'node',
   node: {
     __dirname: true,
@@ -39,7 +39,7 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
-  // ignore all modules in node_modules folder except webpack/hot/poll
+  /* ignore all modules in node_modules folder except webpack/hot/poll */
   externals: [nodeExternals({
     whitelist: ['webpack/hot/poll?1000']
   })],

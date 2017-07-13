@@ -4,7 +4,7 @@ const path = require('path')
 const webpack = require('webpack')
 const publicPath = path.resolve(__dirname, './src/client')
 const buildPath = path.resolve(__dirname, './src')
-/* const BrowserSyncPlugin = require('browser-sync-webpack-plugin') */
+// const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 // const Write = require('write-file-webpack-plugin')
 
 process.noDeprecation = true

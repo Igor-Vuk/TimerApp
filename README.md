@@ -78,7 +78,9 @@
 * `yarn run test` will run all the tests in `test` enviroment
 * `yarn run coverage` will run test coverage
 
-### Heroku => Nginx ###
+### Heroku Deployment ###
+
+## With Nginx ##
 
 * To deploy app to Heroku together with Nginx be sure to add env variable `NGINX_PORT=true` to Heroku `heroku config:set NGINX_PORT=true`
 * Drag the `Procfile` file from `herokuProcfile` folder to the root directory.
@@ -86,9 +88,17 @@
 * Instead of using suggested nginx buildpack in the instruction file use this one <https://github.com/kuwabarahiroshi/heroku-buildpack-nginx>
 * `yarn run start-heroku` to build for Heroku
 
+## Without Nginx ##
+
+* To deploy to Heroku without Nginx just run `yarn run start-heroku` and `git push heroku master` after creating the app.
+
 ### Import Bootrasp _variables, _mixins or any other file to every scss file ###
 
 * Inside webpack.config.js under `sass-resources-loader` uncomment to use. You can add and remove any file you want. To use it in production add it to webpack.config.prod.js
+
+### Live reload on the server ###
+
+* We use `browsersync` to reload the page after updating it on the server side. If by any chance page reloads before changes were saved increase the time of `stabilityTreshold` inside `webpack.config.server.js`
 
 ### Favicon icons ###
 
