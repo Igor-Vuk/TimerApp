@@ -9,6 +9,9 @@ import expressStaticGzip from 'express-static-gzip'
 
 const PORT: number = conf.APP_PORT
 const app: Express = new Express()
+process.env.PWD = process.cwd()
+console.log('PWD', process.env.PWD)
+console.log('Dirname', __dirname)
 
 /* In webpack.config if we do target: node, and we set __dirname: true, webpack will set __dirname to what it was in our source file (in our case the root) */
 app.set('views', path.join(__dirname, 'src', 'build', 'views'))
