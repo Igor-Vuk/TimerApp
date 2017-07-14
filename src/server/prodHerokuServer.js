@@ -8,8 +8,9 @@ import webpackUtils from './helper/webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
 
 /* If we set env variable on Heroku, NGINX_HEROKU=true then we use NGINX. Follow instructions in README for deployment  */
-const PORT = process.env.NGINX_PORT ? '/tmp/nginx.socket' : process.env.PORT
+const PORT: ?string = process.env.NGINX_PORT ? '/tmp/nginx.socket' : process.env.PORT
 const app: Express = new Express()
+console.log('TYPEOF', typeof (PORT))
 
 /* In webpack.config if we do target: node, and we set __dirname: true, webpack will set __dirname to what it was in our source file (in our case the root) */
 app.set('views', path.join(__dirname, 'src', 'build', 'views'))
@@ -44,5 +45,5 @@ app.listen(PORT, () => {
     console.log('Running with Nginx on Heroku..!!')
     fs.openSync('/tmp/app-initialized', 'w')
   }
-  console.log(`Node server is listening on port ${PORT}`)
+  console.log(`Node server is listening on port ${String(PORT)}`)
 })
