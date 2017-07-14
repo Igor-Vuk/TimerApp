@@ -83,6 +83,7 @@
 ## With Nginx ##
 
 * To deploy app to Heroku together with Nginx be sure to add env variable `NGINX_PORT=true` to Heroku `heroku config:set NGINX_PORT=true`
+* for now `heroku-16` stack is not supported so we must use `cedar-14`. To change it we do `heroku stack:set cedar-14 -a <app_name>`
 * Drag the `Procfile` file from `herokuProcfile` folder to the root directory.
 * Follow this instructions for deployment <https://www.nodebeats.com/documentation/configuring-nginx-on-heroku>
 * Instead of using suggested nginx buildpack in the instruction file use this one <https://github.com/kuwabarahiroshi/heroku-buildpack-nginx>
