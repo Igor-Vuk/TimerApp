@@ -8,7 +8,7 @@ import webpackUtils from './helper/webpackUtils'
 import expressStaticGzip from 'express-static-gzip'
 
 /* If we set env variable on Heroku, NGINX_HEROKU=true then we use NGINX. Follow instructions in README for deployment  */
-const PORT: ?string = process.env.NGINX_PORT ? '/tmp/nginx.socket' : process.env.PORT
+const PORT = process.env.NGINX_PORT ? '/tmp/nginx.socket' : process.env.PORT
 const app: Express = new Express()
 console.log('TYPEOF', typeof (PORT))
 
