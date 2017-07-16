@@ -93,6 +93,11 @@
 
 * To deploy to Heroku without Nginx just run `yarn run start-heroku` and `git push heroku master` after creating the app.
 
+### Testing Gzip ###
+
+* We can test to see if gzip is working as it should with cURL
+* Open CMD() with Admin privileges and go to cURL bin folder (C:/Program Files/cURL/bin). Use `curl -I -H "Accept-Encoding: gzip,deflate,sdch,br" <siteName>`
+
 ### Import Bootrasp _variables, _mixins or any other file to every scss file ###
 
 * Inside webpack.config.js under `sass-resources-loader` uncomment to use. You can add and remove any file you want. To use it in production add it to webpack.config.prod.js
