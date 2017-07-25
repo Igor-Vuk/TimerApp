@@ -45,5 +45,6 @@ app.listen(PORT, () => {
     fs.openSync('/tmp/app-initialized', 'w')
   }
   /* Unless we do it like this Flow will complain since PORT is now undefined and it can not coerced it to string */
+  // console.log(`Node server is listening on port ${String(PORT)}`)
   console.log(`Node server is listening on port ${String(PORT)}`)
 })
